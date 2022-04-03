@@ -79,16 +79,16 @@ def admission_details(request):
 			class_applying_for=Class_applying_for,
 			disability=Disability,
 			specify=Specify,
-			i_certify_that_the_information_given_above_are_the_truth_and_nothing_but_the_truth=I_certify_that_the_information_given_above_are_the_truth_and_nothing_but_the_truth,
+			certify=I_certify_that_the_information_given_above_are_the_truth_and_nothing_but_the_truth,
 			parents_Name=Parents_Name,
 			addressp=Addressp,
 			phone_numberp=Phone_numberp,
 			townp=Townp,
 			lGAp=LGAp,
 			state_of_Originp=State_of_Originp,
-			Are_you_ready_to_cooperate_with_the_School_or_PTA_for_the_proper_upbringing_of_your_Child=are_you_ready_to_cooperate_with_the_School_or_PTA_for_the_proper_upbringing_of_your_Child,
-			Are_you_ready_to_pay_all_the_approved_fees_as_at_when_due=are_you_ready_to_pay_all_the_approved_fees_as_at_when_due,
-			Is_your_Child_ready_to_obey_all_the_school_Rules_and_Regulations=is_your_Child_ready_to_obey_all_the_school_Rules_and_Regulations,
+			question_1=are_you_ready_to_cooperate_with_the_School_or_PTA_for_the_proper_upbringing_of_your_Child,
+			question_2=are_you_ready_to_pay_all_the_approved_fees_as_at_when_due,
+			question_3=is_your_Child_ready_to_obey_all_the_school_Rules_and_Regulations,
 				)
 		school=School.objects.all()
 		context={
