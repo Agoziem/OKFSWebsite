@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+	<section class="p-2">
+	<div class="container">
+		<h5 class="mt-2" style="font-family: 'League Spartan', sans-serif;" >preview your form entries</h5>
+		<div class="row p-2 d-flex align-items-center>
+			<div class="col-8">
+				{% for logo in school %}
+				<img src="{{logo.Schoollogo.url}}" class="img-fluid"/>
+				{% endfor %}
+			</div>
+			<div class="col-4">
+				<i class="h1 bi bi-person-square me-1"></i>
+				<p class="small">
+					download and attach passport
+				</p>
+			</div>
+		</div>
+		<hr>
+			<div class="small container">
+				<h5> Student Data </h5>
+			<hr>
+				<span class="fw-bold"> First Name : </span>{{object.firstName}} <span class="fw-bold ms-2"> Last Name : </span>{{object.lastName}}<br>
+                <span class="fw-bold"> address : </span>{{object.address}} <span class="fw-bold ms-2"> Town : </span>{{object.town}}<br>
+  			  <span class="fw-bold"> LGA : </span>{{object.lGA}}<span class="fw-bold ms-2"> state of origin: </span>{{object.state_of_Origin}}<br>
+  			  <span class="fw-bold"> Nationality : </span>{{object.nationality}}<span class="fw-bold ms-2"> Religion : </span>{{object.religion}}<br>
+		  	<span class="fw-bold"> previous School attended : </span>{{object.school_attended}}<span class="fw-bold ms-2"> Last Class passed: </span>{{object.Last_Class_passed}}<br>
+			{% if object.common_Ent_Exam_Number %}
+		  	<span class="fw-bold"> common Ent Exam Number : </span>{{object.common_Ent_Exam_Number}}<span class="fw-bold ms-2"> Agg Score : </span>{{object.agg_Score}}<br>
+			{% endif %}
+		  	<span class="fw-bold"> class applying for : </span>{{object.class_applying_for}}<span class="fw-bold ms-2"> disability : </span>{{object.disability}}<br>
+			{% if object.specify %}
+		  	<span class="fw-bold"> specify : </span>{{object.specify}}{% endif %}{% if object.i_certify_that_the_information_given_above_are_the_truth_and_nothing_but_the_truth %}<span class="fw-bold"> 1, certify that the information given above are the truth and nothing but the truth</span><br>{% endif %}
+		    </div>
+		<div class="mt-2 small container">
+			<hr>
+			<h5> Parents Data </h5>
+			<hr>
+		  	<span class="fw-bold"> parents Name : </span>{{object.parents_Name}}<span class="fw-bold ms-2"> address : </span>{{object.addressp}}<br>
+			<span class="fw-bold"> phone number : </span>{{object.phone_numberp}}<span class="fw-bold ms-2"> Town : </span>{{object.townp}}<br>
+			<span class="fw-bold"> LGA : </span>{{object.lGAp}}<span class="fw-bold ms-2"> State of Origin : </span>{{object.state_of_Originp }}<br>
+			<span> • are you ready to cooperate with the School or PTA  for the proper upbringing of your Child ? </span><span class="fw-bold">{{object.Are_you_ready_to_cooperate_with_the_School_or_PTA_for_the_proper_upbringing_of_your_Child }}</span><br>
+			<span> • Are you ready to pay all the approved fees as at when due ? </span><span class="fw-bold">{{object.Are_you_ready_to_pay_all_the_approved_fees_as_at_when_due }}</span><br>
+			<span> • is your Child ready to obey all the school Rules and Regulations ? </span><span class="fw-bold">{{object.Is_your_Child_ready_to_obey_all_the_school_Rules_and_Regulations }}</span><br>
+		</div>
+		<hr>
+		 	<a class="w-100 btn btn-primary mb-3" style="font-family: 'League Spartan', sans-serif;"  href="{% url 'Admission:pdf' object.id %}"> download form<i class="fa fa-download ms-1"></i></a>
+	</div>
+	</section>
+{% endblock %}

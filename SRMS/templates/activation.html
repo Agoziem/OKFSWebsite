@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+      <div class = "container p-3">
+ 		<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Create Students</th>
+      <th scope="col">Create Results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Junior</th>
+      <td><a href="{% url 'SRMS:juniorstudents' %}" class="btn btn-sm">create</a></td>
+      <td><a href="{% url 'SRMS:juniorresult' %}" class="btn btn-secondary btn-sm">create</a></td>
+    </tr>
+    <tr>
+      <th scope="row">Senior</th>
+      <td><a href="{% url 'SRMS:seniorstudents' %}" class="btn btn-sm">create</a></td>
+      <td><a href="{% url 'SRMS:seniorresult' %}" class="btn btn-secondary btn-sm">create</a></td>
+    </tr>
+  </tbody>
+</table>
+<div class="container text-center">
+	<a href="{% url 'SRMS:Pin' %}" class="btn btn-primary">create pin</a>
+</div>
+
+      </div>
+     </section>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+ <html lang="en">
+ <head style="background-color:#00072B;"> <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1"> 
+<!-- Bootstrap CSS -->
+	    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=League+Gothic:wdth@88.1;100&family=League+Spartan:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;1,400;1,500&family=Montserrat:wght@400;500&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,300;1,400&family=Open+Sans:ital,wght@0,400;0,500;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	 <script src="https://js.paystack.co/v1/inline.js"></script> 
+	<style type="text/css" >
+	*{
+		box-sizing:border-box;
+		}
+      html, body {
+         margin: 0;
+         padding: 0;
+      }
+       body {
+         display: flex;
+         min-height: 100vh;
+         flex-direction: column;
+      }
+      main {
+         flex: 1 0 auto;
+      }
+
+li,h1,h2,h3,h4,h5,h6,th{
+ 	color:#00072B;
+ 	font-family: 'Lato', sans-serif;
+ 	}
+ li,p,span,div,td,th,form{
+ 		font-family: 'League Spartan', sans-serif;
+	 		color:#00072B;
+ 			}
+ 
+         </style>
+	  <title>OKFS Onitsha</title>
+ </head> 
+<body>
+	<!-- Navbar -->
+	<section class="p-2">
+	<div class="container">
+		{% for logo in schoollogo %}
+		   <img src="{{logo.Schoollogo.path}}" class="d-block w-100" alt="...">
+		{% endfor %}
+	</div>
+	<div class="container">
+		<h6 class="fw-bold">
+			Online payment Receipt
+		</h6>
+	</div>
+  </section>
+  
+  <!-- Students Data -->
+  <section class="p-2">
+  	<div class="container">
+  		<div>
+  		<span class="fw-bold"> Name : </span>{{receipt.Name_of_student}}<br>
+  	    <span class="fw-bold"> Class : </span>{{receipt.Class}}<br>
+  		<span class="fw-bold"> Email : </span>{{receipt.Email}}<br>
+  		<span class="fw-bold"> Payment type : </span>{{receipt.Payment_type}}<br>
+  		<span class="fw-bold"> Amount : </span>{{paidamount.amount}}<br>	
+          {% if receipt.verified %}
+      	<span class="fw-bold"> Payment Status: </span>Successful<br>
+      {% endif %}
+          <span class="fw-bold"> Payment ref : </span>{{ receipt.ref }}<br>
+  		<span class="fw-bold"> Date/Time of Payment : </span>{{ receipt.date_created}}<br>
+  	</div>-
+ </section>
+  </body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+    <script src=" {% static 'js/script.js' %}">  </script>
+</body> 
+</html>
+
+

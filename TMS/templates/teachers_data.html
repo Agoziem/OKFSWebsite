@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="text-center p-3 mb-2">
+        <h5 class="border-bottom fw-bold">Teachers Data </h5>
+   </div>
+<section id="Files" class= "p-3">
+	{% for teacher in Teachers %}
+             <div class="card shadow-sm ">
+             <img src="{{ teacher.Headshot.url }}" class="card-img-top img-fluid "alt="...">
+              <div class="card-body text-center">
+                <div class="card-title">
+                <h6 class="mb-0">{{ teacher.Name }}</h6>
+                 <p class="text-muted my-1">
+                 {{ teacher.Role }}<br/>
+                 {{ teacher.Phone_number }}
+                </p>
+                </div>
+                <a href="#"><i class="bi bi-twitter text-dark mx-1 h6"></i></a>
+                <a href="#"><i class="bi bi-facebook text-dark mx-1 h6"></i></a>
+                <a href="#"><i class="bi bi-whatsapp text-dark mx-1 h6"></i></a>
+                <a href="#"><i class="bi bi-instagram text-dark mx-1 h6"></i></a>
+              </div>
+            </div>
+ {% endfor %}
+ </section>
+{% endblock %}

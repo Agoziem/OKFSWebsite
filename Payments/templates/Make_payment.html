@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section >
+	<div class="container p-3 mt-4 text-center ">
+	<h6 style="font-family: 'League Spartan', sans-serif;">Hi {{ payment.Name_of_student }} , you are about to make payment for <span class="fw-bold"style="font-family: 'Lato', sans-serif;">{{ payment.Payment_type }}</span> </h6>
+	<h4 class="mt-2 fw-bold" style="font-family: 'Lato', sans-serif;" class="fw-bold"> Amount - NGN{{ paymentamount.amount }}</h4>
+    <button class="btn btn-primary" onclick="payWithPaystack()"> proceed with payment </button>
+</div>
+</section>
+	
+   <script type="text/javascript">
+		function payWithPaystack() {
+		  var handler = PaystackPop.setup({
+		    key: '{{ paystack_public_key }}', // Replace with your public key
+		    email: '{{ payment.Email }}',
+		    amount: '{{ paymentamount.amount_value }}',
+		    ref: '{{ payment.ref }}', 
+		    callback: function(response){
+		      window.location.href="{% url 'Payments:verify_payment' payment.ref %}";
+		    }
+		  });
+		  handler.openIframe();
+		}
+ </script>
+ {% endblock %}

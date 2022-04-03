@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+      <div class = "container p-4">
+      	 <h4 class="fw-bold mt-4 mb-2" style="font-family: 'League Spartan', sans-serif;" >Students Pin</h4>
+ 	<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">S/N</th>
+      <th scope="col">Pin</th>
+    </tr>
+  </thead>
+  <tbody>
+  			{% for studentpin in pins %}
+    <tr>
+      <th scope="row" class="fw-bold">{{forloop.counter}}</th>
+      <td>{{ studentpin.pin }}</td>
+    </tr>
+    		{% endfor %}
+  </tbody>
+</table>
+      </div>
+     </section>
+{% endblock %}

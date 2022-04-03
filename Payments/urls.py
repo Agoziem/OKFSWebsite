@@ -1,0 +1,9 @@
+from django.urls import path
+from .views import initiate_payment,receipt_pdf_view,verify_payment
+
+app_name = 'Payments'
+urlpatterns = [
+	path('',initiate_payment , name='initiate_payment'),
+	path('<str:ref>/',verify_payment , name='verify_payment'),
+	path('<str:ref>/pdf',receipt_pdf_view , name='receipt'),
+    ]

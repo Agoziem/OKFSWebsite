@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section >
+	<div class="container p-3 ">
+	<h4 class=" fw-bold" style="font-family: 'League Spartan', sans-serif;">Initiate Payment</h4>
+	<div class="form-group  my-3">
+<form method='POST'>
+	{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class=" w-100 btn btn-primary" style="font-family: 'League Spartan', sans-serif;">Submit</button>
+</form>
+</div>
+</div>
+<section>
+
+{% endblock %}
