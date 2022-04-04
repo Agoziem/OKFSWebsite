@@ -1081,7 +1081,7 @@ class Excelfiles(models.Model):
 						Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,Term=Term,Academicsession=Academicsession)
 
 class Pin(models.Model):
-	pin= models.IntegerField(blank=False)
+	pin= models.BigIntegerField(blank=False)
 	
 	def generatePin(self,*args,**kwargs):
 		i=0
