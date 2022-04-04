@@ -32,7 +32,3 @@ urlpatterns = [
     path('Payments/', include('Payments.urls')),
     path('Admission/', include('Admission.urls')),
 ]
-if settings.DEBUG:
-	urlpatterns += staticfiles_urlpatterns()
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-	
