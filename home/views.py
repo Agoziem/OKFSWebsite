@@ -14,6 +14,7 @@ def home_view(request):
 	queryset5=UpcomingEvents.objects.all()
 	queryset6=PhotoGallery.objects.all()
 	photos=[]
+	homePhotos=[]
 	for photoobject in queryset6:
 		photos.append(photoobject)
 		homePhotos=photos[:6]
