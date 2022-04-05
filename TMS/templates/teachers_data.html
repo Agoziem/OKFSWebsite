@@ -4,16 +4,20 @@
 <div class="text-center p-3 mb-2">
         <h5 class="border-bottom fw-bold">Teachers Data </h5>
    </div>
-<section id="Files" class= "p-3">
+<section id="Files" class= "p-5">
 	{% for teacher in Teachers %}
-             <div class="card shadow-sm ">
-             <img src="{{ teacher.Headshot.url }}" class="card-img-top img-fluid "alt="...">
+	 <div class="container">
+             <div class="card mb-3 shadow-sm ">
               <div class="card-body text-center">
-                <div class="card-title">
-                <h6 class="mb-0">{{ teacher.Name }}</h6>
-                 <p class="text-muted my-1">
-                 {{ teacher.Role }}<br/>
-                 {{ teacher.Phone_number }}
+              	<img src="{{ teacher.Headshot.url }}" class=" img-fluid rounded-circle mb-3 "alt="...">
+                <div class="container">
+                <h6 class="card-title mb-0">{{ teacher.Name }}</h6>
+                 <p class="card-text text-muted my-1">
+                 <span class="fw-bold">Role : </span> {{ teacher.Role }}<br/>
+                 <span class="fw-bold"> Subject :</span>{{ teacher.Subject }}<br/>
+                 <span class="fw-bold">Class Assigned : </span> {{ teacher.Class_assigned }}<br/>
+                <span class="fw-bold">Phone Number : </span>  {{ teacher.Phone_number }}<br/>
+                 {{ teacher.Email }} 
                 </p>
                 </div>
                 <a href="#"><i class="bi bi-twitter text-dark mx-1 h6"></i></a>
@@ -22,6 +26,7 @@
                 <a href="#"><i class="bi bi-instagram text-dark mx-1 h6"></i></a>
               </div>
             </div>
+          </div>
  {% endfor %}
  </section>
 {% endblock %}

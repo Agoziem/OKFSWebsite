@@ -4,6 +4,11 @@ from .models import Student
 from Payments.models import Payment,Amount
 from django.conf import settings
 from .forms import PaymentForm2
+import base64
+base64.encodestring = base64.encodebytes
+base64.decodestring = base64.decodebytes
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.contrib import messages
 from home.models import School

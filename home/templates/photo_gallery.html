@@ -4,7 +4,7 @@
 <div class="text-center p-3 mb-2">
         <h5 class="border-bottom fw-bold">Photo Gallery</h5>
    </div>
-<section id="Files" class= "p-3">
+<section id="Files" class= "container-fluid p-3">
 	{% for photo in photos %}
 	  <div class="card shadow-sm ">
              <img src="{{photo.Photo.url}}" class="card-img-top img-fluid "alt="...">

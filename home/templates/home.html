@@ -42,7 +42,7 @@
          </div>
         </div>
         <div class="carousel-item">
-        <img src="{% static 'ca4.jpg' %}" class=" w-100" alt="...">
+        <img src="{% static 'ca4a.jpg' %}" class=" w-100" alt="...">
 
         <div class="container">
           <div class="carousel-caption">
@@ -53,7 +53,7 @@
          </div>
         </div>
      <div class="carousel-item">
-        <img src="{% static 'ca5.jpg' %}" class="d-block w-100" alt="...">
+        <img src="{% static 'ca5a.jpg' %}" class="d-block w-100" alt="...">
 
         <div class="container">
           <div class="carousel-caption">
@@ -93,8 +93,8 @@
 <!-- About Section-->
 	<section class="px-2">
 		<div class="container py-0">
-			 {% for info in schools %} 
-		 <img src="{{ info.Schoollogo.url }}" class="img-fluid d-block my-0 w-100" alt="..." >
+			 {% for info in schools %}
+		 <img src="{{ info.Schoollogo.url }}" class="img-fluid d-block my-0 w-75" alt="..." >
 			 {% endfor %}
 	 <hr class=" fw-bold" />
 	{% for info in headers %}
@@ -206,18 +206,18 @@
     </section>
     
    <!-- Management -->
- <section id="Management" class="p-2 py-4">
+ <section id="Management" class="p-3 py-4">
       <div class="container ">
         <h4 class="text-center  fw-bold">School Management</h4>
         <p class=" text-center mb-3"> Ensuring quality Leadership, proper nurturing and Welfare of the Student</p>
-        <div class="row g-2 p-0">
+        <div class="row g-4">
         {% for management in managements %}
-          <div class="col-md-6 col-lg-3">
+          <div class="col-md-6 col-lg-6">
             <div class="card shadow-sm ">
               <div class="card-body text-center">
                 <img
                   src="{{management.Profileimage.url}}"
-                  class="rounded-circle mb-3 w-50 w-md-25"
+                  class="rounded-circle mb-3 w-50"
                   alt=""
                 />
                 <div class="card-title">
@@ -236,7 +236,7 @@
            </div>
           
        {% endfor %}
-          <div class="row p-2 mt-2 justify-content-center align-items-center">
+          <div class="container-fluid row px-2 mt-2 justify-content-center align-items-center">
           	<div class="col-4">
           	<img src="{% static 'Teachers.png' %}" class="img-fluid" />
           	</div>
@@ -255,9 +255,9 @@
  <section id="gallery" class="py-2 mb-3">	
 	<div class=" container py-2 mb-0 text-center  text-white "><h5 class="h4 fw-bold ">Photo Gallery</h5>
 	      <hr class="my-2" >
-	 		<div class="row  g-2 p-0">
+	 		<div class="container row g-3 p-0">
 				{% for photo in photos %}
-          		<div class="col-md-6 col-lg-3">
+          		<div class="col-md-6 col-lg-4">
     					<div class="container mb-2">
   						<img src ="{{ photo.Photo.url }}" class="img-fluid shadow-sm rounded mx-auto"/>
  						</div>
@@ -265,7 +265,7 @@
 					 <br/>
 				{% endfor %}
  				</div>
- 			<a href="{% url 'gallery' %}" class=" btn mt-1" style="background-color: #00072B; color:white;">
+ 			<a href="{% url 'gallery' %}" class=" btn mt-3" style="background-color: #00072B; color:white;">
                View more photos
  			</a>
  			</div>
@@ -275,19 +275,20 @@
    	<section id="UpcomingPrograms" class="p-2">
       <div class="container ">
         <h5 class="text-center text-dark fw-bold "> Upcoming Events</h5>
+       {% if not events %}
  <ol class="list-group-flush  bg-light p-0">
  {% for program in events %}
   <li class="list-group-item d-flex justify-content-between align-items-center">
   <div class="ms-2 ">
-      <h5 class="text-center" > {{ program.Eventtitle}}</h5>
+      <h4 class="text-center" > {{ program.Eventtitle}}</h4>
       <p>
-      <span class="fw-bold">{{ program.EventTopic}} :</span>Why we lack Strong and Vibrabt teachers<br>
-      <span class="fw-bold"> {{ program.Eventspeaker_Chairman }} : </span>Mr Femi Adeyemi
+      <span class="fw-bold">{{ program.EventTopic}} :</span><br>
+      <span class="fw-bold"> {{ program.Eventspeaker_Chairman }} : </span>
       </p>
      <p class="small">
-	  <span class="fw-bold"><i class="bi bi-clock-fill my-1"></i></span>       {{program.Eventtime }}<br>
-      <span class="fw-bold"><i class="bi bi-calendar-event-fill my-1"></i></span>    {{program.Eventdate }}<br>
-      <span class="fw-bold"><i class="bi bi-geo-alt-fill my-1"></i></span>    {{program.Eventvenue }}<br>
+	  <span class="fw-bold"><i class="bi bi-clock-fill me-3"></i></span>{{program.Eventtime }}<br>
+      <span class="fw-bold"><i class="bi bi-calendar-event-fill me-3"></i></span>{{program.Eventdate }}<br>
+      <span class="fw-bold"><i class="bi bi-geo-alt-fill me-3"></i></span>{{program.Eventvenue }}<br>
      </p>
      </div>
      {% if program.Flier %}
@@ -301,6 +302,11 @@
   </li>
   {% endfor %}
 </ol>
+{% else %}
+<div class="container-fluid py-5 px-2 bg-light">
+	<h5 class="text-secondary">no Events yet !!</h5>
+</div>
+{% endif %}
 </div>
 </div>
 </section>	
@@ -309,23 +315,24 @@
  	<section id="FAQ" class="p-2 pb-4 mt-4 bg-light text-dark" style="background-color:#F1F6FF;">
       <div class="container">
         <h5 class=" text-center fw-bold my-4">Frequently Asked Questions</h5>
-        <div class="accordion accordion-flush" id="questions">
+        <div class="accordion text-dark accordion-flush" id="questions">
           <!-- Item 1 --> 
           {% for question in FAQ %}
+          {% for number in questionnum %}
           <div class="accordion-item">
             <h5 class="accordion-header text-white">
               <button
                 class="accordion-button text-white collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#question-one"
+                data-bs-target="#question-{{number}}"
                 style="font-family: 'League Spartan', sans-serif;"
               >
                 {{ question.Questions}}
               </button>
             </h5>
             <div
-              id="question-one"
+              id="question-{{number}}"
               class="accordion-collapse collapse"
               data-bs-parent="#questions"
             >
@@ -335,8 +342,7 @@
             </div>
           </div>
           {% endfor %}
-       
-          
+          {% endfor %}       
         </div>
       </div>
     </section>
@@ -358,6 +364,9 @@
                <li class="list-group-item">
                 <span class="fw-bold">Whatsapp number:</span> {{info.Whatsapp}}
               </li>
+              <li class="list-group-item">
+                <span class="fw-bold">location :</span> {{info.Schoollocation}}
+              </li>
               
          {% endfor %}
             </ul>
@@ -368,4 +377,13 @@
         </div>
       </div>
     </section>
+    <script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoib2tmcyIsImEiOiJjbDFodTNjMG8wNnh6M2tycHN0ZDhzamYzIn0.H1VgtMiBAjkMEe7GXREzvA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center:[-71.060982, 42.35725],
+    zoom:18,
+  });
+</script>
 {% endblock %}

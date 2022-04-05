@@ -9,8 +9,8 @@ import random
 
 class Result(models.Model):
 	SN= models.CharField(max_length=100, blank=True)
-	Name=models.CharField(max_length=50, blank=True)
-	Class=models.CharField(max_length=10, blank=True)
+	Name=models.CharField(max_length=200, blank=True)
+	Class=models.CharField(max_length=100, blank=True)
 	Subject= models.CharField(max_length=100, blank=True)
 	FirstTest= models.CharField(max_length=100, blank=True)
 	SecondTest= models.CharField(max_length=100, blank=True)
@@ -22,8 +22,8 @@ class Result(models.Model):
 	Exam= models.CharField(max_length=100, blank=True)
 	Total= models.CharField(max_length=100, blank=True)
 	Grade=models.CharField(max_length=100, blank=True)
-	SubjectPosition=models.CharField(max_length=5, blank=True)
-	Remark=models.CharField(max_length= 15, blank=True)
+	SubjectPosition=models.CharField(max_length=100, blank=True)
+	Remark=models.CharField(max_length= 100, blank=True)
 	
 	
 					
@@ -40,13 +40,12 @@ class Newsletter(models.Model):
 	Picture= models.ImageField(upload_to = 'assets' ,blank = True)
 	
 class Student(models.Model):
-	Name=models.CharField(max_length=10, blank=True)
-	Class=models.CharField(max_length=10, blank=True)
-	Position=models.CharField(max_length=10, blank=True)
-	Average=models.CharField(max_length=10, blank=True)
-	Password=models.CharField(max_length=10, blank=True)
-	Term=models.CharField(max_length=10, blank=True)
-	Academicsession=models.CharField(max_length=10, blank=True)
+	Name=models.CharField(max_length=200, blank=True)
+	Class=models.CharField(max_length=100, blank=True)
+	Position=models.CharField(max_length=100, blank=True)
+	Average=models.CharField(max_length=100, blank=True)
+	Term=models.CharField(max_length=100, blank=True)
+	Academicsession=models.CharField(max_length=100, blank=True)
 	
 	def __str__(self):
 		return str(self.Name+"-"+self.Class)

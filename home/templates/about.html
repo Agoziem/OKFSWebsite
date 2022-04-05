@@ -12,15 +12,16 @@
 		{{info.About|safe}}
 	</p>
 	</div>
+	    {% if info.Aims_and_Objectives %}
 	<div class="container mt-4">
  	<h6 class="fw-bold">Aims & Objectives</h6>
       <hr class="mt-0 mb-4" >
-      {% if info.Aims_and_Objectives %}
+  
 	<p>
 		{{info.Aims_and_Objectives|safe }}
 		</p>
-	{% endif %}
   </div>
+  {% endif %}
 		<div class="container mt-4">
  	<h6 class="fw-bold">Vision</h6>
       <hr class="mt-0 mb-4 " >

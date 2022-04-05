@@ -206,11 +206,11 @@ li,h1,h2,h3,h4,h5,h6,th{
 	<main>
 <section class="p-2">
 	<div class="container">
-		<h5 class="mt-2" style="font-family: 'League Spartan', sans-serif;" >preview your form entries</h5>
+		<h5 class="mt-2" style="font-family: 'League Spartan', sans-serif;" >Online Admission form</h5>
 		<div class="row p-2 d-flex align-items-center>
 			<div class="col-8">
 				{% for logo in school %}
-				<img src="{{logo.Schoollogo.path}}" class="img-fluid"/>
+				<img src="{{logo.Schoollogo.path}}" class="img-fluid w-50"/>
 				{% endfor %}
 			</div>
 			<div class="col-4">
@@ -246,9 +246,7 @@ li,h1,h2,h3,h4,h5,h6,th{
 			<span> • are you ready to cooperate with the School or PTA  for the proper upbringing of your Child ? </span><span class="fw-bold">{{object.Are_you_ready_to_cooperate_with_the_School_or_PTA_for_the_proper_upbringing_of_your_Child }}</span><br>
 			<span> • Are you ready to pay all the approved fees as at when due ? </span><span class="fw-bold">{{object.Are_you_ready_to_pay_all_the_approved_fees_as_at_when_due }}</span><br>
 			<span> • is your Child ready to obey all the school Rules and Regulations ? </span><span class="fw-bold">{{object.Is_your_Child_ready_to_obey_all_the_school_Rules_and_Regulations }}</span><br>
-		</div>
-		<hr>
-		 	<a class="w-100 btn btn-primary mb-3" style="font-family: 'League Spartan', sans-serif;"  href="{% url 'Admission:pdf' object.id %}"> download form<i class="fa fa-download ms-1"></i></a>
+		</div> 
 	</div>
 	</section>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
