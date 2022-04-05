@@ -212,12 +212,12 @@
         <p class=" text-center mb-3"> Ensuring quality Leadership, proper nurturing and Welfare of the Student</p>
         <div class="row g-4">
         {% for management in managements %}
-          <div class="col-md-6 col-lg-6">
+          <div class="col-md-6 col-lg-3">
             <div class="card shadow-sm ">
               <div class="card-body text-center">
                 <img
                   src="{{management.Profileimage.url}}"
-                  class="rounded-circle mb-3 w-50"
+                  class="rounded-circle mb-3 w-25"
                   alt=""
                 />
                 <div class="card-title">
@@ -275,7 +275,7 @@
    	<section id="UpcomingPrograms" class="p-2">
       <div class="container ">
         <h5 class="text-center text-dark fw-bold "> Upcoming Events</h5>
-       {% if not events %}
+       {% if events %}
  <ol class="list-group-flush  bg-light p-0">
  {% for program in events %}
   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -317,12 +317,13 @@
         <h5 class=" text-center fw-bold my-4">Frequently Asked Questions</h5>
         <div class="accordion text-dark accordion-flush" id="questions">
           <!-- Item 1 --> 
-          {% for question in FAQ %}
+          
           {% for number in questionnum %}
+          {% for question in FAQ %}
           <div class="accordion-item">
-            <h5 class="accordion-header text-white">
+            <h5 class="accordion-header text-dark">
               <button
-                class="accordion-button text-white collapsed"
+                class="accordion-button text-dark collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#question-{{number}}"

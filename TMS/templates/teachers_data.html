@@ -5,11 +5,12 @@
         <h5 class="border-bottom fw-bold">Teachers Data </h5>
    </div>
 <section id="Files" class= "p-5">
+	<div class="container row g-4 ">
 	{% for teacher in Teachers %}
-	 <div class="container">
-             <div class="card mb-3 shadow-sm ">
+	      <div class="col-md-6 col-lg-4 ">
+             <div class="card mb-3 shadow-sm">
               <div class="card-body text-center">
-              	<img src="{{ teacher.Headshot.url }}" class=" img-fluid rounded-circle mb-3 "alt="...">
+              	<img src="{{ teacher.Headshot.url }}" class=" rounded-circle mb-3 w-50"alt="...">
                 <div class="container">
                 <h6 class="card-title mb-0">{{ teacher.Name }}</h6>
                  <p class="card-text text-muted my-1">
@@ -26,7 +27,8 @@
                 <a href="#"><i class="bi bi-instagram text-dark mx-1 h6"></i></a>
               </div>
             </div>
-          </div>
+     </div>
  {% endfor %}
+      </div>
  </section>
 {% endblock %}

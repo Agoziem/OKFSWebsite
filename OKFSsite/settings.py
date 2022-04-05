@@ -25,7 +25,7 @@ SECRET_KEY = 'eh@0&l&log+oj79b(l6#gym*jg&+mwrqh1@0)pf2pnkp-$8l$t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['okfs.herokuapp.com']
+ALLOWED_HOSTS = ['okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com']
 
 
 # Application definition
