@@ -13,7 +13,7 @@ def home_view(request):
 	queryset4=FAQ.objects.all()
 	queryset5=UpcomingEvents.objects.all()
 	queryset6=PhotoGallery.objects.all()
-	list=['one','two','three','four','five','six','seven','eight','nine','ten']
+	
 	photos=[]
 	homePhotos=[]
 	for photoobject in queryset6:
@@ -21,7 +21,6 @@ def home_view(request):
 		homePhotos=photos[:6]
 	print(homePhotos)
 	context= {
-	'questionnum':list,
 	'schools':queryset1,
 	'managements':queryset2,
 	'headers':queryset3,

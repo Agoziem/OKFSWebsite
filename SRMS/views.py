@@ -37,11 +37,8 @@ def result_view(request,Classname):
 		try:
 			enteredpin=request.POST.get('Pin')
 			mainpin=int(enteredpin)
-			Studentpin=Pin.objects.all()
-			storedPinlist=[]
-			for x in Studentpin:
-				storedPinlist.append(x.pin)
-			if mainpin in storedPinlist:
+			studentpin=get_object_or_404(Pin,student=request.POST.get('Name'))
+			if mainpin == studentpin.pin:
 				context={
 					"Student":stuff,
 					"Result":queryset3,

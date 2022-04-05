@@ -47,6 +47,7 @@ class Student(models.Model):
 	Term=models.CharField(max_length=100, blank=True)
 	Academicsession=models.CharField(max_length=100, blank=True)
 	
+	
 	def __str__(self):
 		return str(self.Name+"-"+self.Class)
 	
@@ -1078,16 +1079,22 @@ class Excelfiles(models.Model):
 						Term=ws['H6'].value
 						Academicsession=ws['K6'].value
 						Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,Term=Term,Academicsession=Academicsession)
+	
+
 
 class Pin(models.Model):
+	student=models.CharField(max_length=100, blank=True)
 	pin= models.BigIntegerField(blank=False)
 	
 	def generatePin(self,*args,**kwargs):
 		i=0
 		while i <= 300:
-			StudentPin = str(random.randint(0, 99999999999999)).rjust(14, '0')
+			StudentPin= str(random.randint(0, 99999999999999)).rjust(14, '0')
 			pin=StudentPin
 			Pin.objects.create(pin=pin)
 			i=i+1
+			
 	def __str__(self):
-		return str(self.pin)
+		return str(self.student)
+		
+	
