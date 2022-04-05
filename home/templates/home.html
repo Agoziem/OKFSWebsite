@@ -303,8 +303,8 @@
   {% endfor %}
 </ol>
 {% else %}
-<div class="container-fluid py-5 px-2 bg-light">
-	<h5 class="text-secondary">no Events yet !!</h5>
+<div class="container-fluid py-5 ps-3 bg-light">
+	<h5 class="px-3 text-secondary">no Events yet !!</h5>
 </div>
 {% endif %}
 </div>
@@ -317,8 +317,8 @@
         <h5 class=" text-center fw-bold my-4">Frequently Asked Questions</h5>
         <div class="accordion text-dark accordion-flush" id="questions">
           <!-- Item 1 --> 
-          
-          {% for number in questionnum %}
+       
+     
           {% for question in FAQ %}
           <div class="accordion-item">
             <h5 class="accordion-header text-dark">
@@ -326,14 +326,14 @@
                 class="accordion-button text-dark collapsed"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#question-{{number}}"
+                data-bs-target="#question-{{ question.questionnumber}}"
                 style="font-family: 'League Spartan', sans-serif;"
               >
                 {{ question.Questions}}
               </button>
             </h5>
             <div
-              id="question-{{number}}"
+              id="question-{{ question.questionnumber}}"
               class="accordion-collapse collapse"
               data-bs-parent="#questions"
             >
@@ -343,7 +343,7 @@
             </div>
           </div>
           {% endfor %}
-          {% endfor %}       
+       
         </div>
       </div>
     </section>

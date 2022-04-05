@@ -64,6 +64,7 @@ class UpcomingEvents(models.Model):
 		return str(self.Eventtitle)
 		
 class FAQ(models.Model):
+	questionnumber=models.CharField(max_length= 300, blank=True)
 	Questions= models.CharField(max_length= 300, blank=True)
 	Answer= models.CharField(max_length= 300, blank=True)
 	
