@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'eh@0&l&log+oj79b(l6#gym*jg&+mwrqh1@0)pf2pnkp-$8l$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com']
 
@@ -167,3 +167,7 @@ EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL=False
 
+if os.getcwd() == '/app':
+	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
+	SECURE_SSL_REDIRECT=True
+	DEBUG=False
