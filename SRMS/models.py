@@ -1016,7 +1016,6 @@ class Excelfiles(models.Model):
 					Class=ws['B6'].value
 					Position=ws['K22'].value
 					Average=ws['H22'].value
-					
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
 					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,Term=Term,Academicsession=Academicsession)
@@ -1079,8 +1078,7 @@ class Excelfiles(models.Model):
 						Term=ws['H6'].value
 						Academicsession=ws['K6'].value
 						Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,Term=Term,Academicsession=Academicsession)
-	
-
+						
 
 class Pin(models.Model):
 	student=models.CharField(max_length=100, blank=True)
@@ -1097,4 +1095,4 @@ class Pin(models.Model):
 	def __str__(self):
 		return str(self.student)
 		
-	
+		

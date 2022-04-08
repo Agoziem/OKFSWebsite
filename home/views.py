@@ -19,8 +19,8 @@ def home_view(request):
 	for photoobject in queryset6:
 		photos.append(photoobject)
 		homePhotos=photos[:6]
-	print(homePhotos)
 	context= {
+	'mapbox_private_key':settings.MAPBOXGL.ACCESSTOKEN
 	'schools':queryset1,
 	'managements':queryset2,
 	'headers':queryset3,

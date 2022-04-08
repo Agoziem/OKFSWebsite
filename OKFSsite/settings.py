@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'eh@0&l&log+oj79b(l6#gym*jg&+mwrqh1@0)pf2pnkp-$8l$t'
+
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = config('DEBUG', default=False, cast=bool)
+
 
 ALLOWED_HOSTS = ['okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com']
 
@@ -139,12 +143,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-AWS_ACCESS_KEY_ID='AKIA2ZLSVO3NA6IDE5MJ'
-AWS_SECRET_ACCESS_KEY='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'
-AWS_STORAGE_BUCKET_NAME='okfswebbucket'
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS={'CacheControl':'max-age=86400'}
-AWS_DEFAULT_ACL='public-read'
+AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL', default='')
 
 AWS_LOCATION = 'static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
@@ -152,20 +156,14 @@ STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
 STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
 
-PAYSTACK_PUBLIC_KEY="pk_test_68d79b69c8fce065c60dbb0f22cb914f5e57a0bd"
-PAYSTACK_SECRET_KEY="sk_test_937fb72e90001c45fe58c9382af653d9ddc852bd"
+EMAIL_BACKEND=sendgrid_backend.SendgridBackend
+SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')
+SENDGRID_SANDBOX_MODE_IN_DEBUG=config('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=False, cast=bool)
 
-#EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
-#SENDGRID_API_KEY="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"
-#SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.yahoo.com'
-EMAIL_HOST_USER = 'ndukwechiagozie@yahoo.com'
-EMAIL_HOST_PASSWORD = 'fzgdpbnnrivjjekr'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL=False
+MAPBOXGL.ACCESSTOKEN=config('MAPBOXGL.ACCESSTOKEN', default='')
 
 if os.getcwd() == '/app':
 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
