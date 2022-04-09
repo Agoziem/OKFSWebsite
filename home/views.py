@@ -20,7 +20,7 @@ def home_view(request):
 		photos.append(photoobject)
 		homePhotos=photos[:6]
 	context= {
-	'mapbox_private_key':settings.MAPBOXGL.ACCESSTOKEN
+	'mapbox_private_key':settings.MAPBOXGL_ACCESSTOKEN
 	'schools':queryset1,
 	'managements':queryset2,
 	'headers':queryset3,
