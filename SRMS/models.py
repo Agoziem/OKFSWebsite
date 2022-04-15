@@ -57,7 +57,7 @@ class Student(models.Model):
 	
 	def createJuniorResult(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss1A Result Sheet.xlsx','Jss1B Result Sheet.xlsx','Jss1C Result Sheet.xlsx','Jss2A Result Sheet.xlsx','Jss2B Result Sheet.xlsx','Jss3 Result Sheet.xlsx']
+		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final.xlsx']
 		for file in juniorClassExcel:
 			filename = file
 			filepath = BASE_DIR + '/media/media/' + filename
