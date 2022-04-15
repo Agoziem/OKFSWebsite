@@ -9,22 +9,22 @@ from ckeditor.fields import RichTextField
 
 
 class Result(models.Model):
-	SN= models.CharField(max_length=100, blank=True)
-	Name=models.CharField(max_length=200, blank=True)
-	Class=models.CharField(max_length=100, blank=True)
-	Subject= models.CharField(max_length=100, blank=True)
-	FirstTest= models.CharField(max_length=100, blank=True)
-	SecondTest= models.CharField(max_length=100, blank=True)
-	Project= models.CharField(max_length=100, blank=True)
-	MidTermTest= models.CharField(max_length=100, blank=True)
-	FirstAss= models.CharField(max_length=100, blank=True)
-	SecondAss= models.CharField(max_length=100, blank=True)
-	CA= models.CharField(max_length=100, blank=True)
-	Exam= models.CharField(max_length=100, blank=True)
-	Total= models.CharField(max_length=100, blank=True)
-	Grade=models.CharField(max_length=100, blank=True)
-	SubjectPosition=models.CharField(max_length=100, blank=True)
-	Remark=models.CharField(max_length= 100, blank=True)
+	SN= models.CharField(max_length=100, blank=True,null=True)
+	Name=models.CharField(max_length=200, blank=True,null=True)
+	Class=models.CharField(max_length=100, blank=True,null=True)
+	Subject= models.CharField(max_length=100, blank=True,null=True)
+	FirstTest= models.CharField(max_length=100, blank=True,null=True)
+	SecondTest= models.CharField(max_length=100, blank=True,null=True)
+	Project= models.CharField(max_length=100, blank=True,null=True)
+	MidTermTest= models.CharField(max_length=100, blank=True,null=True)
+	FirstAss= models.CharField(max_length=100, blank=True,null=True)
+	SecondAss= models.CharField(max_length=100, blank=True,null=True)
+	CA= models.CharField(max_length=100, blank=True,null=True)
+	Exam= models.CharField(max_length=100, blank=True,null=True)
+	Total= models.CharField(max_length=100, blank=True,null=True)
+	Grade=models.CharField(max_length=100, blank=True,null=True)
+	SubjectPosition=models.CharField(max_length=100, blank=True,null=True)
+	Remark=models.CharField(max_length= 100, blank=True,null=True)
 	
 	
 					
@@ -41,14 +41,14 @@ class Newsletter(models.Model):
 	newsletter= RichTextField(blank=True,null=True)
 	
 class Student(models.Model):
-	Name=models.CharField(max_length=200, blank=True)
-	Class=models.CharField(max_length=100, blank=True)
-	TotalScore=models.CharField(max_length=100, blank=True)
-	Totalnumber=models.CharField(max_length=100, blank=True)
-	Average=models.CharField(max_length=100, blank=True)
-	Position=models.CharField(max_length=100, blank=True)
-	Term=models.CharField(max_length=100, blank=True)
-	Academicsession=models.CharField(max_length=100, blank=True)
+	Name=models.CharField(max_length=200, blank=True,null=True)
+	Class=models.CharField(max_length=100, blank=True,null=True)
+	TotalScore=models.CharField(max_length=100, blank=True,null=True)
+	Totalnumber=models.CharField(max_length=100, blank=True,null=True)
+	Average=models.CharField(max_length=100, blank=True,null=True)
+	Position=models.CharField(max_length=100, blank=True,null=True)
+	Term=models.CharField(max_length=100, blank=True,null=True)
+	Academicsession=models.CharField(max_length=100, blank=True,null=True)
 	
 	
 	
@@ -1142,7 +1142,7 @@ class Excelfiles(models.Model):
 		
 	def createJuniorStudents(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss1A_Result_Sheet-Final.xlsx','Jss1B_Result_Sheet-Final.xlsx','Jss1C_Result_Sheet-Final.xlsx','Jss2A_Result_Sheet-Final.xlsx','Jss2B_Result_Sheet-Final.xlsx','Jss3_Result_Sheet-Final.xlsx']
+		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final.xlsx']
 		for count,file in enumerate(juniorClassExcel,start=1):
 			if count == 1:
 				filename = file
