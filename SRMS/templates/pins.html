@@ -13,7 +13,7 @@
   <tbody>
   			{% for studentpin in pins %}
     <tr>
-      <th scope="row" class="fw-bold">{{forloop.counter}}</th>
+      <th scope="row" class="fw-bold">{{studentpin.student}}</th>
       <td>{{ studentpin.pin }}</td>
     </tr>
     		{% endfor %}

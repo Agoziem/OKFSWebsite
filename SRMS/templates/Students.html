@@ -3,13 +3,14 @@
 {% block content %}
 <section class="p-2 bg-light">
 	
-<div class="container-fluid my-3 mt-md-4">
+<div class="container my-3 mt-md-4">
 <div class="card shadow-sm ">
               <div class="card-body text-center">
 	          	{% if messages %}
 				{% for message in messages %}
-			<div class="alert {{ message.tags }} alert-success" role="alert">
+			<div class="alert {{ message.tags }} alert-dismissible alert-success" role="alert">
 	          {{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 			{% endfor %}
 		{% endif %}

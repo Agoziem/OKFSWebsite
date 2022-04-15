@@ -5,11 +5,11 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h4 class="fw-light">{{ object.EbookTitle }}</h4>
-        <img class="img-fluid my-3" width="75" src="{{object.Ebookimage.url}}"/>
+        <img class="img-fluid my-3" width="100" src="{{object.Ebookimage}}"/>
         <p class=" text-muted">{{object.Ebookdescription }}</p>
         <p>
-          <a href="{{object.Ebook.url}}" download class="btn btn-primary my-2">Download</a>
-          <a href="{{object.Ebook.url}}" class="btn btn-secondary my-2">View Ebook</a>
+          <a href="{{object.Ebooklink}}" download class="btn btn-primary my-2">Download</a>
+          <a href="{{object.Ebooklink}}" class="btn btn-secondary my-2">View Ebook</a>
         </p>
       </div>
     </div>

@@ -55,7 +55,7 @@ def home2_view(request):
 		send_mail(subject, message, sender, recipients, fail_silently=False)
 		"""
 		Subscription.objects.create(Email=emails)
-		messages.success(request, 'thanks for subscribing to our newsletter, you will start receiving our newsletters')
+		messages.success(request, 'thanks for subscribing, you will start receiving our newsletters')
 		return redirect('home')
 
 def contact_form(request):

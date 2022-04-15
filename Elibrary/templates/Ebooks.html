@@ -4,11 +4,11 @@
 <section>
 	<!-- Remember to add number of downloads and views later and decorate the E-library homepage-->
       <div class = "container p-3">
- 	<ul class="list-group-flush p-0">
+ 	
  	     <h5 class="fw-bold">{{ ebooksubject.Sub}}</h5>
         <hr class="mt-0 mb-4" >
         	{% if not ebooks%}
-        <section>
+<section>
 	<div class="container text-center p-3">
 		<i class="bi bi-file-earmark-text  h1"></i>
 		<h3 class="text-secondary" style="font-family: 'League Spartan', sans-serif;">Ebooks not available yet </h3>
@@ -16,21 +16,25 @@
 </section>
          {% else %}
 	{% for ebook in ebooks %}
+<ul class="list-group-flush p-0">
   <li class="list-group-item shadow-sm d-flex justify-content-between align-items-center">
-  <div class="my-2">
+    <div class="p-2">
        <a href="{% url 'Elibrary:ebookdetail' ebook.id %}" class="h5 text-decoration-none">• {{ ebook.EbookTitle }}</a>
-		<p class="text-secondary small"> {{ ebook.date_published}}.<!--{{ebook.downloads}}-->0 downloads . 0 views</p>
+       <p class="text-secondary"> {{ ebook.Ebookauthor}} <br>
+		<span class="small">{{ ebook.date_uploaded}}</span>
+     </p>
     </div>
-        <div class=" ms-auto w-50">
+        <div class=" ms-auto ">
      <img
-                  src="{{ebook.Ebookimage.url}}"
-                  class=" img-fluid mb-3"
+                  src="{{ebook.Ebookimage }}"
+                  class="w-75 img-fluid mb-3"
                   alt="" />
       </div>
-        </li>
+    </li>
            {% endfor %}
+     </ul>
       {% endif %}     
-      </ul>
+      
       </div>
      </section>
 

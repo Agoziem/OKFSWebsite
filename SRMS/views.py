@@ -32,6 +32,7 @@ def result_view(request,Classname):
 	queryset2=Class.objects.get(Class=Classname)
 	stuff=get_object_or_404(Student,Name=request.POST.get('Name'))
 	queryset3=Result.objects.filter(Name=request.POST.get('Name'),Class=Classname)
+	letter=Newsletter.objects.all()
 	school=School.objects.all()
 	if request.method=='POST':
 		try:
@@ -43,6 +44,7 @@ def result_view(request,Classname):
 					"Student":stuff,
 					"Result":queryset3,
 					'schoollogo': school,
+					'letter':letter,
 					}
 				return render(request,"Result.html", context)
 			else:
@@ -67,11 +69,13 @@ def result_pdf_view(request,Name,Classname):
 	stuff=get_object_or_404(Student,Name=Name)
 	queryset=Result.objects.filter(Name=Name,Class=Classname)
 	school=School.objects.all()
+	letter=Newsletter.objects.all()
 	template_path ='Result_pdf.html'
 	context={
 		"Student":stuff,
 		"Result":queryset,
 		'schoollogo': school,
+		'letter':letter,
 		}
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachment'; filename="Result.pdf"
@@ -111,9 +115,16 @@ def createseniorstudent_view(request):
 	 }
 	return render(request, "Congratulation.html", context)
 	
-def createseniorresult_view(request):
+def createseniorresult1_view(request):
 	result=Student()
-	result.createSeniorResult()
+	result.createSeniorResult1()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createseniorresult2_view(request):
+	result=Student()
+	result.createSeniorResult2()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)

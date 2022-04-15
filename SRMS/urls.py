@@ -9,7 +9,8 @@ from .views import (
 	createjuniorstudent_view,
 	createjuniorresult_view,
 	createseniorstudent_view,
-	createseniorresult_view,
+	createseniorresult1_view,
+    createseniorresult2_view,
 	createPin,
 )
 
@@ -20,7 +21,8 @@ urlpatterns = [
     path('activation/createjuniorstudents/', createjuniorstudent_view, name='juniorstudents'),
     path('activation/createjuniorresults/', createjuniorresult_view, name='juniorresult'),
     path('activation/createseniorstudents/', createseniorstudent_view, name='seniorstudents'),
-    path('activation/createseniorresults/', createseniorresult_view, name='seniorresult'),
+    path('activation/createseniorresults1/', createseniorresult1_view, name='seniorresult1'),
+    path('activation/createseniorresults2&3/', createseniorresult2_view, name='seniorresult2'),
     path('activation/pins/', createPin, name='Pin'),   
     path('<str:Classname>/',students_view, name='students'),
     path('<str:Classname>/result/',result_view, name='result'),

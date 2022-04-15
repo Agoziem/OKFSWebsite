@@ -71,8 +71,10 @@
       <div class="container">
       	  	{% if messages %}
 	       {% for message in messages %}
-			<div class="alert {{ message.tags }} alert-success" role="alert">
+			<div class="alert  {{ message.tags }} alert-success alert-dismissible fade show
+      " role="alert">
 	          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			</div>
 		{% endfor %}
 		{% endif %}
@@ -312,7 +314,7 @@
 </section>	
 
  <!-- FAQ -->
- 	<section id="FAQ" class="p-2 pb-4 mt-4 bg-light text-dark" style="background-color:#F1F6FF;">
+ 	<section id="FAQ" class="p-2 pb-4 my-4 bg-light text-dark" style="background-color:#F1F6FF;">
       <div class="container">
         <h5 class=" text-center fw-bold my-4">Frequently Asked Questions</h5>
         <div class="accordion text-dark accordion-flush" id="questions">
@@ -372,9 +374,8 @@
          {% endfor %}
             </ul>
           </div>
-          <div class="col col-md p-0">
-                    <div id='map'></div>
-          </div>
+          <div id='map' class=' col col-md'> 
+          </div>         
         </div>
       </div>
     </section>
