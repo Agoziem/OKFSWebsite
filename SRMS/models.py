@@ -57,7 +57,7 @@ class Student(models.Model):
 	
 	def createJuniorResult(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final.xlsx']
+		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2a.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final_2.xlsx']
 		for file in juniorClassExcel:
 			filename = file
 			filepath = BASE_DIR + '/media/media/' + filename
@@ -1142,7 +1142,7 @@ class Excelfiles(models.Model):
 		
 	def createJuniorStudents(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final.xlsx']
+		juniorClassExcel=['Jss1A_Result_Sheet_Final.xlsx','Jss1B_Result_Sheet_Final_2a.xlsx','Jss1C_Result_Sheet_Final.xlsx','Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet.xlsx','Jss3_Result_Sheet-Final_2.xlsx']
 		for count,file in enumerate(juniorClassExcel,start=1):
 			if count == 1:
 				filename = file
