@@ -68,7 +68,7 @@ class Student(models.Model):
 				Class=ws['B6'].value
 				for count, row in enumerate(range(10,19),start=1):
 					if count == 1:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -102,7 +102,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 2:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							if count == 1:
 								SN=ws[char+str(row)].value
@@ -135,7 +135,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 3:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -169,7 +169,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 4:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -203,7 +203,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 5:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -237,7 +237,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 
 					elif count == 6:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -271,7 +271,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 7:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -305,7 +305,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 8:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 							
 							if count == 1:
@@ -339,7 +339,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 					
 					elif count == 9:
-						for count, col in enumerate(range(1,14),start=1):
+						for count, col in enumerate(range(1,15),start=1):
 							char=get_column_letter(col)
 						
 							if count == 1:
