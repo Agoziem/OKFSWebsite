@@ -94,19 +94,52 @@ def activation_view(request):
 		}
 	return render(request, "activation.html", context)
 	
-def createjuniorstudent_view(request):
+	#Activate the Junior Students
+
+def createjuniorstudent1_view(request):
 	student=Excelfiles()
-	student.createJuniorStudents()
+	student.createJuniorStudent1()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-	
-def createjuniorresult_view(request):
+
+def createjuniorstudent2_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent2()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorstudent3_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent3()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+# create Jss1,2 & 3 Result 
+
+def createjuniorresult1_view(request):
 	result=Student()
-	result.createJuniorResult()
+	result.createJuniorResult1()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
+
+def createjuniorresult2_view(request):
+	result=Student()
+	result.createJuniorResult2()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorresult3_view(request):
+	result=Student()
+	result.createJuniorResult3()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+# Activate the Senior Students
 
 def createseniorstudent_view(request):
 	student=Excelfiles()
@@ -114,6 +147,8 @@ def createseniorstudent_view(request):
 	context = {
 	 }
 	return render(request, "Congratulation.html", context)
+
+# Activate the Senior Result
 	
 def createseniorresult1_view(request):
 	result=Student()
@@ -129,6 +164,8 @@ def createseniorresult2_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 	
+# Create the Student Pin with the name 
+
 def createPin(request):
 	myPin=Pin()
 	myPin.generatePin()
