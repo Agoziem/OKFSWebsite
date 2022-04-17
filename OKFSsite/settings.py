@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_admin_logs',
     'home',
     'Elibrary',
     'Payments',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'ckeditor',
 	'crispy_forms',    
 ]
+
+DJANGO_ADMIN_LOGS_DELETABLE = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
