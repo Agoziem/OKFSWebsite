@@ -96,16 +96,35 @@ def activation_view(request):
 	
 	#Activate the Junior Students
 
-def createjuniorstudent1_view(request):
+def createjuniorstudent1a_view(request):
 	student=Excelfiles()
-	student.createJuniorStudent1()
+	student.createJuniorStudent1a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-def createjuniorstudent2_view(request):
+def createjuniorstudent1b_view(request):
 	student=Excelfiles()
-	student.createJuniorStudent2()
+	student.createJuniorStudent1b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudent1c_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent1c()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorstudent2a_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudent2b_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent2b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
@@ -119,19 +138,39 @@ def createjuniorstudent3_view(request):
 
 # create Jss1,2 & 3 Result 
 
-def createjuniorresult1_view(request):
+def createjuniorresult1a_view(request):
 	result=Student()
-	result.createJuniorResult1()
+	result.createJuniorResult1a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorresult1b_view(request):
+	result=Student()
+	result.createJuniorResult1b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorresult1c_view(request):
+	result=Student()
+	result.createJuniorResult1c()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-def createjuniorresult2_view(request):
+def createjuniorresult2a_view(request):
 	result=Student()
-	result.createJuniorResult2()
+	result.createJuniorResult2a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
+
+def createjuniorresult2b_view(request):
+	result=Student()
+	result.createJuniorResult2b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
 def createjuniorresult3_view(request):
 	result=Student()
 	result.createJuniorResult3()
