@@ -29,7 +29,7 @@ class Result(models.Model):
 	
 					
 	def __str__(self):
-		return str(self.Name +"-"+ self.Subject)
+		return str(self.Name +"-"+ self.Subject+"-"+self.Class)
 		
 class Class(models.Model):
 	Class=models.CharField(max_length=10, blank=True)
@@ -1006,7 +1006,7 @@ class Student(models.Model):
 						
 	def createJuniorResult2a(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss2A_Result_sheet_Final_1.xlsx','Jss2B_Result_Sheet_1.xlsx']
+		juniorClassExcel=['Jss2A_Result_sheet_Final_1.xlsx']
 		for file in juniorClassExcel:
 			filename = file
 			filepath = BASE_DIR + '/media/media/' + filename
