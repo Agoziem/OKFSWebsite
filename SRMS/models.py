@@ -56,7 +56,7 @@ class Student(models.Model):
 		return str(self.Name+"-"+self.Class)
 	
 	def createJuniorResult1a(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel=['Jss1Afinal.xlsx']
 		for file in juniorClassExcel:
 			filename = file
@@ -372,7 +372,7 @@ class Student(models.Model):
 								Remark=ws[char+str(row)].value
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1b(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss1Bfinal.xlsx'		
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -687,7 +687,7 @@ class Student(models.Model):
 							Remark=ws[char+str(row)].value
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1c(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel="Jss1Cfinal.xlsx"		
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -1320,7 +1320,7 @@ class Student(models.Model):
 						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 
 	def createJuniorResult2b(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss2Bfinal.xlsx'	
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -2717,7 +2717,7 @@ class Excelfiles(models.Model):
 		return str(self.Excel)
 		
 	def createJuniorStudent1a(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss1Afinal.xlsx'
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -2734,7 +2734,7 @@ class Excelfiles(models.Model):
 			Academicsession=ws['K6'].value
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1b(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss1Bfinal.xlsx'
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -2751,7 +2751,7 @@ class Excelfiles(models.Model):
 			Academicsession=ws['K6'].value
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1c(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss1Cfinal.xlsx'		
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
@@ -2785,7 +2785,7 @@ class Excelfiles(models.Model):
 			Academicsession=ws['K6'].value
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent2b(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+		BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 		juniorClassExcel='Jss2Bfinal.xlsx'
 		filename = juniorClassExcel
 		filepath = BASE_DIR + '/media/media/' + filename
