@@ -2752,7 +2752,6 @@ class Excelfiles(models.Model):
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTemplate.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
-		wb=load_workbook(filepath)
 		for sheet in wb:
 			ws=wb[sheet.title]
 			Name=ws['B4'].value
