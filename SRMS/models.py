@@ -375,7 +375,7 @@ class Student(models.Model):
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1Bfinal.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTemplate.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -689,7 +689,7 @@ class Student(models.Model):
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1Cfinal.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTemplate.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -2733,7 +2733,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1Bfinal.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTemplate.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -2749,7 +2749,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1Cfinal.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTemplate.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		wb=load_workbook(filepath)
