@@ -44,7 +44,7 @@ urlpatterns = [
     path('activation/createseniorresults1/', createseniorresult1_view, name='seniorresult1'),
     path('activation/createseniorresults2&3/', createseniorresult2_view, name='seniorresult2'),
     path('activation/pins/', createPin, name='Pin'),   
-    path('<str:Classname>/',students_view, name='students'),
+    path('<str:Classname>/<int:id>/',students_view, name='students'),
     path('<str:Classname>/result/',result_view, name='result'),
     path('<str:Classname>/<str:Name>/pdf',result_pdf_view, name='pdf'),
     

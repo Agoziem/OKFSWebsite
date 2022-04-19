@@ -36,5 +36,24 @@
             </div>
      </div>
   </div>
- </section> 
+  <div class="container mb-5">
+	{% if Assignments %}	
+		<h4 >Assignments & Project for {{ class.Class}}</h4>
+		{% for Assignment in Assignments %}
+		<li class="list-group-item d-flex justify-content-between align-items-start">
+		  <div class="ms-2 me-auto">
+			<div class="fw-bold">{{ Assignment.subject }}</div>
+			download and print
+		  </div>
+		  <a href="{{ Assignment.file.url }}"  download><i class="fa fa-download h2"></i></a>
+		</li>
+		{% endfor %}
+	  </ol>
+	{% else %}
+	<h4>Assignments & Project for {{ class.Class}}</h4>
+	<hr>
+	 <h6> No Assignment or Project Available for {{ class.Class}} </h6>
+	{% endif %}
+  </div>
+ </section>
 {% endblock %}

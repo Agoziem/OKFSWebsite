@@ -9,7 +9,7 @@
 {% for class in classes %}
   <li class="list-group-item d-flex justify-content-between align-items-center">
   <div class="my-2">
-       <a href="{% url 'SRMS:students' class.Class %}" class="text-decoration-none">• {{ class.Class }}</a>
+       <a href="{% url 'SRMS:students' class.Class class.id %}" class="text-decoration-none">• {{ class.Class }}</a>
     </div>
         </li>
         {% endfor %} 

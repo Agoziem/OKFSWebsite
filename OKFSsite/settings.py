@@ -134,6 +134,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATIC_URL='/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
+
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -151,12 +157,7 @@ STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
 
 #if debug is set to false 
-# STATIC_URL='/static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-# STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
 
-# MEDIA_URL= '/media/'
-# MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 EMAIL_BACKEND='sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')

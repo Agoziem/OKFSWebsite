@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Result,Student,Excelfiles,Class,Newsletter,Pin
+from .models import Assignments, Result,Student,Excelfiles,Class,Newsletter,Pin
 from home.models import School
 from django.contrib.auth.decorators import login_required
 import base64
@@ -18,12 +18,14 @@ def classes_view(request):
     }
 	return render(request, "Classes.html", context)
 	
-def students_view(request,Classname):
+def students_view(request,Classname,id):
 	queryset=Student.objects.filter(Class=Classname)
+	queryset3=Assignments.objects.filter(Class=id)
 	queryset2=Class.objects.get(Class=Classname)
 	context = {
 		"students": queryset,
-		"class":queryset2
+		"class":queryset2,
+		"Assignments":queryset3,
     }
 	return render(request, "Students.html", context)
 	

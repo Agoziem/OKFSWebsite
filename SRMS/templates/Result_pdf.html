@@ -50,14 +50,24 @@ li,h1,h2,h3,h4,h5,h6,th{
     text-align: center;
   }
   #news{
-    margin-top: 100px;
+    margin-top: 200px;
   }
   #headers{
     text-align: center;
   }
-  h6.name{
+  h5.name{
+    font-size: x-large;
+  }
+
+  h2.name{
     font-size: x-large;
     font-weight: bold;
+  }
+  thead th:nth-child(1){
+    width: 30%;
+  }
+  thead th:nth-child(0){
+    width: 5%;
   }
 
 
@@ -69,7 +79,7 @@ li,h1,h2,h3,h4,h5,h6,th{
     <section class="p-2">
       <div class="container">
             {% for logo in schoollogo %}
-           <img src="{{ logo.Schoollogo.url }}" class="d-block w-75" alt="...">
+           <img src="{{ logo.Schoollogo.url }}" class="d-block " alt="..." style="width: 75%;" >
         {% endfor %}
       </div>
       </section>
@@ -140,11 +150,11 @@ li,h1,h2,h3,h4,h5,h6,th{
       <!--Newsletter-->
       <section id="news" class="p-5">
         <div id="headers">
-          <h4 class="ms-3 text-center fw-bold">2nd Term Newsletter (2021/2022 Academic Section)</h4>
+          <h2 class="name ms-3 text-center fw-bold">2nd Term Newsletter (2021/2022 Academic Section)</h2>
           <hr>
           <h5 class=" name fw-bold text-center">Ocean Of Knowledge Foundation Schools <br>
             <span class="fw-normal">No 30 Isiokpo Street Awada</span><br>
-            <span class="text-danger fw-normal"> Pro Scientia et Sapientia</span><br>
+            <span class="text-danger fw-normal" style="color: red;"> Pro Scientia et Sapientia</span><br>
             <span class=" fw-normal small text-secondary">Website: www.oceanofknowledgefoundationschool.com</span><br>
             <span class=" fw-normal small text-secondary">Email: oceanofknowledgefoundationschool23@gmail.com</span><br>
             <span class=" fw-normal small text-secondary">Phone:08023182402,08086586235 </span>

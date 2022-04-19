@@ -43,7 +43,12 @@ class Class(models.Model):
 
 class Newsletter(models.Model):
 	newsletter= RichTextField(blank=True,null=True)
-	
+
+class Assignments(models.Model):
+	Class= models.ForeignKey(Class, related_name='classes' , on_delete=models.CASCADE , blank = True,null=True)
+	subject=models.CharField(max_length=200, blank=True)
+	file=models.FileField(upload_to = 'media' ,blank = True)
+
 class Student(models.Model):
 	Name=models.CharField(max_length=200, blank=True)
 	Class=models.CharField(max_length=100, blank=True)
