@@ -50,7 +50,7 @@ class Assignments(models.Model):
 	file=models.FileField(upload_to = 'media' ,blank = True)
 
 	def __str__(self):
-		return str(self.subject +"-"+self.Class)
+		return str(self.subject)
 
 class Student(models.Model):
 	Name=models.CharField(max_length=200, blank=True)
