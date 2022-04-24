@@ -49,6 +49,9 @@ class Assignments(models.Model):
 	subject=models.CharField(max_length=200, blank=True)
 	file=models.FileField(upload_to = 'media' ,blank = True)
 
+	def __str__(self):
+		return str(self.subject +"-"+self.Class)
+
 class Student(models.Model):
 	Name=models.CharField(max_length=200, blank=True)
 	Class=models.CharField(max_length=100, blank=True)
