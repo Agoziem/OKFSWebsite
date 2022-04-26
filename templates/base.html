@@ -32,7 +32,7 @@
    body::before {
   display: block;
   content: '';
-  height: 60px;
+  height: 32px;
 }
 @media (max-width: 768px){
       #body::after{
@@ -120,7 +120,7 @@ li,h1,h2,h3,h4,h5,h6,th{
  	}
 
 	.carousel-item{
-	 height:100%;
+  height:100%;
  	 min-height:300px;
  	background: no-repeat scroll center Scroll;
  	-webkit-background-size: cover;
@@ -141,7 +141,7 @@ li,h1,h2,h3,h4,h5,h6,th{
 
 .carousel-caption{
 	padding-top:50px;
-	padding-bottom:20px;
+	padding-bottom:50px;
 	} 
   .carousel-caption h1{
    font-weight: bold;
@@ -152,13 +152,13 @@ li,h1,h2,h3,h4,h5,h6,th{
    
 	} 
 	
-	@media (max-width: 576px) {
+	@media only screen and (min-width: 480px) {
   .carousel-caption{
 	padding-top:70px;
-	padding-bottom:60px;
+	padding-bottom:100px;
 	} 
    .carousel-caption h3{
-   font-size: 30px;
+   font-size: 40px;
    font-weight: bold;
 	} 
 	  .carousel-caption p{
@@ -167,79 +167,14 @@ li,h1,h2,h3,h4,h5,h6,th{
 		 
          }
 	} 
-  @media (min-width: 576px) {
+  @media only screen and (min-width:767px) {
   .carousel-caption{
-   bottom:155px;
+  bottom: 40%;
 	padding-top:60px;
-	padding-bottom:60px;
+	padding-bottom:50px;
 	} 
    .carousel-caption h3{
-   font-size: 50px;
-   font-weight: bold;
-	} 
-	  .carousel-caption p{
-		 font-size: 30px;
-         color:#ffffff;
-		 
-         }
-	} 
-  @media (min-width: 768px) {
-  .carousel-caption{
-   bottom: 300px;
-	padding-top:60px;
-	padding-bottom:60px;
-	} 
-   .carousel-caption h3{
-   font-size: 50px;
-   font-weight: bold;
-	} 
-	  .carousel-caption p{
-		 font-size: 30px;
-         color:#ffffff;
-		 
-         }
-	} 
-  @media (min-width: 992px) {
-  .carousel-caption{
-   bottom: 400px;
-	padding-top:60px;
-	padding-bottom:60px;
-	} 
-   .carousel-caption h3{
-   font-size: 65px;
-   font-weight: bold;
-	} 
-	  .carousel-caption p{
-		 font-size: 30px;
-         color:#ffffff;
-		 
-         }
-	} 
-  @media (min-width: 1200px) {
-  .carousel-caption{
-   bottom: 400px;
-	padding-top:60px;
-	padding-bottom:60px;
-	} 
-   .carousel-caption h3{
-   font-size: 65px;
-   font-weight: bold;
-	} 
-	  .carousel-caption p{
-		 font-size: 30px;
-         color:#ffffff;
-		 
-         }
-	} 
-	
-	@media (min-width: 1400px) {
-  .carousel-caption{
-   bottom: 450px;
-	padding-top:80px;
-	padding-bottom:55px;
-	} 
-   .carousel-caption h3{
-   font-size: 70px;
+   font-size: 80px;
    font-weight: bold;
 	} 
 	  .carousel-caption p{
@@ -248,8 +183,7 @@ li,h1,h2,h3,h4,h5,h6,th{
 		 
          }
 	} 
-	
-	
+ 	
 	 #design{
 		background-color:#F1F6FF;
          border-left-style: solid;
@@ -270,10 +204,10 @@ li,h1,h2,h3,h4,h5,h6,th{
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
  }
-         </style>
-           <script src="https://js.paystack.co/v1/inline.js"></script> 
-            <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-	  <title>OKFS Onitsha</title>
+  </style>
+  <script src="https://js.paystack.co/v1/inline.js"></script> 
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+	<title>OKFS Onitsha</title>
  </head> 
 <body class="position-relative">
 

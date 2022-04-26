@@ -4,13 +4,13 @@
 	<section class="p-2">
 	<div class="container">
 		<h5 class="mt-2" style="font-family: 'League Spartan', sans-serif;" >preview your form entries</h5>
-		<div class="row p-2 d-flex align-items-center>
-			<div class="col-8">
+		<div class="row p-2 d-flex align-items-center">
+			<div class="col">
 				{% for logo in school %}
 				<img src="{{logo.Schoollogo.url}}" class="img-fluid"/>
 				{% endfor %}
 			</div>
-			<div class="col-4">
+			<div class="col">
 				<i class="h1 bi bi-person-square me-1"></i>
 				<p class="small">
 					download and attach passport
