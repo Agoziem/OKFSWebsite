@@ -1011,321 +1011,319 @@ class Student(models.Model):
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 						
 	def createJuniorResult2a(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss2A_Result_sheet_Final_1.xlsx']
-		for file in juniorClassExcel:
-			filename = file
-			filepath = BASE_DIR + '/media/media/' + filename
-			wb=load_workbook(filepath)
-			for sheet in wb:
-				ws=wb[sheet.title]
-				Name=ws['B4'].value
-				Class=ws['B6'].value
-				for count, row in enumerate(range(10,19),start=1):
-					if count == 1:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 2:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 3:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 4:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 5:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-
-					elif count == 6:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 7:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 8:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
-							
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-					
-					elif count == 9:
-						for count, col in enumerate(range(1,15),start=1):
-							char=get_column_letter(col)
+		s3 = boto3.client('s3')
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATemplate.xlsx') 
+		binary_data = obj['Body'].read()
+		wb = load_workbook(io.BytesIO(binary_data))
+		for sheet in wb:
+			ws=wb[sheet.title]
+			Name=ws['B4'].value
+			Class=ws['B6'].value
+			for count, row in enumerate(range(10,19),start=1):
+				if count == 1:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
 						
-							if count == 1:
-								SN=ws[char+str(row)].value
-							elif count == 2:
-								Subject=ws[char+str(row)].value
-							elif count == 3:
-								FirstTest=ws[char+str(row)].value
-							elif count == 4:
-								SecondTest=ws[char+str(row)].value
-							elif count == 5:
-								Project=ws[char+str(row)].value
-							elif count == 6:
-								MidTermTest=ws[char+str(row)].value
-							elif count == 7:
-								FirstAss=ws[char+str(row)].value
-							elif count == 8:
-								SecondAss=ws[char+str(row)].value
-							elif count == 9:
-								CA=ws[char+str(row)].value
-							elif count == 10:
-								Exam=ws[char+str(row)].value
-							elif count == 11:
-								Total=ws[char+str(row)].value
-							elif count == 12:
-								Grade=ws[char+str(row)].value
-							elif count == 13:
-								SubjectPosition=ws[char+str(row)].value
-							elif count == 14:
-								Remark=ws[char+str(row)].value
-						Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 2:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 3:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 4:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 5:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				elif count == 6:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 7:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 8:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+				
+				elif count == 9:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+					
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 
 	def createJuniorResult2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
@@ -2772,11 +2770,10 @@ class Excelfiles(models.Model):
 			Academicsession=ws['K6'].value
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent2a(self,*args,**kwargs) -> None:
-		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel='Jss2A_Result_sheet_Final_1.xlsx'
-		filename = juniorClassExcel
-		filepath = BASE_DIR + '/media/media/' + filename
-		wb=load_workbook(filepath)
+		s3 = boto3.client('s3')
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATemplate.xlsx') 
+		binary_data = obj['Body'].read()
+		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
 			Name=ws['B4'].value
@@ -2805,9 +2802,25 @@ class Excelfiles(models.Model):
 			Academicsession=ws['K6'].value
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent3(self,*args,**kwargs) -> None:
+		s3 = boto3.client('s3')
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3_Result_Sheet-Final_2.xlsx') 
+		binary_data = obj['Body'].read()
+		wb = load_workbook(io.BytesIO(binary_data))
+		for sheet in wb:
+			ws=wb[sheet.title]
+			Name=ws['B4'].value
+			Class=ws['B6'].value
+			Position=ws['K20'].value
+			Average=ws['H20'].value
+			TotalScore=ws['E20'].value
+			Totalnumber=ws['F6'].value
+			Term=ws['H6'].value
+			Academicsession=ws['K6'].value
+			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+	def createSeniorStudents(self,*args,**kwargs) -> None:
 		BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-		juniorClassExcel=['Jss3_Result_Sheet-Final_2.xlsx']
-		for count,file in enumerate(juniorClassExcel,start=1):
+		seniorClassExcel=['Ss1_Result_sheet-Final2.xlsx','Ss2_Result_sheet-Final2a.xlsx']
+		for count,file in enumerate(seniorClassExcel,start=1):
 			if count == 1:
 				filename = file
 				filepath = BASE_DIR + '/media/media/' + filename
@@ -2816,9 +2829,9 @@ class Excelfiles(models.Model):
 					ws=wb[sheet.title]
 					Name=ws['B4'].value
 					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
+					Position=ws['K24'].value
+					Average=ws['H24'].value
+					TotalScore=ws['E24'].value
 					Totalnumber=ws['F6'].value
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
@@ -2831,107 +2844,13 @@ class Excelfiles(models.Model):
 					ws=wb[sheet.title]
 					Name=ws['B4'].value
 					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
+					Position=ws['K24'].value
+					Average=ws['H24'].value
+					TotalScore=ws['E24'].value
 					Totalnumber=ws['F6'].value
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
 					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
-			elif count == 3:
-				filename = file
-				filepath = BASE_DIR + '/media/media/' + filename
-				wb=load_workbook(filepath)
-				for sheet in wb:
-					ws=wb[sheet.title]
-					Name=ws['B4'].value
-					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
-					Totalnumber=ws['F6'].value
-					Term=ws['H6'].value
-					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
-			elif count == 4:
-				filename = file
-				filepath = BASE_DIR + '/media/media/' + filename
-				wb=load_workbook(filepath)
-				for sheet in wb:
-					ws=wb[sheet.title]
-					Name=ws['B4'].value
-					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
-					Totalnumber=ws['F6'].value
-					Term=ws['H6'].value
-					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
-			elif count == 5:
-				filename = file
-				filepath = BASE_DIR + '/media/media/' + filename
-				wb=load_workbook(filepath)
-				for sheet in wb:
-					ws=wb[sheet.title]
-					Name=ws['B4'].value
-					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
-					Totalnumber=ws['F6'].value
-					Term=ws['H6'].value
-					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
-			elif count == 6:
-				filename = file
-				filepath = BASE_DIR + '/media/media/' + filename
-				wb=load_workbook(filepath)
-				for sheet in wb:
-					ws=wb[sheet.title]
-					Name=ws['B4'].value
-					Class=ws['B6'].value
-					Position=ws['K20'].value
-					Average=ws['H20'].value
-					TotalScore=ws['E20'].value
-					Totalnumber=ws['F6'].value
-					Term=ws['H6'].value
-					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)								
-	def createSeniorStudents(self,*args,**kwargs) -> None:
-			BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-			seniorClassExcel=['Ss1_Result_sheet-Final2.xlsx','Ss2_Result_sheet-Final2a.xlsx']
-			for count,file in enumerate(seniorClassExcel,start=1):
-				if count == 1:
-					filename = file
-					filepath = BASE_DIR + '/media/media/' + filename
-					wb=load_workbook(filepath)
-					for sheet in wb:
-						ws=wb[sheet.title]
-						Name=ws['B4'].value
-						Class=ws['B6'].value
-						Position=ws['K24'].value
-						Average=ws['H24'].value
-						TotalScore=ws['E24'].value
-						Totalnumber=ws['F6'].value
-						Term=ws['H6'].value
-						Academicsession=ws['K6'].value
-						Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
-				elif count == 2:
-					filename = file
-					filepath = BASE_DIR + '/media/media/' + filename
-					wb=load_workbook(filepath)
-					for sheet in wb:
-						ws=wb[sheet.title]
-						Name=ws['B4'].value
-						Class=ws['B6'].value
-						Position=ws['K24'].value
-						Average=ws['H24'].value
-						TotalScore=ws['E24'].value
-						Totalnumber=ws['F6'].value
-						Term=ws['H6'].value
-						Academicsession=ws['K6'].value
-						Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 						
 
 class Pin(models.Model):
