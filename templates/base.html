@@ -179,14 +179,14 @@ li,h1,h2,h3,h4,h5,h6,th{
 	
   @media only screen and (max-width:767px) {
     .carousel-item{
-  height:100vh;
+  height:100%;
  	 min-height:300px;
  	background: no-repeat scroll center Scroll;
  	-webkit-background-size: cover;
  	background-size: cover;
  	}
     .carousel-caption{
-    bottom: 100px;
+  bottom: 100px;
 	padding-top:50px;
 	padding-bottom:50px;
 	} 
@@ -297,7 +297,7 @@ a{
 	<main>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light mt-0 fixed-top" style="background-color:#00072B;">
-      <div class="container px-2" >
+      <div class="px-2" >
         <a href="{% url 'home' %}" class="navbar-brand text-light pb-0" > <img src="{% static 'OKFS.png' %}" alt="..." width= "63" height= "63" >OKFS Awada </a>   
       <a class=" text-decoration-none ms-auto d-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
         <i class="bi bi-list h1" style="color:#e60000;"></i>
