@@ -1,41 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<section id= home class="p-0 pt-2">
- <!-- About us -->
- 	<section id= "aboutus" class= "p-3 ">
- 	{% for info in headers %}
- 	<div class="container">
- 	<h6 class="fw-bold">About OKFS</h6>
-      <hr class="mt-0 mb-4" >
-	<p>
-		{{info.About|safe}}
-	</p>
-	</div>
-	    {% if info.Aims_and_Objectives %}
-	<div class="container mt-4">
- 	<h6 class="fw-bold">Aims & Objectives</h6>
-      <hr class="mt-0 mb-4" >
-  
-	<p>
-		{{info.Aims_and_Objectives|safe }}
-		</p>
-  </div>
-  {% endif %}
+	<!-- About us -->
+	<section id="aboutus" class="p-3 ">
+		{% for info in headers %}
+		<div class="container">
+			<h6 class="fw-bold">About OKFS</h6>
+			<hr class="mt-0 mb-4">
+			<p>
+				{{info.About|safe}}
+			</p>
+		</div>
+		{% if info.Aims_and_Objectives %}
 		<div class="container mt-4">
- 	<h6 class="fw-bold">Vision</h6>
-      <hr class="mt-0 mb-4 " >
-	<p>
-		{{info.Vision|safe }}
-		</p>
-  </div>
-  <div class=" container mt-2">
- 	<h6 class=" fw-bold">Mission</h6>
-      <hr class="mt-0 mb-4" >
-	<p>
-		{{info.Mission|safe }}
-</p>
-  </div>
-  {% endfor %}
- 	</section> 
-{% endblock %}
+			<h6 class="fw-bold">Aims & Objectives</h6>
+			<hr class="mt-0 mb-4">
+
+			<p>
+				{{info.Aims_and_Objectives|safe }}
+			</p>
+		</div>
+		{% endif %}
+		<div class="container mt-4">
+			<h6 class="fw-bold">Vision</h6>
+			<hr class="mt-0 mb-4 ">
+			<p>
+				{{info.Vision|safe }}
+			</p>
+		</div>
+		<div class=" container mt-2">
+			<h6 class=" fw-bold">Mission</h6>
+			<hr class="mt-0 mb-4">
+			<p>
+				{{info.Mission|safe }}
+			</p>
+		</div>
+		{% endfor %}
+	</section>
+	{% endblock %}
