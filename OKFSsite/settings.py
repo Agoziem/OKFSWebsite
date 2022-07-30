@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_admin_logs',
+    'django_bootstrap_breadcrumbs',
     'home',
     'Elibrary',
     'Payments',
@@ -134,27 +135,27 @@ USE_L10N = True
 
 USE_TZ = True
 
-# STATIC_URL='/static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-# STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
 
-# MEDIA_URL= '/media/'
-# MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
-AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
-AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS={'CacheControl':'max-age=86400'}
-AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL', default='')
+# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
+# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
+# AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
+# AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS={'CacheControl':'max-age=86400'}
+# AWS_DEFAULT_ACL = config('AWS_DEFAULT_ACL', default='')
 
-AWS_LOCATION = 'static'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
-STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
-STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
+# AWS_LOCATION = 'static'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
+# STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
+# STATICFILES_STORAGE= 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
 
 #if debug is set to false 
 
@@ -163,8 +164,11 @@ EMAIL_BACKEND='sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')
 SENDGRID_SANDBOX_MODE_IN_DEBUG=config('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=False, cast=bool)
 
-PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
-PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
+# PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
+PAYSTACK_PUBLIC_KEY = 'pk_test_e39e9604401f9753b248fff1135b2dbce5a9dfd3'
+# PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
+PAYSTACK_SECRET_KEY = 'sk_test_eee99a387e1d38ed511815aef40f9a508d1030b6'
+
 
 MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 

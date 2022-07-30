@@ -1,437 +1,171 @@
 {% load static %}
 <!doctype html>
- <html lang="en">
- <head style="background-color:#00072B;"> <!-- Required meta tags -->
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1"> 
- <link
- rel="stylesheet"
- href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-/>
-<link rel="icon" href="https://www.oceanofknowledgefoundationschool.com/favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"/>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="icon" href="https://www.oceanofknowledgefoundationschool.com/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
- 
- 
-	<style type="text/css" >
-	*{
-		box-sizing:border-box;
-		}
-      html, body {
-         margin: 0;
-         padding: 0;
-      }
-       body {
-         display: flex;
-         min-height: 100vh;
-         flex-direction: column;
-      }
-      main {
-         flex: 1 0 auto;
-      }
-   body::before {
-  display: block;
-  content: '';
-  height: 60px;
-}
-@media (max-width: 768px){
-      #body::after{
-  display: block;
-  content: '';
-  height: 50px;
-  }
-}
-      .share-btn-container {
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.share-btn-container a i {
-  font-size: 25px;
-}
-
-.share-btn-container a {
-  margin: 12px 0;
-  transition: 500ms;
-}
-
-.share-btn-container a:hover {
-  transform: scale(1.2);
-}
-
-.share-btn-container .fa-facebook {
-  color: #3b5998;
-}
-
-.share-btn-container .fa-twitter {
-  color: #1da1f2;
-}
-
-.share-btn-container .fa-linkedin {
-  color: #0077b5;
-}
-
-.share-btn-container .fa-pinterest {
-  color: #bd081c;
-}
-
-.share-btn-container .fa-whatsapp {
-  color: #25d366;
-}
-
-/* Media Queries */
-
-@media (max-width: 550px) {
-  .content {
-    padding: 8px 32px;
-  }
-
-  .share-btn-container {
-    transform: unset;
-    top: unset;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    flex-direction: row;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
-    padding: 16px 0;
-    justify-content: center;
-  }
-
-  .share-btn-container a {
-    margin: 0 10px;
-  }
-}
-
-
-li,h1,h2,h3,h4,h5,h6,th{
- 	color:#00072B;
- 	font-family: 'Lato', sans-serif;
- 	}
- li,p,span,div,td,th,form{
- 		font-family: 'League Spartan', sans-serif;
-	 		color:#00072B;
- 	}
-
-	.carousel-item{
-  height:100vh;
- 	 min-height:300px;
-    position: relative;
- 	background: no-repeat scroll center Scroll;
- 	-webkit-background-size: cover;
- 	background-size: cover;
- 	}
- 
- .carousel-item::before{
- 	content:"";
- 	display: block;
- 	position: absolute;
- 	top:0;
- 	left:0;
- 	bottom: 0;
- 	right: 0;
- background:#000;
- opacity:0.7;
- }
-
-.carousel-caption{
-  bottom: 70px;
-	padding-top:50px;
-	padding-bottom:60px;
-	} 
-  .carousel-caption h3{
-    font-size: 70px;
-   font-weight: bold;
-   letter-spacing: 2px;
-   margin-top: 25px;
-	} 
-	  .carousel-caption p{ 
-     color:#ffffff;
-		 font-size:medium;
-     margin: auto; 
-     font-size: 30px;
-	} 
-  .carousel-caption a{
- background: #e60000;
- padding: 10px 30px;
- color: rgb(255, 255, 255);
- display: inline-block;
- margin-top: 15px;
- border-radius: 50px;
-  }
-  .navbar-toggler{
-    padding: 1px 5px;
-    font-size: 18px;
-  }
-  
-	
-  @media only screen and (max-width:767px) {
-    .carousel-item{
-  height:100%;
- 	 min-height:300px;
- 	background: no-repeat scroll center Scroll;
- 	-webkit-background-size: cover;
- 	background-size: cover;
- 	}
-    .carousel-caption{
-  bottom: 100px;
-	padding-top:50px;
-	padding-bottom:50px;
-	} 
-  .carousel-caption h3{
-    font-size: 45px;
-   font-weight: bold;
-   letter-spacing: 2px;
-   margin-top: 25px;
-	} 
-	  .carousel-caption p{ 
-     color:#ffffff;
-		 font-size:medium;
-     margin: auto;
-     font-size: 20px;
-	} 
-  .carousel-caption a{
- background: #e60000;
- padding: 10px 20px;
- color: rgb(255, 255, 255);
- display: inline-block;
- margin-top: 5px;
- border-radius: 50px;
-  }
-  .navbar-nav .nav-link:active{
-  color:#e60000!important;
-}
-.w-100{
-  height: 100%;
-}
-}
-@media only screen and (max-width:480px) {
-  .carousel-item{
-  height:100%;
- 	 min-height:200px;
- 	background: no-repeat scroll center Scroll;
- 	-webkit-background-size: cover;
- 	background-size: cover;
- 	}
-  .carousel-caption{
-    bottom: 0px;
-	padding-top:100px;
-	padding-bottom: 35px;
-	}   
-  .carousel-caption h3{
-    font-size: 25px;
-   font-weight: bold;
-   letter-spacing: 0px;
-   margin-top: 25px;
-	} 
-	  .carousel-caption p{ 
-     color:#ffffff;
-		 font-size:medium;
-     margin: auto;
-   
-	} 
-  .carousel-caption a{
- background: #e60000;
- padding: 5px 15px;
- color: rgb(255, 255, 255);
- display: inline-block;
- margin-top: 5px;
- border-radius: 50px;
-  }
-  .navbar-nav .nav-link:active{
-  color:#e60000!important;
-}
-.w-100{
-  height: 100%;
-}
-}
-	 #design{
-         border-left-style: solid;
-         border-width: medium;
-         border-color: #e60000;
-         }
-  
-      #Requirements{
-      	position: relative;
-      	background-color:#00072B;
-          background-size: cover;
-          
-      	}
-
- .bg-light {
-    background-color: #ebeff3!important;
-}
-.btn-light {
-    background-color: #ebeff3!important;
-}
-.btn-primary {
-    background-color: #00072B!important;
-    border-color: #00072B;
-}
-a{
-  color: #e60000;
-}
-.text-primary{
-  color: #e60000;
-}
-
-  </style>
-  <script src="https://js.paystack.co/v1/inline.js"></script> 
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-	<title>OKFS Onitsha</title>
- </head> 
-<body class="position-relative">
+  <script src="https://kit.fontawesome.com/d05833c098.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <title>OKFS Onitsha</title>
+</head>
 
-	<main>
-	<!-- Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light mt-0 fixed-top" style="background-color:#00072B;">
-      <div class=" container px-2" >
-        <a href="{% url 'home' %}" class="navbar-brand text-light pb-0" > <img src="{% static 'OKFS.png' %}" alt="..." width= "63" height= "63" >OKFS Awada </a>   
-      <a class=" text-decoration-none ms-auto d-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+<body class="position-relative d-flex flex-column min-vh-100">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light mt-0 fixed-top" style="background-color:#00072B;">
+    <div class=" container px-2">
+      <a href="{% url 'home' %}" class="navbar-brand text-light pb-0"> <img src="{% static 'OKFS.png' %}" alt="..."
+          width="63" height="63">OKFS Awada </a>
+      <a class=" text-decoration-none ms-auto d-block d-lg-none" data-bs-toggle="offcanvas" href="#offcanvasExample"
+        role="button" aria-controls="offcanvasExample">
         <i class="bi bi-list h1" style="color:#e60000;"></i>
-           </a> 
-      <button
-          class="navbar-toggler d-none "
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navmenu"
-          
-        >
-    <span class="navbar-toggler-icon ">   
-    </span>
-        </button>
-      <div class="collapse navbar-collapse"  id="navmenu">
-          <ol class="navbar-nav ms-auto  text-start ps-1">
-          	<li class="nav-item">
-              <a href="{% url 'home' %}" class="nav-link active" style="color:#e60000!important;" 
-            }>Home</a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{% url 'about' %}" class="nav-link text-light">about Us</a>
-            </li>
-              <li class="nav-item">
-              <a href="{% url 'TMS:teachers' %}" class="nav-link text-light" >Teachers</a>
-            </li>
-           
-            <li class="nav-item">
-              <a href="{% url 'Elibrary:subjects' %}" class="nav-link text-light">E-Library</a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{% url 'Payments:initiate_payment' %}"  class="nav-link text-light">Payments</a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{% url 'SRMS:classes' %}" class="nav-link text-light">Results</a>
-            </li>
-          
-            <li class="nav-item">
-              <a href="#FAQ" class="nav-link text-light">FAQ</a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
-            </li>
-            
-                 <li class="nav-item">
-              <a href="/admin" class="nav-link text-light">Admin</a>
-            </li>
-          </ol>
-        </div>
-         </div>
-    </nav>
-    
-    <div class="offcanvas offcanvas-start d-lg-none  px-2" style="background-color:#00072B; color: #fff;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title text-light" id="offcanvasExampleLabel" >OKFS Awada</h5>
-        <button type="button" class="btn-close text-reset"  data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <hr style="color:#e60000;">
-      <div class="offcanvas-body" >
-        <ol class=" list-group list-group-flush  text-start" >
-          <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'home' %}" class="text-decoration-none text-light"><i class="bi bi-house-door me-3" style="color:#e60000" ></i>home</a>
-        </li>
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'about' %}" class="text-decoration-none text-light"><i class="bi bi-search me-3" style="color:#e60000"></i>about Us</a>
-        </li>
-          <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'TMS:teachers' %}" class="text-decoration-none text-light" ><i class="bi bi-person-circle me-3" style="color:#e60000"></i>Teachers profile</a>
-        </li>
-       
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'Elibrary:subjects' %}" class="text-decoration-none text-light" > <i class="bi bi-book-half me-3" style="color:#e60000"></i>E-Library</a>
-        </li>
-        
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'Payments:initiate_payment' %}" class="text-decoration-none text-light"><i class="bi bi-cash-coin me-3" style="color:#e60000"></i>make Payments</a>
-        </li>
-        
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'SRMS:classes' %}" class="text-decoration-none text-light"> <i class="bi bi-file-earmark-text me-3" style="color:#e60000"></i>Results</a>
-        </li>
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="#FAQ" class="text-decoration-none text-light"><i class="bi bi-question-circle me-3" style="color:#e60000"></i>FAQ</a>
-        </li>
-        
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3" style="color:#e60000"></i>Photo Gallery</a>
-        </li>
-        
-             <li class="list-group-item" style="background-color:#00072B;">
-          <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3" style="color:#e60000"></i>Admin</a>
-        </li>
-      </ol>
+      </a>
+      <button class="navbar-toggler d-none " type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon ">
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ol class="navbar-nav ms-auto  text-start ps-1">
+          <li class="nav-item me-2">
+            <a href="{% url 'home' %}" class="nav-link active" style="color:#e60000!important;">Home</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="{% url 'about' %}" class="nav-link text-light">about Us</a>
+          </li>
+          <li class="nav-item me-2">
+            <a href="{% url 'TMS:teachers' %}" class="nav-link text-light">Teachers</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="{% url 'Elibrary:subjects' %}" class="nav-link text-light">E-Library</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="{% url 'Payments:initiate_payment' %}" class="nav-link text-light">Payments</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="{% url 'SRMS:classes' %}" class="nav-link text-light">Results</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a href="/admin" class="nav-link text-light">Admin</a>
+          </li>
+        </ol>
       </div>
     </div>
-{% block content%}
-{% endblock %}
-    <!-- Footer -->
-    	</main>
-  <footer class="py-3" style="background-color:#00072B; color:white;">
+  </nav>
+
+  <div class="offcanvas offcanvas-start d-lg-none  px-2" style="background-color:#00072B; color: #fff;" tabindex="-1"
+    id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title text-light" id="offcanvasExampleLabel">OKFS Awada</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <hr style="color:#e60000;">
+    <div class="offcanvas-body">
+      <ol class=" list-group list-group-flush  text-start">
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'home' %}" class="text-decoration-none text-light"><i class="bi bi-house-door me-3"
+              style="color:#e60000"></i>home</a>
+        </li>
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'about' %}" class="text-decoration-none text-light"><i class="bi bi-search me-3"
+              style="color:#e60000"></i>about Us</a>
+        </li>
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'TMS:teachers' %}" class="text-decoration-none text-light"><i class="bi bi-person-circle me-3"
+              style="color:#e60000"></i>Teachers profile</a>
+        </li>
+
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'Elibrary:subjects' %}" class="text-decoration-none text-light"> <i
+              class="bi bi-book-half me-3" style="color:#e60000"></i>E-Library</a>
+        </li>
+
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'Payments:initiate_payment' %}" class="text-decoration-none text-light"><i
+              class="bi bi-cash-coin me-3" style="color:#e60000"></i>make Payments</a>
+        </li>
+
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'SRMS:classes' %}" class="text-decoration-none text-light"> <i
+              class="bi bi-file-earmark-text me-3" style="color:#e60000"></i>Results</a>
+        </li>
+
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3"
+              style="color:#e60000"></i>Photo Gallery</a>
+        </li>
+
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
+              style="color:#e60000"></i>Admin</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  {% block content%}
+  {% endblock %}
+  <!-- Footer -->
+  <footer class="py-3 mt-auto" style="background-color:#00072B; color:white;">
     <ul class="nav justify-content-center pb-3 mb-1" style="background-color:#00072B;">
-      <li class="nav-item" style="background-color:#00072B"; ><a href="{% url 'home' %}" class="nav-link px-2 " style="color:white;">Home</a></li>
-      <li class="nav-item" style="background-color:#00072B;" ><a href="{% url 'about' %}" class="nav-link px-2 " style=" color:white;">About</a></li>
-      <li class="nav-item" style="background-color:#00072B"; ><a href="{% url 'Elibrary:subjects' %}" class="nav-link px-2" style=" color:white;">E-library</a></li>
-      <li class="nav-item" style="background-color:#00072B";  ><a href="#FAQ" class="nav-link px-2" style=" color:white;">FAQs</a></li>
-      <li class="nav-item" style="background-color:#00072B"; ><a href="{% url 'gallery' %}" class="nav-link px-2" style=" color:white;">Gallery</a></li>
-      <li class="nav-item" style="background-color:#00072B"; ><a href="{% url 'contact' %}" class="nav-link px-2" style=" color:white;">Contact Us</a></li>
+      <li class="nav-item" style="background-color:#00072B" ;><a href="{% url 'home' %}" class="nav-link px-2 "
+          style="color:white;">Home</a></li>
+      <li class="nav-item" style="background-color:#00072B;"><a href="{% url 'about' %}" class="nav-link px-2 "
+          style=" color:white;">About</a></li>
+      <li class="nav-item" style="background-color:#00072B" ;><a href="{% url 'Elibrary:subjects' %}"
+          class="nav-link px-2" style=" color:white;">E-library</a></li>
+      <li class="nav-item" style="background-color:#00072B" ;><a href="#FAQ" class="nav-link px-2"
+          style=" color:white;">FAQs</a></li>
+      <li class="nav-item" style="background-color:#00072B" ;><a href="{% url 'gallery' %}" class="nav-link px-2"
+          style=" color:white;">Gallery</a></li>
+      <li class="nav-item" style="background-color:#00072B" ;><a href="{% url 'contact' %}" class="nav-link px-2"
+          style=" color:white;">Contact Us</a></li>
     </ul>
     <hr class="mx-3">
-    <p class="text-center text-muted">&copy; 2021 OKFS, Awada <br><span class="small text-muted ">designed by Gozzy tech ( 08080982606 )</span></p>
+    <p class="text-center text-muted">&copy; 2021 OKFS, Awada <br><span class="small text-muted ">designed by Gozzy tech
+        ( 08080982606 )</span></p>
     <p class="small text-center">
-	    <a href="" target="_blank"><i class="fab fa-instagram text-secondary h1 mx-1"></i></a>
-	    <a href= "" target="_blank"><i class="fab fa-facebook text-secondary h1 mx-1"></i></a>
+      <a href="" target="_blank"><i class="fab fa-instagram text-secondary h1 mx-1"></i></a>
+      <a href="" target="_blank"><i class="fab fa-facebook text-secondary h1 mx-1"></i></a>
     </p>
-        <a href="#" class=" position-absolute bottom-0 end-0 p-5">
-          <i class="bi bi-arrow-up-circle h1"></i>
-        </a>
+    <a href="#" class=" position-absolute bottom-0 end-0 p-5">
+      <i class="bi bi-arrow-up-circle h1"></i>
+    </a>
   </footer>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-<script>
-  mapboxgl.accessToken = 'pk.eyJ1Ijoib2tmcyIsImEiOiJjbDFodTNjMG8wNnh6M2tycHN0ZDhzamYzIn0.H1VgtMiBAjkMEe7GXREzvA';
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center:[-71.060982, 42.35725],
-    zoom:18,
-  });
-</script>
-</body> 
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoib2tmcyIsImEiOiJjbDFodTNjMG8wNnh6M2tycHN0ZDhzamYzIn0.H1VgtMiBAjkMEe7GXREzvA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [6.800465, 6.124938],
+      zoom: 12,
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
 </html>
-
-

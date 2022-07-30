@@ -39,165 +39,6 @@
   content: '';
   height: 60px;
 }
-@media (max-width: 768px){
-      #body::after{
-  display: block;
-  content: '';
-  height: 50px;
-  }
-}
-      .share-btn-container {
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.share-btn-container a i {
-  font-size: 25px;
-}
-
-.share-btn-container a {
-  margin: 12px 0;
-  transition: 500ms;
-}
-
-.share-btn-container a:hover {
-  transform: scale(1.2);
-}
-
-.share-btn-container .fa-facebook {
-  color: #3b5998;
-}
-
-.share-btn-container .fa-twitter {
-  color: #1da1f2;
-}
-
-.share-btn-container .fa-linkedin {
-  color: #0077b5;
-}
-
-.share-btn-container .fa-pinterest {
-  color: #bd081c;
-}
-
-.share-btn-container .fa-whatsapp {
-  color: #25d366;
-}
-
-/* Media Queries */
-
-@media (max-width: 550px) {
-  .content {
-    padding: 8px 32px;
-  }
-
-  .share-btn-container {
-    transform: unset;
-    top: unset;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    flex-direction: row;
-    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
-    padding: 16px 0;
-    justify-content: center;
-  }
-
-  .share-btn-container a {
-    margin: 0 10px;
-  }
-}
-
-li,h1,h2,h3,h4,h5,h6,th{
- 	color:#00072B;
- 	font-family: 'Lato', sans-serif;
- 	}
- li,p,span,div,td,th,form{
- 		font-family: 'League Spartan', sans-serif;
-	 		color:#00072B;
- 			}
-.login--wrapper {
-    display: flex;
-    align-items: center;
-    height: 80vh;
-    justify-content: center;
-}
-
-.form {
-    width: 400px;
-}
- 
-
-	  .carousel-item{
-	height:100%;
- 	min-height:300px;
- 	background: no-repeat scroll center Scroll;
- 	-webkit-background-size: cover;
- 	background-size: cover;
- 	}
- 
- .carousel-item::before{
- 	content:"";
- 	display: block;
- 	position: absolute;
- 	top:0;
- 	left:0;
- 	bottom: 0;
- 	right: 0;
- background:#000;
- opacity:0.5;
- }
-
-.carousel-caption{
-	padding-top:50px;
-	padding-bottom:20px;
-	} 
-  .carousel-caption h1{
-   font-weight: bold;
-	} 
-	  .carousel-caption p{ 
-         color:#ffffff;
-		 font-size:medium;
-   
-	} 
-	
-	@media (min-width: 768px) {
-  .carousel-caption{
-   bottom:140px;
-	padding-top:80px;
-	padding-bottom:10px;
-	} 
-   .carousel-caption h3{
-   font-size: 70px;
-   font-weight: bold;
-	} 
-	  .carousel-caption p{
-		 font-size: 50px;
-         color:#ffffff;
-		 
-         }
-	} 
-	
-	 #design{
-		background-color:#F1F6FF;
-         border-left-style: solid;
-         border-width: medium;
-         border-color: #A50000;
-         }
-  
-      #Requirements{
-      	position: relative;
-      	background-color:#00072B;
-      	background-repeat: no-repeat;
-          background-size: cover;
-          
-      	}
  
          </style>
 	  <title>OKFS Onitsha</title>
@@ -207,13 +48,13 @@ li,h1,h2,h3,h4,h5,h6,th{
 <section class="p-2">
 	<div class="container">
 		<h5 class="mt-2" style="font-family: 'League Spartan', sans-serif;" >Online Admission form</h5>
-		<div class="row p-2 d-flex align-items-center">
-			<div class="col-8">
+		<div class="p-2 d-flex align-items-center">
+			<div class=" p-2 ">
 				{% for logo in school %}
 				<img src="{{logo.Schoollogo.path}}" class="img-fluid w-50"/>
 				{% endfor %}
 			</div>
-			<div class="col-4">
+			<div class="mx-auto">
 				<i class="h1 bi bi-person-square me-1"></i>
 				<p class="small">
 					attach your passport

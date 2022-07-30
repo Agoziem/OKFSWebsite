@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="text-center p-3 mb-2">
-        <h5 class="border-bottom fw-bold">Photo Gallery</h5>
-   </div>
-<section id="Files" class= "container p-3" >
-	{% for photo in photos %}
-	  <div class="card shadow-sm ">
-             <img src="{{photo.Photo.url}}" class="card-img-top img-fluid "alt="...">
-              <div class="card-body text-start">
-              	{{photo.Description}}
-              </div>
-         </div>
- <br/>
- {% endfor %}
- </section>
+<div class="text-center p-3 my-2">
+        <h2>Photo Gallery</h2>
+        <div class="multiplerule my-3 d-flex justify-content-center">
+                <div class="Nrule"></div>
+                <div class="Nrule2"></div>
+        </div>
+        <p class="text-muted">View our Photo Gallery to see the Awesome pics of Our Students at different occasions at
+                Ocean of Knowledge Secondary School </p>
+</div>
+<section id="Files" class="container p-3">
+        <div class="grid">
+                {% for photo in photos %}
+                <a href="{{photo.Photo.url}}"><img src="{{photo.Photo.url}}" alt="Sample photo"></a>
+                {% endfor %}
+        </div>
+</section>
 {% endblock %}

@@ -1,34 +1,86 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content%}
-	<section class="p-2">
-	<div class="container">
-		   <img src="{% static 'Logo.png' %}" class="d-block w-100" alt="...">
+<section class="p-2">
+	<img src="{% static 'OKFS.png' %}" class="d-block" alt="..." style="margin: 0 auto; max-width: 100px">
+	<h3 class="text-center" style="font-family: 'League Spartan', sans-serif;">
+		Online payment Receipt
+	</h3>
+</section>
+<hr>
+<!-- Students Data -->
+<section class="p-2">
+	<div class="container px-3 table-responsive">
+		<table class="table table-bordered ">
+			<tbody>
+				<tr>
+					<td>
+						<span class="fw-bold"> Name : </span>
+					</td>
+					<td>
+						{{receipt.Name_of_student}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="fw-bold"> Class : </span>
+					</td>
+					<td>
+						{{receipt.Class}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="fw-bold"> Email : </span>
+					</td>
+					<td>
+						{{receipt.Email}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="fw-bold"> Payment type : </span>
+					</td>
+					<td>
+						{{receipt.Payment_type}}
+					</td>
+				</tr>
+				{% if receipt.verified %}
+				<tr>
+					<td>
+						<span class="fw-bold"> Payment Status: </span>
+					</td>
+					<td>
+						Successful
+					</td>
+				</tr>
+				{% endif %}
+				<tr>
+					<td>
+						<span class="fw-bold"> Payment ref : </span>
+					</td>
+					<td>
+						{{ receipt.ref }}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="fw-bold"> Date/Time of Payment : </span>
+					</td>
+					<td>
+						{{ receipt.date_created}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<div class="container text-center">
-		<h3 style="font-family: 'League Spartan', sans-serif;">
-			Online payment Receipt
-		</h3>
-	</div>
-  </section>
-  <hr>
-  <!-- Students Data -->
-  <section class="p-2">
-  	<div class="container">
-  		<span class="fw-bold"> Name : </span>{{receipt.Name_of_student}}<br>
-  	    <span class="fw-bold"> Class : </span>{{receipt.Class}}<br>
-  		<span class="fw-bold"> Email : </span>{{receipt.Email}}<br>
-  		<span class="fw-bold"> Payment type : </span>{{receipt.Payment_type}}<br>
-  		<span class="fw-bold"> Amount : </span>NGN{{paidamount.amount}}<br>	
-          {% if receipt.verified %}
-      	<span class="fw-bold"> Payment Status: </span>Successful<br>
-      {% endif %}
-          <span class="fw-bold"> Payment ref : </span>{{ receipt.ref }}<br>
-  		<span class="fw-bold"> Date/Time of Payment : </span>{{ receipt.date_created}}<br>
-  	</div>
- </section>
- <hr>
- <section class="p-2 mb-2 text-center">
- 	<a class="btn btn-primary" style="font-family: 'League Spartan', sans-serif;"  href="{% url 'Payments:receipt' receipt.ref %}"> download receipt<i class="fa fa-download ms-1"></i></a>
- </section>
+</section>
+<hr>
+<section class="p-2 mb-4 text-center">
+	<a class="btn btn-primary" style="font-family: 'League Spartan', sans-serif;"
+		href="{% url 'Payments:receipt' receipt.ref %}"> download receipt<i class="fa fa-download ms-1"></i></a>
+		<a class="text-decoration-none ms-2 " style="font-family: 'League Spartan', sans-serif;"
+		href="{% url 'home' %}"> back to home <i class="fa-solid fa-house"></i></a>
+
+</section>
 {% endblock %}

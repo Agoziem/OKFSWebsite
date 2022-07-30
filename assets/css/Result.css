@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #00072B;
+    font-family: 'Lato', sans-serif;
+}
+
+li,
+p,
+span,
+div,
+td,
+form {
+    font-family: 'League Spartan', sans-serif;
+    color: #00072B;
+}
+
+#news {
+    margin-top: 200px;
+}
+
+#headers {
+    text-align: center;
+}
+
+h3,
+h2,
+h4,
+h5,
+h6,
+h1,
+p {
+    font-family: 'League Spartan', 'sans-serif';
+}
+
+
+table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    font: 14px/1.4 'League Spartan', 'sans-serif';
+    margin: 30px auto;
+    max-width: 100%;
+}
+
+th,
+td {
+    padding: 10px 15px;
+    vertical-align: middle;
+}
+
+#redgrad {
+    background: rgb(177, 0, 0);
+    background: -webkit-linear-gradient(rgb(255, 34, 34), rgb(179, 1, 1));
+    background: -moz-linear-gradient(rgb(255, 34, 34), rgb(141, 0, 0));
+    background: linear-gradient(rgb(252, 48, 48), rgb(141, 1, 1));
+    color: white;
+}
+
+thead th{
+    background: rgb(177, 0, 0);
+    background: -webkit-linear-gradient(rgb(255, 34, 34), rgb(179, 1, 1));
+    background: -moz-linear-gradient(rgb(255, 34, 34), rgb(141, 0, 0));
+    background: linear-gradient(rgb(252, 48, 48), rgb(141, 1, 1));
+    color: #fff;
+    font-size: 14px;
+    text-align: start;
+}
+
+th:first-child {
+    border-top-left-radius: 5px;
+    text-align: left;
+}
+
+th:last-child {
+    border-top-right-radius: 5px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #D7D7f0;
+}
+
+td {
+    border-bottom: 1px solid #c6c7cc;
+    border-right: 1px solid #c6c7cc;
+}
+
+td:first-child {
+    border-left: 1px solid #c6c7cc;
+}
+
+.schoollogo {
+    display: block;
+   margin: 40px auto;
+    width: 75%;
+}
+
+#details {
+    background-color: #f3f3f7;
+    border-left: #e60000 3px solid;
+}

@@ -2,40 +2,45 @@
 
 {% block content %}
 <section>
-	<!-- Remember to add number of downloads and views later and decorate the E-library homepage-->
-      <div class = "container p-3">
- 	
- 	     <h5 class="fw-bold">{{ ebooksubject.Sub}}</h5>
-        <hr class="mt-0 mb-4" >
-        	{% if not ebooks%}
-<section>
-	<div class="container text-center p-3">
-		<i class="bi bi-file-earmark-text  h1"></i>
-		<h3 class="text-secondary" style="font-family: 'League Spartan', sans-serif;">Ebooks not available yet </h3>
-	</div>
-</section>
-         {% else %}
-	{% for ebook in ebooks %}
-<ul class="list-group-flush p-0">
-  <li class="list-group-item shadow-sm d-flex justify-content-between align-items-center">
-    <div class="p-2">
-       <a href="{% url 'Elibrary:ebookdetail' ebook.id %}" class="h5 text-decoration-none">• {{ ebook.EbookTitle }}</a>
-       <p class="text-secondary"> {{ ebook.Ebookauthor}} <br>
-		<span class="small">{{ ebook.date_uploaded}}</span>
-     </p>
+  <!-- Remember to add number of downloads and views later and decorate the E-library homepage-->
+  <div class="container p-3">
+    <div class="d-block d-md-flex align-items-center">
+      <h4  style="text-transform: uppercase;">{{ ebooksubject.Sub}} E-Textbooks</h4>
+      <form class="ms-auto">
+        <div class="input-group news-input mx-0 mx-md-3 mb-4">
+          <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="type in a keyword" />
+          <button class="btn btn-md" type="submit" value="Save" style="background-color: #00072B; color:white;"><i
+              class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+      </form>
     </div>
-        <div class=" ms-auto ">
-     <img
-                  src="{{ebook.Ebookimage }}"
-                  class="w-75 img-fluid mb-3"
-                  alt="" />
+
+    {% if not ebooks%}
+    <section>
+      <div class="container text-center p-3">
+        <i class="bi bi-file-earmark-text  h1"></i>
+        <h3 class="text-secondary" style="font-family: 'League Spartan', sans-serif;">Ebooks not available yet </h3>
       </div>
-    </li>
-           {% endfor %}
-     </ul>
-      {% endif %}     
-      
-      </div>
-     </section>
+    </section>
+    {% else %}
+    {% for ebook in ebooks %}
+    <ul id="myUL" class="list-group-flush p-0">
+      <li style="display:block;" class="list-group-item shadow-sm justify-content-between align-items-center">
+        <div class="p-2">
+          <a href="{% url 'Elibrary:ebookdetail' ebook.id %}" class="h5 text-decoration-none">• {{ ebook.EbookTitle }}</a>
+          <p class="text-secondary"> {{ ebook.Ebookauthor}} <br>
+            <span class="small">{{ ebook.date_uploaded}}</span>
+          </p>
+        </div>
+
+        <img src="{{ebook.Ebookimage }}" class="ms-auto img-fluid mb-3" alt="" style="max-width: 80px;" />
+
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+</section>
 
 {% endblock %}

@@ -1,112 +1,74 @@
 {% load static %}
 <!doctype html>
- <html lang="en">
- <head style="background-color:#00072B;"> <!-- Required meta tags -->
- <meta charset="utf-8">
-<!-- Bootstrap CSS -->
+<html lang="en">
+
+<head style="background-color:#00072B;">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- Bootstrap CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com"> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
   <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=League+Gothic:wdth@88.1;100&family=League+Spartan:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;1,400;1,500&family=Montserrat:wght@400;500&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,300;1,400&family=Open+Sans:ital,wght@0,400;0,500;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<style type="text/css" >
-*{
-		box-sizing:border-box;
-		}
-      html, body {
-         margin: 0;
-         padding: 0;
-      }
-       body {
-         display: flex;
-         min-height: 100vh;
-         flex-direction: column;
-      }
-      main {
-         flex: 1 0 auto;
-      }
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=League+Gothic:wdth@88.1;100&family=League+Spartan:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;1,400;1,500&family=Montserrat:wght@400;500&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;0,800;1,300;1,400&family=Open+Sans:ital,wght@0,400;0,500;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/Result.css' %}">
+  <style>
+    #resulttable {
+      border: 0.5px solid #c4c4cf;
+      table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0;
+      color: #4a4a4d;
+      width: 100%;
+      margin-bottom: 200px;
 
-li,h1,h2,h3,h4,h5,h6,th{
- 	color:#00072B;
- 	font-family: 'Lato', sans-serif;
- 	}
- li,p,span,div,td,th,form{
- 		font-family: 'League Spartan', sans-serif;
-	 		color:#00072B;
- 			}
-  table{
-    border-collapse: collapse;
-    font-family: 'League Spartan', sans-serif;
-  }
-  table, th, td{
-    border:1px solid black;
-  }
-  th,td {
-    padding: 3px;
-  }
-  table th, tbody td {
-    text-align: center;
-  }
-  #news{
-    margin-top: 200px;
-  }
-  #headers{
-    text-align: center;
-  }
-  h5.name{
-    font-size: x-large;
-  }
+    }
 
-  h2.name{
-    font-size: x-large;
-    font-weight: bold;
-  }
-  thead th:nth-child(1){
-    width: 30%;
-  }
-  thead th:nth-child(0){
-    width: 5%;
-  }
+    #resulttable td,
+    #resulttable th {
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+  <title>OKFS Onitsha</title>
+</head>
 
-
-         </style>
-           <title>OKFS Onitsha</title>
- </head> 
 <body>
-	<main>
-    <section class="p-2">
-      <div class="container">
-            {% for logo in schoollogo %}
-           <img src="{{ logo.Schoollogo.url }}" class="d-block " alt="..." style="width: 75%;" >
-        {% endfor %}
-      </div>
-      </section>
-    <section class="px-2 pt-2">
-      <div class="container mb-0">
-      <h5 class="fw-bold">{{Student.Name}}</h5>
-      </div>
-      
-      <div class=" container border-start border-3 bg-light p-4 border-primary rounded">
-        <span class="fw-bold">Class :</span>   {{ Student.Class }}<br>
-        <span class="fw-bold">Term :</span>   {{ Student.Term }}<br>
-        <span class="fw-bold">Session :</span>     {{ Student.Academicsession }}<br>
-        <span class="fw-bold">Total score :</span>    {{ Student.TotalScore }}<br>
-        <span class="fw-bold">Average :</span>    {{ Student.Average }}<br>
-        <span class="fw-bold">Position :</span>    {{ Student.Position }}<br>
-        <span class="fw-bold">Number in Class :</span>    {{ Student.Totalnumber }}
-      </div>
-    
-    </section>
-    <section>
-      <div class="container-fluid p-md-5 ">
-      <div class="table-responsive">
-    <table class=" table" >
+  <section class="p-2">
+    <div class="container">
+      {% for logo in schoollogo %}
+      <img src="{{ logo.Schoollogo.path }}" class="schoollogo" alt="..." width="700px">
+      {% endfor %}
+    </div>
+  </section>
+  <section class="px-2 pt-2">
+    <div class="container text-center  mb-0" style="text-align:center; font-size: 25px;">
+      {{Student.Name}}
+    </div>
+
+    <div class="details" style="margin-bottom: 20px;margin-left: 20px; font-size: 15px;">
+      <span class="fw-bold">Class :</span> {{ Student.Class }}<br>
+      <span class="fw-bold">Term :</span> {{ Student.Term }}<br>
+      <span class="fw-bold">Session :</span> {{ Student.Academicsession }}<br>
+      <span class="fw-bold">Total score :</span> {{ Student.TotalScore }}<br>
+      <span class="fw-bold">Average :</span> {{ Student.Average }}<br>
+      <span class="fw-bold">Position :</span> {{ Student.Position }}<br>
+      <span class="fw-bold">Number in Class :</span> {{ Student.Totalnumber }}
+    </div>
+
+  </section>
+  <div class="table-container">
+    <table id="resulttable">
       <thead>
         <tr>
           <th scope="col">S/N</th>
-          <th scope="col">Subjects</th>
+          <th scope="col" colspan="3">Subjects</th>
           <th scope="col">1st Test</th>
           <th scope="col">2nd Test</th>
           <th scope="col">Project</th>
@@ -122,10 +84,10 @@ li,h1,h2,h3,h4,h5,h6,th{
         </tr>
       </thead>
       <tbody>
-          {% for data in Result %}
+        {% for data in Result %}
         <tr>
-          <th scope="row">{{forloop.counter}}</th>
-          <td>{{data.Subject}}</td>
+          <td>{{forloop.counter}}</td>
+          <td colspan="3" style="font-weight: bold;">{{data.Subject}}</td>
           <td>{{data.FirstTest}}</td>
           <td>{{data.SecondTest}}</td>
           <td>{{data.Project}}</td>
@@ -138,38 +100,93 @@ li,h1,h2,h3,h4,h5,h6,th{
           <td>{{data.Grade}}</td>
           <td>{{data.SubjectPosition}}</td>
           <td>{{data.Remark}}</td>
-          
         </tr>
-          {% endfor %}
+        {% endfor %}
       </tbody>
     </table>
+  </div>
+
+  {% if AnnualResult %}
+  <section class="px-2 pt-2">
+    <div class="container text-center  mb-0" style="text-align:center; font-size: 25px;">
+      <h1 class=" fw-normal">Annual Result </h1>
     </div>
+
+    <div class="details" style="margin-bottom: 20px;margin-left: 20px; font-size: 15px;">
+      <span class="fw-bold">Class :</span> {{ AnnualStudent.Class }}<br>
+      <span class="fw-bold">Term :</span> {{ AnnualStudent.Term }}<br>
+      <span class="fw-bold">Session :</span> {{ AnnualStudent.Academicsession }}<br>
+      <span class="fw-bold">Total score :</span> {{ AnnualStudent.TotalScore }}<br>
+      <span class="fw-bold">Average :</span> {{ AnnualStudent.Average }}<br>
+      <span class="fw-bold">Position :</span> {{ AnnualStudent.Position }}<br>
+      <span class="fw-bold">Number in Class :</span> {{ AnnualStudent.Totalnumber }}
     </div>
-    <section>
-    
-      <!--Newsletter-->
-      <section id="news" class="p-5">
-        <div id="headers">
-          <h2 class="name ms-3 text-center fw-bold">2nd Term Newsletter (2021/2022 Academic Section)</h2>
-          <hr>
-          <h5 class=" name fw-bold text-center">Ocean Of Knowledge Foundation Schools <br>
-            <span class="fw-normal">No 30 Isiokpo Street Awada</span><br>
-            <span class="text-danger fw-normal" style="color: red;"> Pro Scientia et Sapientia</span><br>
-            <span class=" fw-normal small text-secondary">Website: www.oceanofknowledgefoundationschool.com</span><br>
-            <span class=" fw-normal small text-secondary">Email: oceanofknowledgefoundationschool23@gmail.com</span><br>
-            <span class=" fw-normal small text-secondary">Phone:08023182402,08086586235 </span>
-          </h5>
-          <hr>
+
+    <div class="table-container">
+      <table id="resulttable">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+            <th scope="col" colspan="3">Subjects</th>
+            <th scope="col">1st Term</th>
+            <th scope="col">2nd Term</th>
+            <th scope="col">3rd Term</th>
+            <th scope="col">Total</th>
+            <th scope="col">Average</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Position</th>
+            <th scope="col">Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in AnnualResult %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td colspan="3" style="font-weight: bold;">{{data.Subject}}</td>
+            <td>{{data.FirstTerm}}</td>
+            <td>{{data.SecondTerm}}</td>
+            <td>{{data.ThirdTerm}}</td>
+            <td>{{data.Total}} </td>
+            <td>{{data.Average}}</td>
+            <td>{{data.Grade}}</td>
+            <td>{{data.SubjectPosition}}</td>
+            <td>{{data.Remark}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {% endif %}
+  <!--Newsletter-->
+
+
+  <div>
+    <div style="font-size: 20px; text-align: center;">2nd Term Newsletter (2021/2022 Academic Section)</div>
+      <div style="font-size: 15px; text-align: center;">Ocean Of Knowledge Foundation Schools </div>
+        <div style="font-size: 13px;text-align: center;">
+          <span class="fw-normal ">No 30 Isiokpo Street Awada</span><br>
+          <span style="color: red;"> Pro Scientia et Sapientia</span><br>
+          <span style="color: rgb(156, 156, 156);">Website: www.oceanofknowledgefoundationschool.com</span><br>
+          <span style="color: rgb(156, 156, 156);">Email: oceanofknowledgefoundationschool23@gmail.com</span><br>
+          <span style="color: rgb(156, 156, 156);">Phone:08023182402,08086586235 </span>
         </div>
-        {% for news in letter %}
-        <div class="container">
-          {{ news.newsletter|safe }}
-        </div>
-        {% endfor %}
-      </section>
-</main>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+        <hr style="background-color: #4a4a4d;">
+  </div>
+  {% for news in letter %}
+  <div style="font-size: 13px;text-align:start;padding:20px;line-height:25px;">
     
-</body> 
+    {{ news.newsletter|safe }}
+  
+  </div>
+  {% endfor %}
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+
 </html>

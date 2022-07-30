@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Assignments, Result,Student,Excelfiles,Class,Newsletter,Pin
+from .models import *
 from home.models import School
 from django.contrib.auth.decorators import login_required
 import base64
@@ -30,21 +30,27 @@ def students_view(request,Classname,id):
 	return render(request, "Students.html", context)
 	
 def result_view(request,Classname):
-	queryset=Student.objects.filter(Class=Classname)
-	queryset2=Class.objects.get(Class=Classname)
-	stuff=get_object_or_404(Student,Name=request.POST.get('Name'))
-	queryset3=Result.objects.filter(Name=request.POST.get('Name'),Class=Classname)
+	studentname=str(request.POST.get('Name'))
+	queryset1=Student.objects.filter(Class=Classname)
+	# queryset2=AnnualStudent.objects.filter(Class=Classname)
+	queryset3=Class.objects.get(Class=Classname)
+	stuff1=get_object_or_404(Student,Name=studentname)
+	# stuff2=get_object_or_404(AnnualStudent,Name=studentname)
+	queryset4=Result.objects.filter(Name=studentname,Class=Classname)
+	# queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
 	letter=Newsletter.objects.all()
 	school=School.objects.all()
 	if request.method=='POST':
 		try:
 			enteredpin=request.POST.get('Pin')
 			mainpin=int(enteredpin)
-			studentpin=get_object_or_404(Pin,student=request.POST.get('Name'))
+			studentpin=get_object_or_404(Pin,student=studentname)
 			if mainpin == studentpin.pin:
 				context={
-					"Student":stuff,
-					"Result":queryset3,
+					"Student":stuff1,
+					# "AnnualStudent":stuff2,
+					"Result":queryset4,
+					# 'AnnualResult': queryset5,
 					'schoollogo': school,
 					'letter':letter,
 					}
@@ -52,15 +58,15 @@ def result_view(request,Classname):
 			else:
 				messages.error(request, 'Invalid card pin , check your input and try again') 
 				context = {
-					"students": queryset,
-					"class":queryset2
+					"students": queryset1,
+					"class":queryset3
 					}
 				return render(request, "Students.html", context)
 		except:
 			messages.error(request, 'Invalid card pin , check your input and try again') 
 			context = {
-				"students": queryset,
-				"class":queryset2
+				"students": queryset1,
+				"class":queryset3
 			}
 			return render(request, "Students.html", context)
 		
@@ -96,7 +102,17 @@ def activation_view(request):
 		}
 	return render(request, "activation.html", context)
 	
-	#Activate the Junior Students
+
+def createPin(request):
+	myPin=Pin()
+	myPin.generatePin()
+	Studentpin=Pin.objects.all()
+	context = {
+	"pins": Studentpin,
+		}
+	return render(request, "pins.html", context)
+
+# Create Junior Students Termly Results Details
 
 def createjuniorstudent1a_view(request):
 	student=Excelfiles()
@@ -138,7 +154,7 @@ def createjuniorstudent3_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 
-# create Jss1,2 & 3 Result 
+# create Junior Students Termly Results
 
 def createjuniorresult1a_view(request):
 	result=Student()
@@ -180,7 +196,95 @@ def createjuniorresult3_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 
-# Activate the Senior Students
+
+# Create Junior Student's Annual Details
+
+def createjuniorstudentAnnual1a_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual1a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorstudentAnnual1b_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual1b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudentAnnual1c_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual1c()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorstudentAnnual2a_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudentAnnual2b_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual2b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorstudentAnnual3_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual3()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+# create Junior Annual Results
+
+def createjuniorresultAnnual1a_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual1a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorresultAnnual1b_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual1b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorresultAnnual1c_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual1c()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorresultAnnual2a_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorresultAnnual2b_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual2b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+def createjuniorresultAnnual3_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual3()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+
+
+# Termly Senior Students details
 
 def createseniorstudent_view(request):
 	student=Excelfiles()
@@ -189,7 +293,7 @@ def createseniorstudent_view(request):
 	 }
 	return render(request, "Congratulation.html", context)
 
-# Activate the Senior Result
+# Termly Senior Students Result
 	
 def createseniorresult1_view(request):
 	result=Student()
@@ -205,14 +309,29 @@ def createseniorresult2_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 	
-# Create the Student Pin with the name 
+# Annual Senior Students Result  
 
-def createPin(request):
-	myPin=Pin()
-	myPin.generatePin()
-	Studentpin=Pin.objects.all()
+def createseniorstudentAnnual_view(request):
+	student=Excelfiles()
+	student.createSeniorStudentsAnnual()
 	context = {
-	"pins": Studentpin,
+	 }
+	return render(request, "Congratulation.html", context)
+
+# Activate the Senior Result
+	
+def createseniorresultAnnual1_view(request):
+	result=AnnualStudent()
+	result.createSeniorAnnual1()
+	context = {
 		}
-	return render(request, "pins.html", context)
+	return render(request, "Congratulation.html", context)
+
+def createseniorresultAnnual2_view(request):
+	result=AnnualStudent()
+	result.createSeniorAnnual2()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
 	

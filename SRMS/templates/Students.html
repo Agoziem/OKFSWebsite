@@ -1,59 +1,66 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section class="p-2 bg-light">
-	
-<div class="container my-3 mt-md-4" style="width: 320px;">
-<div class="card shadow-sm ">
-              <div class="card-body text-center">
-	          	{% if messages %}
-				{% for message in messages %}
-			<div class="alert {{ message.tags }} alert-dismissible alert-success" role="alert">
-	          {{ message }}
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<section  class="bg-light">
+	<div id="Resultboard">
+		<div class="row py-5 justify-content-center align-items-start">
+			<div class="col-md my-3" style="max-width: 312px;">
+				<div id="ResultCard" class="card shadow-sm ">
+					<div class="card-body text-center">
+						{% if messages %}
+						{% for message in messages %}
+						<div class="alert {{ message.tags }} alert-dismissible alert-success" role="alert">
+							  {{ message }}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+						{% endfor %}
+						{% endif %}
+						<img class=" img-fluid mb-2" src="{% static 'OKFS.png' %}" alt="" width="88" height="78">
+						<form action="{% url 'SRMS:result' Classname=class.Class %}" method="POST">
+							{% csrf_token %}
+							<h6 class=" mb-3 fw-normal" style=" font-family: 'League Spartan', sans-serif;">Please
+								select
+								your
+								name and enter your Card Pin</h6>
+							<div class="mb-2">
+								<select class="form-select" name="Name" id="country" required>
+									<option value="">select your name</option>
+									{% for student in students %}
+									<option>{{ student.Name }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="mt-2 form-floating">
+								<input type="pin" name="Pin" class="form-control" id="pin" placeholder="enter Card Pin">
+								<label for="pin">Card Pin</label>
+							</div>
+							<button class=" my-2 w-100 btn btn-md btn-primary" type="submit" value="Save">View
+								result</button>
+							<p class="mt-3 mb-3 text-muted">powered by Gozzy tech</p>
+						</form>
+					</div>
+				</div>
 			</div>
-			{% endfor %}
-		{% endif %}
-	<img class=" img-fluid mb-2" src="{% static 'OKFS.png' %}" alt="" width="88" height="78">
-	  <form action="{% url 'SRMS:result' Classname=class.Class %}"  method="POST">
-		{% csrf_token %} 
-	    <h6 class=" mb-3 fw-normal"style=" font-family: 'League Spartan', sans-serif;">Please select your name and enter your Card Pin</h6>
-	     <div class="mb-2">
-	              <select class="form-select" name="Name" id="country" required>
-	                <option value="">select your name</option>
-	                {% for student in students %}
-	                <option>{{ student.Name }}</option>
-	                 {% endfor %}
-	              </select>
-	            </div>
-	    <div class="mt-2 form-floating">
-	      <input type="pin" name="Pin" class="form-control" id="pin" placeholder="enter Card Pin">
-	      <label for="pin">Card Pin</label>
-	    </div>
-	    <button class=" my-2 w-100 btn btn-md btn-primary" type="submit" value="Save">View result</button>
-	    <p class="mt-3 mb-3 text-muted">powered by Gozzy tech</p>
-	  </form>
-            </div>
-     </div>
-  </div>
-  <div class="container mb-5" style="width: 320px;">
-	{% if Assignments %}	
-		<h4 >Assignments & Project for {{ class.Class}}</h4>
-		{% for Assignment in Assignments %}
-		<li class="list-group-item d-flex justify-content-between align-items-start">
-		  <div class="ms-2 me-auto">
-			<div class="fw-bold">{{ Assignment.subject }}</div>
-			download and print
-		  </div>
-		  <a href="{{ Assignment.file.url }}"  download><i class="fa fa-download h2"></i></a>
-		</li>
-		{% endfor %}
-	  </ol>
-	{% else %}
-	<h4>Assignments & Project for {{ class.Class}}</h4>
-	<hr>
-	 <h6> No Assignment or Project Available for {{ class.Class}} </h6>
-	{% endif %}
-  </div>
- </section>
+			<div id="Ass" class="col-md mb-5" style="max-width: 312px;">
+				{% if Assignments %}
+				<h4 id="Ass-text">Assignments & Project for {{ class.Class}}</h4>
+				{% for Assignment in Assignments %}
+				<li class="list-group-item d-flex justify-content-between align-items-start">
+					<div class="ms-2 me-auto">
+						<div class="fw-bold">{{ Assignment.subject }}</div>
+						download and print
+					</div>
+					<a href="{{ Assignment.file.url }}" download><i class="fa fa-download h4"></i></a>
+				</li>
+				{% endfor %}
+				</ol>
+				{% else %}
+				<h4 id="Ass-text">Assignments & Project for {{ class.Class}}</h4>
+				<hr id="Ass-text">
+				<h6 id="Ass-text"> No Assignment or Project Available for {{ class.Class}} </h6>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</section>
 {% endblock %}
