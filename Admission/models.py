@@ -1,7 +1,7 @@
 from django.db import models
 from Payments.models import Amount
 from Payments.Paystack import Paystack
-
+# God
 boolChoice = (
 		("Yes","Yes"),("No","No")
 		)

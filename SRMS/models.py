@@ -50,7 +50,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -293,7 +293,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -537,7 +537,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -781,7 +781,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -1025,7 +1025,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -1269,7 +1269,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -1513,7 +1513,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,23),start=1):
 				if count == 1:
@@ -1859,7 +1859,7 @@ class AnnualStudent(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -2160,7 +2160,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -2474,7 +2474,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -2788,7 +2788,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -3103,7 +3103,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -3418,7 +3418,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -3733,7 +3733,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -4046,7 +4046,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,23),start=1):
 				if count == 1:
@@ -4495,7 +4495,7 @@ class Student(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			for count, row in enumerate(range(10,19),start=1):
 				if count == 1:
@@ -4813,7 +4813,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4829,7 +4829,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4845,7 +4845,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4861,7 +4861,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4877,7 +4877,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4893,7 +4893,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -4913,7 +4913,7 @@ class Excelfiles(models.Model):
 				wb = load_workbook(io.BytesIO(binary_data))
 				for sheet in wb:
 					ws=wb[sheet.title]
-					Name=str(ws['B4'].value)
+					Name=str(ws['B4'].value).upper().strip()
 					Class=ws['B6'].value
 					Position=ws['K24'].value
 					Average=ws['H24'].value
@@ -4946,7 +4946,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['P20'].value
 			Average=ws['M20'].value
@@ -4962,7 +4962,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['P20'].value
 			Average=ws['M20'].value
@@ -4978,7 +4978,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['P20'].value
 			Average=ws['M20'].value
@@ -4994,7 +4994,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -5010,7 +5010,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -5026,7 +5026,7 @@ class Excelfiles(models.Model):
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
-			Name=str(ws['B4'].value)
+			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
 			Position=ws['K20'].value
 			Average=ws['H20'].value
@@ -5046,7 +5046,7 @@ class Excelfiles(models.Model):
 				wb = load_workbook(io.BytesIO(binary_data))
 				for sheet in wb:
 					ws=wb[sheet.title]
-					Name=str(ws['B4'].value)
+					Name=str(ws['B4'].value).upper().strip()
 					Class=ws['B6'].value
 					Position=ws['K24'].value
 					Average=ws['H24'].value

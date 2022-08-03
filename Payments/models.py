@@ -12,7 +12,8 @@ class Amount(models.Model):
 		
 	def amount_value(self) -> int:
 		return self.amount*100
-		
+
+	
 class Payment(models.Model):
 	Name_of_student=models.CharField(max_length=100, blank=True)
 	Class=models.ForeignKey(Class, related_name='Level', on_delete=models.CASCADE, blank=True, null=True )

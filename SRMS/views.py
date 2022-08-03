@@ -30,14 +30,15 @@ def students_view(request,Classname,id):
 	return render(request, "Students.html", context)
 	
 def result_view(request,Classname):
-	studentname=str(request.POST.get('Name'))
+	stu=str(request.POST.get('Name'))
+	studentname=stu.upper().strip()
 	queryset1=Student.objects.filter(Class=Classname)
 	# queryset2=AnnualStudent.objects.filter(Class=Classname)
 	queryset3=Class.objects.get(Class=Classname)
 	stuff1=get_object_or_404(Student,Name=studentname)
-	# stuff2=get_object_or_404(AnnualStudent,Name=studentname)
+	stuff2=get_object_or_404(AnnualStudent,Name=studentname)
 	queryset4=Result.objects.filter(Name=studentname,Class=Classname)
-	# queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
+	queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
 	letter=Newsletter.objects.all()
 	school=School.objects.all()
 	if request.method=='POST':
@@ -48,9 +49,9 @@ def result_view(request,Classname):
 			if mainpin == studentpin.pin:
 				context={
 					"Student":stuff1,
-					# "AnnualStudent":stuff2,
+					"AnnualStudent":stuff2,
 					"Result":queryset4,
-					# 'AnnualResult': queryset5,
+					'AnnualResult': queryset5,
 					'schoollogo': school,
 					'letter':letter,
 					}
@@ -75,15 +76,19 @@ def result_view(request,Classname):
 
 def result_pdf_view(request,Name,Classname):
 	stuff=get_object_or_404(Student,Name=Name)
-	queryset=Result.objects.filter(Name=Name,Class=Classname)
+	stuff2=get_object_or_404(AnnualStudent,Name=Name)
+	queryset4=Result.objects.filter(Name=Name,Class=Classname)
+	queryset5=AnnualResult.objects.filter(Name=Name,Class=Classname)
 	school=School.objects.all()
 	letter=Newsletter.objects.all()
 	template_path ='Result_pdf.html'
 	context={
+		"AnnualStudent":stuff2,
 		"Student":stuff,
-		"Result":queryset,
+		"Result":queryset4,
 		'schoollogo': school,
 		'letter':letter,
+		'AnnualResult': queryset5,
 		}
 	response = HttpResponse(content_type='application/pdf')
 	response['Content-Disposition'] = 'attachment'; filename="Result.pdf"

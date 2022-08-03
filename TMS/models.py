@@ -1,5 +1,7 @@
 from django.db import models
 
+# the Lord is Good
+
 class Teacher(models.Model):
 	Name= models.CharField(max_length= 200, blank=True)
 	Phone_number= models.CharField(max_length= 200, blank=True)

@@ -8,7 +8,7 @@
       <h4  style="text-transform: uppercase;">{{ ebooksubject.Sub}} E-Textbooks</h4>
       <form class="ms-auto">
         <div class="input-group news-input mx-0 mx-md-3 mb-4">
-          <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="type in a keyword" />
+          <input type="text" id="myInput" onkeyup="myFunctionb()" class="form-control" placeholder="type in a keyword" />
           <button class="btn btn-md" type="submit" value="Save" style="background-color: #00072B; color:white;"><i
               class="fa fa-search" aria-hidden="true"></i></button>
         </div>
@@ -25,7 +25,7 @@
     {% else %}
     {% for ebook in ebooks %}
     <ul id="myUL" class="list-group-flush p-0">
-      <li style="display:block;" class="list-group-item shadow-sm justify-content-between align-items-center">
+      <li style="display:flex; justify-content: center; align-items: start;" class="list-group-item shadow-sm">
         <div class="p-2">
           <a href="{% url 'Elibrary:ebookdetail' ebook.id %}" class="h5 text-decoration-none">• {{ ebook.EbookTitle }}</a>
           <p class="text-secondary"> {{ ebook.Ebookauthor}} <br>
