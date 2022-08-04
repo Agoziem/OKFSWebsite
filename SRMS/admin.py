@@ -13,7 +13,7 @@ admin.site.register(Newsletter)
 @admin.register(Pin)
 class PinAdmin(admin.ModelAdmin):
     list_display=('pin','student')
-    ordering=('student',)
+    ordering=('id','student',)
     search_fields=('student','pin')
     # list_filter=('Occupation','level','Zone','gender',)
 
