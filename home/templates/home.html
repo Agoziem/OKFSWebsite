@@ -9,10 +9,10 @@
         <div class="carousel-caption ">
           <h3 class="animate__animated animate__fadeInRight" style="animation-delay: 1s;color:white;">Quality Education
             and Resources</h3>
-            <div class="multiplerule mt-3 d-flex justify-content-center">
-              <div class="rule"></div>
-              <div class="rule2"></div>
-            </div>
+          <div class="multiplerule my-2 d-flex justify-content-center">
+            <div class="rule"></div>
+            <div class="rule2"></div>
+          </div>
           <p id="tag" class="animate__animated animate__fadeInLeft" style="animation-delay: 2s;">OKFS Awada </p>
           <P><a href="#Requirements" class="animate__animated animate__fadeInBottomLeft text-decoration-none"
               style="animation-delay: 3s;">Register now</a></P>
@@ -25,10 +25,10 @@
           <div class="carousel-caption  ">
             <h3 class="animate__animated animate__fadeInLeft" style="animation-delay: 1s; color:white;">Engagement &
               Mastery learning</h3>
-              <div class="multiplerule mt-3 d-flex justify-content-center">
-                <div class="rule"></div>
-                <div class="rule2"></div>
-              </div>
+            <div class="multiplerule my-2 d-flex justify-content-center">
+              <div class="rule"></div>
+              <div class="rule2"></div>
+            </div>
             <p id="tag" class="animate__animated animate__fadeInRight" style="animation-delay: 2s;">OKFS Awada </p>
             <P><a href="#Requirements"
                 class="animate__animated animate__fadeInRight text-decoration-none animate__fadeInDown"
@@ -45,7 +45,7 @@
             <h3 class=" animate__animated animate__fadeIn" style="animation-delay: 1s; color:white;">Upholding Moral
               Standards
             </h3>
-            <div class="multiplerule mt-3 d-flex justify-content-center">
+            <div class="multiplerule my-2 d-flex justify-content-center">
               <div class="rule"></div>
               <div class="rule2"></div>
             </div>
@@ -64,10 +64,10 @@
           <div class="carousel-caption">
             <h3 class="animate__animated animate__fadeInRight" style="animation-delay: 1s; color:white;">breeding and
               raising leaders of Tomorrow</h3>
-              <div class="multiplerule mt-3 d-flex justify-content-center">
-                <div class="rule"></div>
-                <div class="rule2"></div>
-              </div>
+            <div class="multiplerule my-2 d-flex justify-content-center">
+              <div class="rule"></div>
+              <div class="rule2"></div>
+            </div>
             <p id="tag" class="animate__animated animate__fadeInLeft" style="animation-delay: 2s;">OKFS Awada </p>
             <P><a href="#Requirements" class="animate__animated animate__fadeInBottomLeft text-decoration-none"
                 style="animation-delay: 3s;">Register now</a></P>
@@ -81,10 +81,10 @@
           <div class="carousel-caption">
             <h3 class="animate__animated animate__fadeInLeft " style="animation-delay: 1s; color:white;">Passionate and
               Qualified Teachers</h3>
-              <div class="multiplerule mt-3 d-flex justify-content-center">
-                <div class="rule"></div>
-                <div class="rule2"></div>
-              </div>
+            <div class="multiplerule my-2 d-flex justify-content-center">
+              <div class="rule"></div>
+              <div class="rule2"></div>
+            </div>
             <p id="tag" class="animate__animated animate__fadeInDown" style="animation-delay: 2s;">OKFS Awada </p>
             <P><a href="#Requirements" class="animate__animated animate__fadeInBottomRight text-decoration-none"
                 style="animation-delay: 3s;">Register now</a></P>
@@ -296,13 +296,13 @@
 <!-- Management -->
 <section id="Management" class="p-3 py-4">
   <div class="container ">
-    <h4 class="text-center  fw-bold">School Management</h4>
+    <h4 class="text-center  fw-bold">SCHOOL MANAGEMENT</h4>
     <div class="multiplerule my-3 d-flex justify-content-center">
       <div class="Nrule"></div>
       <div class="Nrule2"></div>
     </div>
     <p class=" text-center mb-3"> Ensuring quality Leadership, proper nurturing and Welfare of the Student</p>
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center align-items-start">
       {% for management in managements %}
       <div class="col-md-6 col-lg-3">
         <div class="card shadow-sm ">
@@ -322,8 +322,9 @@
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+
     <div class="d-flex  px-2 mt-2 justify-content-center align-items-center" style="padding: 0 40px;">
       <img src="{% static 'Teachers (1).png' %}" class="img-fluid" width="150">
       <div class="">
@@ -339,16 +340,26 @@
 <hr class="featurette-divider">
 <section id="gallery" class="py-2 mb-3">
   <div class=" container py-2 mb-0 text-center  text-white ">
-    <h5 class="h4 fw-bold ">Photo Gallery</h5>
-    <hr class="my-2">
+    <h5 class="h4 fw-bold ">PHOTO GALLERY</h5>
+    <div class="multiplerule my-3 d-flex justify-content-center">
+      <div class="Nrule"></div>
+      <div class="Nrule2"></div>
+    </div>
     <div class="container row g-3 p-0">
       {% for photo in photos %}
       <div class="col-md-6 col-lg-4">
         <div class="container mb-2">
-          <img src="{{ photo.Photo.url }}" class="img-fluid shadow-sm rounded mx-auto" />
+          <div class="card rounded shadow-sm" style="width: 18rem;">
+           <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a> 
+            <div class="card-body">
+              <p class="card-text">{{ photo.Description }}</p>
+            </div>
+          </div>
         </div>
       </div>
+
       <br />
+
       {% endfor %}
     </div>
     <a href="{% url 'gallery' %}" class=" btn mt-3" style="background-color: #00072B; color:white;">
@@ -364,7 +375,7 @@
   <div class="container">
     <div class="row justify-content-between align-items-start">
       <div class="col-md pt-3">
-        <h5 class="text-center fw-bold">Upcoming Events</h5>
+        <h5 class="text-center fw-bold">UPCOMING EVENTS</h5>
         <div id="events">
           {% if events %}
           <ol class="list-group-flush  bg-light p-0">
@@ -408,7 +419,11 @@
         </div>
       </div>
       <div class="col-md">
-        <h5 class=" text-center fw-bold my-4">Frequently Asked Questions</h5>
+        <h5 class=" text-center fw-bold my-4">FREQUENTLY ASKED QUESTIONS</h5>
+        <div class="multiplerule my-3 d-flex justify-content-center">
+          <div class="Nrule"></div>
+          <div class="Nrule2"></div>
+        </div>
         <div class="accordion text-dark accordion-flush" id="questions">
           <!-- Item 1 -->
           <div class="container" style="max-width: 400px;">
@@ -441,7 +456,11 @@
   <div class="container mb-4">
     <div class="row g-4 justify-content-between">
       <div class="col-md">
-        <h5 class="text-center fw-bold mb-3">Contact Info</h5>
+        <h5 class="text-center fw-bold mb-3">CONTACT INFO</h5>
+        <div class="multiplerule my-3 d-flex justify-content-center">
+          <div class="Nrule"></div>
+          <div class="Nrule2"></div>
+        </div>
         <ul class="list-group list-group-flush fs-6">
           {% for info in schools %}
           <li class="list-group-item">
@@ -465,6 +484,9 @@
     <div id='map' class="d-block d-md-none"></div>
   </div>
 </section>
+
+
+
 <script>
   mapboxgl.accessToken = '{{ mapbox_private_key }}';
   var map = new mapboxgl.Map({

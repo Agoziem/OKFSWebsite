@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="text-center p-3 my-2">
+<div class="text-center p-3 my-1">
         <h2>Photo Gallery</h2>
         <div class="multiplerule my-3 d-flex justify-content-center">
                 <div class="Nrule"></div>
@@ -13,7 +13,12 @@
 <section id="Files" class="container p-3">
         <div class="grid">
                 {% for photo in photos %}
-                <a href="{{photo.Photo.url}}"><img src="{{photo.Photo.url}}" alt="Sample photo"></a>
+                <div class="card rounded shadow-sm">
+                        <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a> 
+                         <div class="card-body">
+                           <p class="card-text">{{ photo.Description }}</p>
+                         </div>
+                       </div>
                 {% endfor %}
         </div>
 </section>
