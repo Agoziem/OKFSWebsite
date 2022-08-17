@@ -288,7 +288,7 @@ class AnnualStudent(models.Model):
 					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorAnnual1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual_YuunlLZ.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4957,7 +4957,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual_YuunlLZ.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
