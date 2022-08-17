@@ -43,9 +43,11 @@ class AnnualStudent(models.Model):
 	def __str__(self):
 		return str(self.Name+"-"+self.Class)
 
+	# Annual Students Result
+
 	def createJuniorAnnual1a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual_ztRWGQL.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -288,7 +290,7 @@ class AnnualStudent(models.Model):
 					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorAnnual1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual_YuunlLZ.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -532,7 +534,7 @@ class AnnualStudent(models.Model):
 
 	def createJuniorAnnual1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -776,7 +778,7 @@ class AnnualStudent(models.Model):
 						
 	def createJuniorAnnual2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2AAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2AAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -1020,7 +1022,7 @@ class AnnualStudent(models.Model):
 
 	def createJuniorAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -1264,7 +1266,7 @@ class AnnualStudent(models.Model):
 
 	def createJuniorAnnual3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Annual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Annual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -1508,7 +1510,7 @@ class AnnualStudent(models.Model):
 	
 	def createSeniorAnnual1(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Annual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Annual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -1854,14 +1856,14 @@ class AnnualStudent(models.Model):
 					
 	def createSeniorAnnual2(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Annual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Annual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
 			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,19),start=1):
+			for count, row in enumerate(range(10,22),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,11),start=1):
 						char=get_column_letter(col)
@@ -2087,7 +2089,86 @@ class AnnualStudent(models.Model):
 						elif count == 10:
 							Remark=ws[char+str(row)].value
 					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-				
+
+				if count == 10:
+					for count, col in enumerate(range(1,11),start=1):
+						char=get_column_letter(col)
+							
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTerm=ws[char+str(row)].value
+						elif count == 4:
+							SecondTerm=ws[char+str(row)].value
+						elif count == 5:
+							ThirdTerm=ws[char+str(row)].value
+						elif count == 6:
+							Total=ws[char+str(row)].value
+						elif count == 7:
+							Average=ws[char+str(row)].value
+						elif count == 8:
+							Grade=ws[char+str(row)].value
+						elif count == 9:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 10:
+							Remark=ws[char+str(row)].value
+					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				if count == 11:
+					for count, col in enumerate(range(1,11),start=1):
+						char=get_column_letter(col)
+							
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTerm=ws[char+str(row)].value
+						elif count == 4:
+							SecondTerm=ws[char+str(row)].value
+						elif count == 5:
+							ThirdTerm=ws[char+str(row)].value
+						elif count == 6:
+							Total=ws[char+str(row)].value
+						elif count == 7:
+							Average=ws[char+str(row)].value
+						elif count == 8:
+							Grade=ws[char+str(row)].value
+						elif count == 9:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 10:
+							Remark=ws[char+str(row)].value
+					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				if count == 12:
+					for count, col in enumerate(range(1,11),start=1):
+						char=get_column_letter(col)
+							
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTerm=ws[char+str(row)].value
+						elif count == 4:
+							SecondTerm=ws[char+str(row)].value
+						elif count == 5:
+							ThirdTerm=ws[char+str(row)].value
+						elif count == 6:
+							Total=ws[char+str(row)].value
+						elif count == 7:
+							Average=ws[char+str(row)].value
+						elif count == 8:
+							Grade=ws[char+str(row)].value
+						elif count == 9:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 10:
+							Remark=ws[char+str(row)].value
+					AnnualResult.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+
 
 
 # Model for Termly Result
@@ -2153,9 +2234,11 @@ class Student(models.Model):
 	def __str__(self):
 		return str(self.Name+"-"+self.Class)
 
+	# Termly Students Result
+
 	def createJuniorResult1a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1ATermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1ATermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -2469,7 +2552,7 @@ class Student(models.Model):
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -2783,7 +2866,7 @@ class Student(models.Model):
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 	def createJuniorResult1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -3098,7 +3181,7 @@ class Student(models.Model):
 						
 	def createJuniorResult2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -3413,7 +3496,7 @@ class Student(models.Model):
 
 	def createJuniorResult2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -3728,7 +3811,7 @@ class Student(models.Model):
 
 	def createJuniorResult3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Termly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Termly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4041,7 +4124,7 @@ class Student(models.Model):
 	
 	def createSeniorResult1(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Termly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Termly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4490,14 +4573,14 @@ class Student(models.Model):
 					
 	def createSeniorResult2(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Termly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Termly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
 			ws=wb[sheet.title]
 			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,19),start=1):
+			for count, row in enumerate(range(10,23),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,15),start=1):
 						char=get_column_letter(col)
@@ -4795,8 +4878,110 @@ class Student(models.Model):
 						elif count == 14:
 							Remark=ws[char+str(row)].value
 					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-				
 
+				if count == 10:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				if count == 11:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				if count == 12:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+					Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
+
+				
 
 # Model for the Excel Files 
 
@@ -4805,10 +4990,12 @@ class Excelfiles(models.Model):
 	
 	def __str__(self):
 		return str(self.Excel)
-		
+	
+	# Termly Students Data
+
 	def createJuniorStudent1a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1ATermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1ATermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4824,7 +5011,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4840,7 +5027,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4856,7 +5043,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2ATermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4872,7 +5059,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4888,7 +5075,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Termly.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Termly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4904,8 +5091,8 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createSeniorStudents(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Termly.xlsx')
-		obj2= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Termly.xlsx')
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Termly1.xlsx')
+		obj2= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Termly1.xlsx')
 		seniorClassExcel=[obj,obj2]
 		for count,file in enumerate(seniorClassExcel,start=1):
 			if count == 1:
@@ -4927,7 +5114,7 @@ class Excelfiles(models.Model):
 				wb = load_workbook(io.BytesIO(binary_data))
 				for sheet in wb:
 					ws=wb[sheet.title]
-					Name=str(ws['B4'].value)
+					Name=str(ws['B4'].value).upper().strip()
 					Class=ws['B6'].value
 					Position=ws['K24'].value
 					Average=ws['H24'].value
@@ -4941,7 +5128,7 @@ class Excelfiles(models.Model):
 
 	def createJuniorStudentAnnual1a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4957,7 +5144,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual_YuunlLZ.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4973,7 +5160,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4989,7 +5176,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual_ztRWGQL.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5005,7 +5192,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5021,7 +5208,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Annual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Annual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5037,8 +5224,8 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createSeniorStudentsAnnual(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Annual.xlsx')
-		obj2= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Annual.xlsx')
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Annual1.xlsx')
+		obj2= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS2Annual1.xlsx')
 		seniorClassExcel=[obj,obj2]
 		for count,file in enumerate(seniorClassExcel,start=1):
 			if count == 1:
@@ -5060,7 +5247,7 @@ class Excelfiles(models.Model):
 				wb = load_workbook(io.BytesIO(binary_data))
 				for sheet in wb:
 					ws=wb[sheet.title]
-					Name=str(ws['B4'].value)
+					Name=str(ws['B4'].value).upper().strip()
 					Class=ws['B6'].value
 					Position=ws['K23'].value
 					Average=ws['H23'].value
@@ -5088,4 +5275,8 @@ class Pin(models.Model):
 	def __str__(self):
 		return str(self.student)
 		
+	def save(self,*args,**kwargs):	
+		Name = str(self.student).upper().strip()
+		self.student=Name
+		super().save(*args,**kwargs)
 		
