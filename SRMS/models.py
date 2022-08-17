@@ -5062,16 +5062,16 @@ class Excelfiles(models.Model):
 					ws=wb[sheet.title]
 					Name=str(ws['B4'].value)
 					Class=ws['B6'].value
-					Position=ws['K24'].value
-					Average=ws['H24'].value
-					TotalScore=ws['E24'].value
+					Position=ws['K23'].value
+					Average=ws['H23'].value
+					TotalScore=ws['E23'].value
 					Totalnumber=ws['F6'].value
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
 					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 
 
-# Model for the Pins 				
+# Model for the Pins		
 
 class Pin(models.Model):
 	student=models.CharField(max_length=100, blank=True)
