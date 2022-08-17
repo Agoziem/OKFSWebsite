@@ -45,7 +45,7 @@ class AnnualStudent(models.Model):
 
 	def createJuniorAnnual1a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual_ztRWGQL.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -4954,7 +4954,7 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['k6'].value
 			Term=ws['M6'].value
 			Academicsession=ws['P6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual1b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1BAnnual_YuunlLZ.xlsx') 
@@ -4970,7 +4970,7 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['k6'].value
 			Term=ws['M6'].value
 			Academicsession=ws['P6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual1c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1CAnnual.xlsx') 
@@ -4986,10 +4986,10 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['k6'].value
 			Term=ws['M6'].value
 			Academicsession=ws['P6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2AAnnual.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss1AAnnual_ztRWGQL.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5002,7 +5002,7 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['F6'].value
 			Term=ws['H6'].value
 			Academicsession=ws['K6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual.xlsx') 
@@ -5018,7 +5018,7 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['F6'].value
 			Term=ws['H6'].value
 			Academicsession=ws['K6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss3Annual.xlsx') 
@@ -5034,7 +5034,7 @@ class Excelfiles(models.Model):
 			Totalnumber=ws['F6'].value
 			Term=ws['H6'].value
 			Academicsession=ws['K6'].value
-			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createSeniorStudentsAnnual(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/SS1Annual.xlsx')
@@ -5054,7 +5054,7 @@ class Excelfiles(models.Model):
 					Totalnumber=ws['F6'].value
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+					AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 			elif count == 2:
 				binary_data = file['Body'].read()
 				wb = load_workbook(io.BytesIO(binary_data))
@@ -5068,7 +5068,7 @@ class Excelfiles(models.Model):
 					Totalnumber=ws['F6'].value
 					Term=ws['H6'].value
 					Academicsession=ws['K6'].value
-					Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
+					AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 
 
 # Model for the Pins		
