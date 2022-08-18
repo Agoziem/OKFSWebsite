@@ -254,9 +254,10 @@
     </section>
     {% endif %}
     <!--Newsletter-->
+    {% if letter %}
     <section class="p-2">
       <div>
-        <h2 class="ms-3 text-center">2nd Term Newsletter (2021/2022 Academic Section)</h4>
+        <h2 class="ms-3 text-center">{{ Student.Term }} Newsletter for {{ Student.Academicsession }} Academic Session </h4>
           <hr>
           <h4 class="text-center">Ocean Of Knowledge Foundation Schools </h5>
             <div class="text-center">
@@ -276,11 +277,14 @@
         </p>
       </div>
       {% endfor %}
-      <div class="container  ms-4 my-3 px-0 px-md-5">
-        <a id="redgrad" href="{% url 'SRMS:pdf' Name=Student.Name Classname=Student.Class %}" class="btn"> Save as Pdf
-          <i class="fa fa-download ms-1"></i></a>
-      </div>
     </section>
+    {% endif %}
+    <section class=" ms-4 my-3 px-2 px-md-5">
+      <div class="container">
+        <a id="redgrad" href="{% url 'SRMS:pdf' Name=Student.Name Classname=Student.Class %}" class="btn"> Save as Pdf
+        <i class="fa fa-download ms-1"></i></a>
+      </div>
+      </section>
   </main>
   <footer class="py-3" style="background-color: #00072B; color:white;">
     <ul class="nav justify-content-center pb-3 mb-1">
