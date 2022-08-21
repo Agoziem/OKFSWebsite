@@ -1022,7 +1022,7 @@ class AnnualStudent(models.Model):
 
 	def createJuniorAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual2.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -3496,7 +3496,7 @@ class Student(models.Model):
 
 	def createJuniorResult2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly2.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5061,7 +5061,7 @@ class Excelfiles(models.Model):
 			Student.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudent2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly2.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BTermly1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -5194,7 +5194,7 @@ class Excelfiles(models.Model):
 			AnnualStudent.objects.create(Name=Name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual2.xlsx') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Jss2BAnnual1.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
