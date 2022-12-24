@@ -8934,10 +8934,10 @@ class Excelfiles(models.Model):
 # Model for the Pins		
 class Students_Pin_and_ID(models.Model):
 	SN=models.CharField(max_length=100, blank=True,null=True)
-	student_name=models.CharField(max_length=100, blank=True, default="No name")
+	student_name=models.CharField(max_length=100, blank=True, default="No name",null=True)
 	student_id=models.CharField(max_length=100, blank=True,null=True)
 	student_pin= models.BigIntegerField(blank=True,null=True)
-	student_class=models.CharField(max_length=100, blank=True,default="No class")
+	student_class=models.CharField(max_length=100, blank=True,default="No class",null=True)
 
 	def __str__(self):
 		return str(self.student_name)
