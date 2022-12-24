@@ -640,3 +640,21 @@ a {
   justify-content: center;
   align-items: center;
 }
+
+.Teachers_Profile_image{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.Teachers_Profile{
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  border: #f00303 solid 5px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

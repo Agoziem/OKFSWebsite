@@ -79,26 +79,42 @@
           <td><a href="{% url 'SRMS:seniorstudentsannual1' %}" class="btn btn-sm">create</a></td>
           <td><a href="{% url 'SRMS:seniorresultannual1' %}" class="btn btn-primary btn-sm">create</a></td>
         </tr>
+        <!-- SS2 -->
         <tr>
-          <th scope="row">Ss2</th>
+          <!-- Termly -->
+          <th scope="row" rowspan="2">Ss2</th>
           <td rowspan="2"><a href="{% url 'SRMS:seniorstudents2' %}" class="btn btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresult2a' %}" class="btn btn-secondary btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresult2b' %}" class="btn btn-secondary btn-sm">create</a></td>
-
+          <td><a href="{% url 'SRMS:seniorresult2a' %}" class="btn btn-secondary btn-sm">SS2 Art</a></td>
+          <!-- Annual -->
           <td rowspan="2"><a href="{% url 'SRMS:seniorstudentsannual2' %}" class="btn btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresultannual2a' %}" class="btn btn-primary btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresultannual2b' %}" class="btn btn-primary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual2a' %}" class="btn btn-primary btn-sm">SS2 Art</a></td>
+        </tr>
+        <tr>
+          <td><a href="{% url 'SRMS:seniorresult2b' %}" class="btn btn-secondary btn-sm">SS2 Science</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual2b' %}" class="btn btn-primary btn-sm">SS2 Science</a></td>
+        </tr>
+        <!-- ////////////////////// -->
+
+        <!-- SS3 -->
+        <tr>
+          <th scope="row" rowspan="2">Ss3</th>
+          <td rowspan="2"><a href="{% url 'SRMS:seniorstudents3' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresult3a' %}" class="btn btn-secondary btn-sm">SS3 Art</a></td>
+
+
+          <td rowspan="2" ><a href="{% url 'SRMS:seniorstudentsannual3' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual3a' %}" class="btn btn-primary btn-sm">SS3 Art</a></td>
+
+
+        <tr>
+          <td><a href="{% url 'SRMS:seniorresult3b' %}" class="btn btn-secondary btn-sm">SS3 Science</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual3b' %}" class="btn btn-primary btn-sm">SS3 Science</a></td>
         </tr>
 
-        <tr>
-          <th scope="row">Ss3</th>
-          <td rowspan="2"><a href="{% url 'SRMS:seniorstudents3' %}" class="btn btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresult3a' %}" class="btn btn-secondary btn-sm">3A Termly</a></td>
-          <td><a href="{% url 'SRMS:seniorresult3b' %}" class="btn btn-secondary btn-sm">3B Termly</a></td>
 
-          <td rowspan="2"><a href="{% url 'SRMS:seniorstudentsannual3' %}" class="btn btn-sm">create</a></td>
-          <td><a href="{% url 'SRMS:seniorresultannual3a' %}" class="btn btn-primary btn-sm">3A Annual</a></td>
-          <td><a href="{% url 'SRMS:seniorresultannual3b' %}" class="btn btn-primary btn-sm">3B Annual</a></td>
+
+        
+
         </tr>
       </tbody>
     </table>
