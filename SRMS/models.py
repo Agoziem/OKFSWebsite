@@ -8178,7 +8178,7 @@ class Excelfiles(models.Model):
 # function for Reading  Pins ////////////////////////////////////
 	def readPin(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Students_details_Main_2') 
+		obj= s3.get_object(Bucket='okfswebbucket', Key='media/media/Students_details_Main_2.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
