@@ -34,4 +34,3 @@ class Student(models.Model):
 	question_3=models.CharField(max_length=100, blank=True, choices=boolChoice)
 	Admitted=models.BooleanField(default=False,blank=True)
 	
-	

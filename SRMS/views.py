@@ -32,26 +32,30 @@ def students_view(request,Classname,id):
 def result_view(request,Classname):
 	stu=str(request.POST.get('Name'))
 	studentname=stu.upper().strip()
-	queryset1=Student.objects.filter(Class=Classname)
-	# queryset2=AnnualStudent.objects.filter(Class=Classname)
 	queryset3=Class.objects.get(Class=Classname)
+
+	queryset1=Student.objects.filter(Class=Classname)	
 	stuff1=get_object_or_404(Student,Name=studentname)
-	stuff2=get_object_or_404(AnnualStudent,Name=studentname)
 	queryset4=Result.objects.filter(Name=studentname,Class=Classname)
-	queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
+
+	# queryset2=AnnualStudent.objects.filter(Class=Classname)
+	# stuff2=get_object_or_404(AnnualStudent,Name=studentname)
+	# queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
+	
+	
 	letter=Newsletter.objects.all()
 	school=School.objects.all()
 	if request.method=='POST':
 		try:
 			enteredpin=request.POST.get('Pin')
 			mainpin=int(enteredpin)
-			studentpin=get_object_or_404(Pin,student=studentname)
+			studentpin=get_object_or_404(Students_Pin_and_ID,student=studentname)
 			if mainpin == studentpin.pin:
 				context={
 					"Student":stuff1,
-					"AnnualStudent":stuff2,
+					# "AnnualStudent":stuff2,
 					"Result":queryset4,
-					'AnnualResult': queryset5,
+					# 'AnnualResult': queryset5,
 					'schoollogo': school,
 					'letter':letter,
 					}
@@ -71,8 +75,6 @@ def result_view(request,Classname):
 			}
 			return render(request, "Students.html", context)
 		
-		
-	
 
 def result_pdf_view(request,Name,Classname):
 	stuff=get_object_or_404(Student,Name=Name)
@@ -109,23 +111,23 @@ def activation_view(request):
 	
 
 def createPin(request):
-	myPin=Pin()
-	myPin.generatePin()
-	Studentpin=Pin.objects.all()
+	student=Excelfiles()
+	student.readPin()
 	context = {
-	"pins": Studentpin,
 		}
 	return render(request, "pins.html", context)
 
-# Create Junior Students Termly Results Details
 
+# TERMLY
+
+# Students Termly Data View /////////////////////////////
+# Jss1 /////////////////////////////////////////
 def createjuniorstudent1a_view(request):
 	student=Excelfiles()
 	student.createJuniorStudent1a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
 def createjuniorstudent1b_view(request):
 	student=Excelfiles()
 	student.createJuniorStudent1b()
@@ -138,7 +140,7 @@ def createjuniorstudent1c_view(request):
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
+# Jss2 /////////////////////////////////////////
 def createjuniorstudent2a_view(request):
 	student=Excelfiles()
 	student.createJuniorStudent2a()
@@ -151,16 +153,53 @@ def createjuniorstudent2b_view(request):
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
-def createjuniorstudent3_view(request):
+def createjuniorstudent2c_view(request):
 	student=Excelfiles()
-	student.createJuniorStudent3()
+	student.createJuniorStudent2c()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-# create Junior Students Termly Results
+# Jss3 //////////////////////////////////////////////
+def createjuniorstudent3a_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent3a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudent3b_view(request):
+	student=Excelfiles()
+	student.createJuniorStudent3b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
 
+# Ss1 ////////////////////////////////////////////////
+def createseniorstudent1_view(request):
+	student=Excelfiles()
+	student.createSeniorStudents1()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
+# SS2 ////////////////////////////////////////////////
+def createseniorstudent2_view(request):
+	student=Excelfiles()
+	student.createSeniorStudents2()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
+# SS3 ///////////////////////////////////////////////
+def createseniorstudent3_view(request):
+	student=Excelfiles()
+	student.createSeniorStudents3()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
+
+
+# Students Termly Results View /////////////////////////////////////
+
+# Jss1 //////////////////////////////////
 def createjuniorresult1a_view(request):
 	result=Student()
 	result.createJuniorResult1a()
@@ -180,37 +219,86 @@ def createjuniorresult1c_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 
+# Jss2 /////////////////////////////////////////
 def createjuniorresult2a_view(request):
 	result=Student()
 	result.createJuniorResult2a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
 def createjuniorresult2b_view(request):
 	result=Student()
 	result.createJuniorResult2b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
-def createjuniorresult3_view(request):
+def createjuniorresult2c_view(request):
 	result=Student()
-	result.createJuniorResult3()
+	result.createJuniorResult2c()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+# Jss3 ////////////////////////////////////
+def createjuniorresult3a_view(request):
+	result=Student()
+	result.createJuniorResult3a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorresult3b_view(request):
+	result=Student()
+	result.createJuniorResult3b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+
+# SS1 ////////////////////////////////////////	
+def createseniorresult1_view(request):
+	result=Student()
+	result.createSeniorResult1()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+# SS2 ////////////////////////////////////////	
+def createseniorresult2a_view(request):
+	result=Student()
+	result.createSeniorResult2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createseniorresult2b_view(request):
+	result=Student()
+	result.createSeniorResult2b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+# SS3 ////////////////////////////////////////	
+def createseniorresult3a_view(request):
+	result=Student()
+	result.createSeniorResult3a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createseniorresult3b_view(request):
+	result=Student()
+	result.createSeniorResult3b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
 
-# Create Junior Student's Annual Details
+# ANNUAL 
 
+# Students Annual Details Views /////////////////////////////////////
+
+# Jss1 /////////////////////////////////////////
 def createjuniorstudentAnnual1a_view(request):
 	student=Excelfiles()
 	student.createJuniorStudentAnnual1a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
 def createjuniorstudentAnnual1b_view(request):
 	student=Excelfiles()
 	student.createJuniorStudentAnnual1b()
@@ -223,7 +311,7 @@ def createjuniorstudentAnnual1c_view(request):
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
+# Jss2 /////////////////////////////////////////
 def createjuniorstudentAnnual2a_view(request):
 	student=Excelfiles()
 	student.createJuniorStudentAnnual2a()
@@ -236,23 +324,60 @@ def createjuniorstudentAnnual2b_view(request):
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
-def createjuniorstudentAnnual3_view(request):
+def createjuniorstudentAnnual2c_view(request):
 	student=Excelfiles()
-	student.createJuniorStudentAnnual3()
+	student.createJuniorStudentAnnual2c()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
+# Jss3 /////////////////////////////////////////
+def createjuniorstudentAnnual3a_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual3a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createjuniorstudentAnnual3b_view(request):
+	student=Excelfiles()
+	student.createJuniorStudentAnnual3b()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+# SS1 /////////////////////////////////////////
+def createseniorstudentAnnual1_view(request):
+	student=Excelfiles()
+	student.createSeniorStudentsAnnual1()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
+# SS2 ///////////////////////////////////////////
+def createseniorstudentAnnual2_view(request):
+	student=Excelfiles()
+	student.createSeniorStudentsAnnual2()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
+# SS3 ///////////////////////////////////////////
+def createseniorstudentAnnual3_view(request):
+	student=Excelfiles()
+	student.createSeniorStudentsAnnual3()
+	context = {
+	 }
+	return render(request, "Congratulation.html", context)
 
-# create Junior Annual Results
 
+
+
+
+#  Students Annual Results /////////////////////////////////////////////////
+
+# Jss1 ////////////////////////////////////////
 def createjuniorresultAnnual1a_view(request):
 	result=AnnualStudent()
 	result.createJuniorAnnual1a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
 def createjuniorresultAnnual1b_view(request):
 	result=AnnualStudent()
 	result.createJuniorAnnual1b()
@@ -266,65 +391,41 @@ def createjuniorresultAnnual1c_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 
+# Jss2 ////////////////////////////////////////
 def createjuniorresultAnnual2a_view(request):
 	result=AnnualStudent()
 	result.createJuniorAnnual2a()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
 def createjuniorresultAnnual2b_view(request):
 	result=AnnualStudent()
 	result.createJuniorAnnual2b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
-
-def createjuniorresultAnnual3_view(request):
+def createjuniorresultAnnual2c_view(request):
 	result=AnnualStudent()
-	result.createJuniorAnnual3()
+	result.createJuniorAnnual2c()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-
-
-# Termly Senior Students details
-
-def createseniorstudent_view(request):
-	student=Excelfiles()
-	student.createSeniorStudents()
+# Jss3 ////////////////////////////////////////
+def createjuniorresultAnnual3a_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual3a()
 	context = {
-	 }
+		}
 	return render(request, "Congratulation.html", context)
-
-# Termly Senior Students Result
-	
-def createseniorresult1_view(request):
-	result=Student()
-	result.createSeniorResult1()
+def createjuniorresultAnnual3b_view(request):
+	result=AnnualStudent()
+	result.createJuniorAnnual3b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-def createseniorresult2_view(request):
-	result=Student()
-	result.createSeniorResult2()
-	context = {
-		}
-	return render(request, "Congratulation.html", context)
-	
-# Annual Senior Students Result  
-
-def createseniorstudentAnnual_view(request):
-	student=Excelfiles()
-	student.createSeniorStudentsAnnual()
-	context = {
-	 }
-	return render(request, "Congratulation.html", context)
-
-# Activate the Senior Result
-	
+# SS1 ////////////////////////////////////////
 def createseniorresultAnnual1_view(request):
 	result=AnnualStudent()
 	result.createSeniorAnnual1()
@@ -332,11 +433,30 @@ def createseniorresultAnnual1_view(request):
 		}
 	return render(request, "Congratulation.html", context)
 
-def createseniorresultAnnual2_view(request):
+# SS2 /////////////////////////////////////////
+def createseniorresultAnnual2a_view(request):
 	result=AnnualStudent()
-	result.createSeniorAnnual2()
+	result.createSeniorAnnual2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createseniorresultAnnual2b_view(request):
+	result=AnnualStudent()
+	result.createSeniorAnnual2a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+# SS3 /////////////////////////////////////////
+def createseniorresultAnnual3a_view(request):
+	result=AnnualStudent()
+	result.createSeniorAnnual3a()
+	context = {
+		}
+	return render(request, "Congratulation.html", context)
+def createseniorresultAnnual3b_view(request):
+	result=AnnualStudent()
+	result.createSeniorAnnual3b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
 
-	

@@ -10,10 +10,10 @@ admin.site.register(Newsletter)
 # admin.site.register(Assignments)
 
 
-@admin.register(Pin)
+@admin.register(Students_Pin_and_ID)
 class PinAdmin(admin.ModelAdmin):
-    list_display=('pin','student')
-    search_fields=('student','pin')
+    list_display=('student_pin','student_name','student_id')
+    search_fields=('student_name','student_pin','student_id')
     # list_filter=('Occupation','level','Zone','gender',)
 
 @admin.register(Student)

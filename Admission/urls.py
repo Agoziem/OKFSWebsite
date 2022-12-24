@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import initiate_payment2,verify_payment2, admission_details,form_pdf_view
+from .views import *
 
 app_name = 'Admission'
 urlpatterns = [

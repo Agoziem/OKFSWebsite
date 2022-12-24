@@ -135,12 +135,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-# STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
+STATIC_URL = '/static/'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS= [os.path.join(BASE_DIR, "assets"),]
 
-# MEDIA_URL= '/media/'
-# MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+MEDIA_URL= '/media/'
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -166,10 +166,11 @@ EMAIL_BACKEND='sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = config('SENDGRID_API_KEY', default='')
 SENDGRID_SANDBOX_MODE_IN_DEBUG=config('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=False, cast=bool)
 
-# PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
-PAYSTACK_PUBLIC_KEY = 'pk_test_e39e9604401f9753b248fff1135b2dbce5a9dfd3'
-# PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
-PAYSTACK_SECRET_KEY = 'sk_test_eee99a387e1d38ed511815aef40f9a508d1030b6'
+PAYSTACK_PUBLIC_KEY = config('PAYSTACK_PUBLIC_KEY', default='')
+PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
+
+# PAYSTACK_PUBLIC_KEY = 'pk_test_e39e9604401f9753b248fff1135b2dbce5a9dfd3'
+# PAYSTACK_SECRET_KEY = 'sk_test_eee99a387e1d38ed511815aef40f9a508d1030b6'
 
 
 MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')

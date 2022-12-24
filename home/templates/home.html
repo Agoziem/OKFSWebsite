@@ -311,7 +311,9 @@
       <div class="col-md-6 col-lg-3">
         <div class="card shadow-sm ">
           <div class="card-body text-center">
-            <img src="{{management.Profileimage.url}}" class="rounded-circle mb-3 w-50" alt="" />
+            <div class="management_profile">
+            <img src="{{management.Profileimage.url}}" class="management_profile_image mb-3" alt="" />
+          </div>
             <div class="card-title">
               <h6 class="mb-0">{{ management.Profilename }}</h6>
               <p class="text-muted my-1">
@@ -437,7 +439,7 @@
                 <button class="accordion-button text-dark collapsed" type="button" data-bs-toggle="collapse"
                   data-bs-target="#question-{{ question.questionnumber}}"
                   style="font-family: 'League Spartan', sans-serif;">
-                  {{ question.Questions}}
+                  {{ question.Questions }}
                 </button>
               </h5>
               <div id="question-{{ question.questionnumber}}" class="accordion-collapse collapse"
@@ -482,10 +484,10 @@
           {% endfor %}
         </ul>
       </div>
-      <div id='map' class='d-none d-md-block col-md'>
+      <div class='col-md'>
+        <div id='map' style='width: 400px; height: 500px;'></div>
       </div>
     </div>
-    <div id='map' class="d-block d-md-none"></div>
   </div>
 </section>
 

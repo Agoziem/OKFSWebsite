@@ -3,82 +3,109 @@
 {% block content %}
 <section>
   <div class="px-3 mt-4 text-center" style="font-size: 20px;font-weight: 500;">STUDENT RESULT MANAGEMENT SYSTEM</div>
-      <div class = "container p-3">
- 		<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Termly Students </th>
-      <th scope="col">Termly Results</th>
-      <th scope="col">Annual Students</th>
-      <th scope="col">Annual Results</th>
-      
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">Jss1A</th>
-      <td><a href="{% url 'SRMS:juniorstudents1a' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult1a' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual1a' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual1a' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Jss1B</th>
-      <td><a href="{% url 'SRMS:juniorstudents1b' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult1b' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual1b' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual1b' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Jss1C</th>
-      <td><a href="{% url 'SRMS:juniorstudents1c' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult1c' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual1c' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual1c' %}" class="btn btn-primary btn-sm">create</a></td>
-      
-    </tr>
-    <tr>
-      <th scope="row">Jss2A</th>
-      <td><a href="{% url 'SRMS:juniorstudents2a' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult2a' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual2a' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual2a' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Jss2B</th>
-      <td><a href="{% url 'SRMS:juniorstudents2b' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult2b' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual2b' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual2b' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Jss3</th>
-      <td><a href="{% url 'SRMS:juniorstudents3' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresult3' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorstudentsannual3' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:juniorresultannual3' %}" class="btn btn-primary btn-sm">create</a></td>
-      
-    </tr>
-    <tr>
-      <th scope="row">Ss1</th>
-      <td><a href="{% url 'SRMS:seniorstudents' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:seniorresult1' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:seniorstudentsannual' %}" class="btn btn-sm">create</a></td>
-      <td><a href="{% url 'SRMS:seniorresult1annual' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-    <tr>
-      <th scope="row">Senior</th>
-      <td>Ss2 & Ss3 Results</td>
-      <td><a href="{% url 'SRMS:seniorresult2' %}" class="btn btn-secondary btn-sm">create</a></td>
-      <td>Ss2 & Ss3 Annual Results</td>
-      <td><a href="{% url 'SRMS:seniorresult2annual' %}" class="btn btn-primary btn-sm">create</a></td>
-    </tr>
-  </tbody>
-</table>
-<div class="container text-center">
-	<a href="{% url 'SRMS:Pin' %}" class="btn btn-primary">create pin</a>
-</div>
+  <div class="container p-3">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Termly Students </th>
+          <th scope="col">Termly Results</th>
+          <th scope="col">Annual Students</th>
+          <th scope="col">Annual Results</th>
 
-      </div>
-     </section>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Jss1A</th>
+          <td><a href="{% url 'SRMS:juniorstudents1a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult1a' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual1a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual1a' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss1B</th>
+          <td><a href="{% url 'SRMS:juniorstudents1b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult1b' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual1b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual1b' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss1C</th>
+          <td><a href="{% url 'SRMS:juniorstudents1c' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult1c' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual1c' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual1c' %}" class="btn btn-primary btn-sm">create</a></td>
+
+        </tr>
+        <tr>
+          <th scope="row">Jss2A</th>
+          <td><a href="{% url 'SRMS:juniorstudents2a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult2a' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual2a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual2a' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss2B</th>
+          <td><a href="{% url 'SRMS:juniorstudents2b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult2b' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual2b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual2b' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss2C</th>
+          <td><a href="{% url 'SRMS:juniorstudents2c' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult2c' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual2c' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual2c' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss3A</th>
+          <td><a href="{% url 'SRMS:juniorstudents3a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult3a' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual3a' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual3a' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Jss3B</th>
+          <td><a href="{% url 'SRMS:juniorstudents3b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresult3b' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorstudentsannual3b' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:juniorresultannual3b' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Ss1</th>
+          <td><a href="{% url 'SRMS:seniorstudents1' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresult1' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorstudentsannual1' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual1' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Ss2</th>
+          <td rowspan="2"><a href="{% url 'SRMS:seniorstudents2' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresult2a' %}" class="btn btn-secondary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresult2b' %}" class="btn btn-secondary btn-sm">create</a></td>
+
+          <td rowspan="2"><a href="{% url 'SRMS:seniorstudentsannual2' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual2a' %}" class="btn btn-primary btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual2b' %}" class="btn btn-primary btn-sm">create</a></td>
+        </tr>
+
+        <tr>
+          <th scope="row">Ss3</th>
+          <td rowspan="2"><a href="{% url 'SRMS:seniorstudents3' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresult3a' %}" class="btn btn-secondary btn-sm">3A Termly</a></td>
+          <td><a href="{% url 'SRMS:seniorresult3b' %}" class="btn btn-secondary btn-sm">3B Termly</a></td>
+
+          <td rowspan="2"><a href="{% url 'SRMS:seniorstudentsannual3' %}" class="btn btn-sm">create</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual3a' %}" class="btn btn-primary btn-sm">3A Annual</a></td>
+          <td><a href="{% url 'SRMS:seniorresultannual3b' %}" class="btn btn-primary btn-sm">3B Annual</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container text-center">
+      <a href="{% url 'SRMS:Pin' %}" class="btn btn-primary">Read Students Pin</a>
+    </div>
+
+  </div>
+</section>
 {% endblock %}
