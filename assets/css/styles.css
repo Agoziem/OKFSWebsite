@@ -636,4 +636,7 @@ a {
   border-radius: 50%;
   border: #00072B solid 4px;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

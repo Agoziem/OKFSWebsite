@@ -310,10 +310,10 @@
       {% for management in managements %}
       <div class="col-md-6 col-lg-3">
         <div class="card shadow-sm ">
-          <div class="card-body text-center">
-            <div class="management_profile">
-            <img src="{{management.Profileimage.url}}" class="management_profile_image mb-3" alt="" />
-          </div>
+          <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+            <div class="management_profile mb-2">
+              <img src="{{management.Profileimage.url}}" class="management_profile_image" alt="" />
+            </div>
             <div class="card-title">
               <h6 class="mb-0">{{ management.Profilename }}</h6>
               <p class="text-muted my-1">
@@ -356,7 +356,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="container mb-2">
           <div class="card rounded shadow-sm" style="width: 18rem;">
-           <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a> 
+            <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a>
             <div class="card-body">
               <p class="card-text">{{ photo.Description }}</p>
             </div>
