@@ -631,10 +631,10 @@ a {
 }
 
 .management_profile{
-  width: 120px;
-  height: 120px;
+  width: 118px;
+  height: 118px;
   border-radius: 50%;
-  border: #00072B solid 4px;
+  border: #00072B solid 5px;
   background-color: #fff;
   display: flex;
   justify-content: center;
