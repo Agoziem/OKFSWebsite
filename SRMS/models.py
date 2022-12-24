@@ -8192,9 +8192,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8207,9 +8207,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8221,9 +8221,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8235,9 +8235,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8249,9 +8249,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8263,9 +8263,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8277,9 +8277,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8291,9 +8291,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8305,9 +8305,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8319,9 +8319,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8333,9 +8333,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8347,9 +8347,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8361,9 +8361,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8375,9 +8375,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8389,9 +8389,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8403,9 +8403,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8417,9 +8417,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8431,9 +8431,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8445,9 +8445,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8459,9 +8459,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8473,9 +8473,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8487,9 +8487,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8501,9 +8501,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Result.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8515,9 +8515,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8529,9 +8529,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8543,9 +8543,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8557,9 +8557,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8571,9 +8571,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8585,9 +8585,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8599,9 +8599,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8613,9 +8613,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8627,9 +8627,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8641,9 +8641,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8655,9 +8655,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8669,9 +8669,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8683,9 +8683,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8697,9 +8697,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8711,9 +8711,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8725,9 +8725,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8739,9 +8739,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8753,9 +8753,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8767,9 +8767,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8781,9 +8781,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8795,9 +8795,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8809,9 +8809,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8823,9 +8823,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8837,9 +8837,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8851,9 +8851,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8865,9 +8865,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8879,9 +8879,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)   
@@ -8894,9 +8894,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8909,9 +8909,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)
@@ -8924,9 +8924,9 @@ class Excelfiles(models.Model):
 						elif count == 2:
 							student_name=ws[char+str(row)].value
 						elif count == 3:
-							student_id=ws[char+str(row)].value
-						elif count == 4:
 							student_pin=ws[char+str(row)].value
+						elif count == 4:
+							student_id=ws[char+str(row)].value
 						elif count == 5:
 							student_class=ws[char+str(row)].value
 					Students_Pin_and_ID.objects.create(SN=SN,student_name=student_name,student_id=student_id,student_pin=student_pin,student_class=student_class)

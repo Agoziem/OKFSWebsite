@@ -18,10 +18,12 @@
   <div class="gridcard">
     {% for teacher in Teachers %}
     <article>
-      <div class="Teachers_Profile">
-        <img src="{{ teacher.Headshot.url }}" class=" Teachers_Profile_image shadow-sm" alt="...">
+      <div class="my-2 mt-5 d-flex justify-content-center align-items-center">
+        <div class="Teachers_Profile">
+          <img src="{{ teacher.Headshot.url }}" class=" Teachers_Profile_image shadow-sm" alt="...">
+        </div>
       </div>
-      
+    
       <div class="text">
         <h5 style="text-transform: uppercase ;">{{ teacher.Name }}</h5>
         <div class="multiplerule my-2 d-flex justify-content-center">
