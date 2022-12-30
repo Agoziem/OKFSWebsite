@@ -32,10 +32,11 @@ def students_view(request,Classname,id):
 def result_view(request,Classname):
 	stu=str(request.POST.get('Name'))
 	studentname=stu.upper().strip()
+
 	queryset3=Class.objects.get(Class=Classname)
 
 	queryset1=Student.objects.filter(Class=Classname)	
-	stuff1=get_object_or_404(Student,Name=studentname)
+	stuff1=Student.objects.get(Name=studentname,Class=Classname)
 	queryset4=Result.objects.filter(Name=studentname,Class=Classname)
 
 	# queryset2=AnnualStudent.objects.filter(Class=Classname)
