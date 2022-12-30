@@ -49,7 +49,7 @@ def result_view(request,Classname):
 		try:
 			enteredpin=request.POST.get('Pin')
 			mainpin=int(enteredpin)
-			studentpin=get_object_or_404(Students_Pin_and_ID,student=studentname)
+			studentpin=get_object_or_404(Students_Pin_and_ID,student_name=studentname)
 			if mainpin == studentpin.pin:
 				context={
 					"Student":stuff1,
