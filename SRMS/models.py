@@ -3208,7 +3208,7 @@ class Result(models.Model):
 # Model for the Classes
 		
 class Class(models.Model):
-	Class=models.CharField(max_length=10, blank=True)
+	Class=models.CharField(max_length=120, blank=True)
 	
 	def __str__(self):
 		return str(self.Class)
