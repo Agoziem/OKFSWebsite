@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('activation/createjuniorstudents2a/', createjuniorstudent2a_view, name='juniorstudents2a'),
     path('activation/createjuniorstudents2b/', createjuniorstudent2b_view, name='juniorstudents2b'),
-    path('activation/createjuniorstudents2b/', createjuniorstudent2c_view, name='juniorstudents2c'),
+    path('activation/createjuniorstudents2c/', createjuniorstudent2c_view, name='juniorstudents2c'),
 
     path('activation/createjuniorstudents3a/', createjuniorstudent3a_view, name='juniorstudents3a'),
     path('activation/createjuniorstudents3b/', createjuniorstudent3b_view, name='juniorstudents3b'),
