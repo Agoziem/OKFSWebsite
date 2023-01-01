@@ -31,13 +31,13 @@ def students_view(request,Classname,id):
 	
 def result_view(request,Classname):
 	stu=str(request.POST.get('Name'))
-	studentname=stu.upper().strip()
+	# studentname=stu.upper().strip()
 
 	queryset3=Class.objects.get(Class=Classname)
 
 	queryset1=Student.objects.filter(Class=Classname)	
-	stuff1=Student.objects.get(Name=studentname,Class=Classname)
-	queryset4=Result.objects.filter(Name=studentname,Class=Classname)
+	stuff1=Student.objects.get(Name=stu,Class=Classname)
+	queryset4=Result.objects.filter(Name=stu,Class=Classname)
 
 	# queryset2=AnnualStudent.objects.filter(Class=Classname)
 	# stuff2=get_object_or_404(AnnualStudent,Name=studentname)
@@ -50,8 +50,8 @@ def result_view(request,Classname):
 		try:
 			enteredpin=request.POST.get('Pin')
 			mainpin=int(enteredpin)
-			studentpin=get_object_or_404(Students_Pin_and_ID,student_name=studentname)
-			if mainpin == studentpin.pin:
+			studentpin=get_object_or_404(Students_Pin_and_ID,student_name=stu)
+			if mainpin == studentpin.student_pin:
 				context={
 					"Student":stuff1,
 					# "AnnualStudent":stuff2,
