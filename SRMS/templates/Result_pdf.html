@@ -57,7 +57,7 @@
       <span class="fw-bold">Term :</span> {{ Student.Term }}<br>
       <span class="fw-bold">Session :</span> {{ Student.Academicsession }}<br>
       <span class="fw-bold">Total score :</span> {{ Student.TotalScore }}<br>
-      <span class="fw-bold">Average :</span> {{ Student.Average }}<br>
+      <span class="fw-bold">Average :</span> {{ Student.Average|floatformat:2 }}<br>
       <span class="fw-bold">Position :</span> {{ Student.Position }}<br>
       <span class="fw-bold">Number in Class :</span> {{ Student.Totalnumber }}
     </div>
@@ -106,7 +106,7 @@
     </table>
   </div>
 
-  {% if AnnualResult %}
+  <!-- {% if AnnualResult %}
   <section class="px-2 pt-2">
     <div class="container text-center  mb-0" style="text-align:center; font-size: 25px;">
       <h1 class=" fw-normal">Annual Result </h1>
@@ -117,7 +117,7 @@
       <span class="fw-bold">Term :</span> {{ AnnualStudent.Term }}<br>
       <span class="fw-bold">Session :</span> {{ AnnualStudent.Academicsession }}<br>
       <span class="fw-bold">Total score :</span> {{ AnnualStudent.TotalScore }}<br>
-      <span class="fw-bold">Average :</span> {{ AnnualStudent.Average }}<br>
+      <span class="fw-bold">Average :</span> {{ AnnualStudent.Average|floatformat:2 }}<br>
       <span class="fw-bold">Position :</span> {{ AnnualStudent.Position }}<br>
       <span class="fw-bold">Number in Class :</span> {{ AnnualStudent.Totalnumber }}
     </div>
@@ -147,7 +147,7 @@
             <td>{{data.SecondTerm}}</td>
             <td>{{data.ThirdTerm}}</td>
             <td>{{data.Total}} </td>
-            <td>{{data.Average}}</td>
+            <td>{{data.Average|floatformat:2}}</td>
             <td>{{data.Grade}}</td>
             <td>{{data.SubjectPosition}}</td>
             <td>{{data.Remark}}</td>
@@ -158,7 +158,7 @@
     </div>
   </section>
 
-  {% endif %}
+  {% endif %} -->
 
   <!--Newsletter-->
 
