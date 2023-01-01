@@ -66,9 +66,16 @@
               <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
             </li>
 
-            <li class="nav-item">
-              <a href="/admin" class="nav-link text-light">Admin</a>
-            </li>
+            {% if request.user.is_superuser %}
+          <li class="nav-item me-2">
+            <a href="{% url 'SRMS:activation' %}" class="nav-link text-light">Result Activation</a>
+          </li>
+          {% endif %}
+          {% if request.user.is_staff %}
+          <li class="nav-item me-2">
+            <a href="/admin" class="nav-link text-light">Admin</a>
+          </li>
+          {% endif %}
           </ol>
         </div>
       </div>
@@ -115,11 +122,18 @@
             <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3"
                 style="color:#e60000"></i>Photo Gallery</a>
           </li>
-
-          <li class="list-group-item" style="background-color:#00072B;">
-            <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
-                style="color:#e60000"></i>Admin</a>
-          </li>
+          {% if request.user.is_superuser %}
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="{% url 'SRMS:activation' %}" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
+              style="color:#e60000"></i>Activation</a>
+        </li>
+        {% endif %}
+        {% if request.user.is_staff %}
+        <li class="list-group-item" style="background-color:#00072B;">
+          <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
+              style="color:#e60000"></i>Admin</a>
+        </li>
+        {% endif %}
         </ol>
       </div>
     </div>
@@ -146,7 +160,7 @@
         <span class="fw-bold">Term :</span> {{ Student.Term }}<br>
         <span class="fw-bold">Session :</span> {{ Student.Academicsession }}<br>
         <span class="fw-bold">Total score :</span> {{ Student.TotalScore }}<br>
-        <span class="fw-bold">Average :</span> {{ Student.Average }}<br>
+        <span class="fw-bold">Average :</span> {{ Student.Average|floatformat:2 }}<br>
         <span class="fw-bold">Position :</span> {{ Student.Position }}<br>
         <span class="fw-bold">Number in Class :</span> {{ Student.Totalnumber }}
       </div>
@@ -212,7 +226,7 @@
         <span class="fw-bold">Term :</span> {{ AnnualStudent.Term }}<br>
         <span class="fw-bold">Session :</span> {{ AnnualStudent.Academicsession }}<br>
         <span class="fw-bold">Total score :</span> {{ AnnualStudent.TotalScore }}<br>
-        <span class="fw-bold">Average :</span> {{ AnnualStudent.Average }}<br>
+        <span class="fw-bold">Average :</span> {{ AnnualStudent.Average|floatformat:2 }}<br>
         <span class="fw-bold">Position :</span> {{ AnnualStudent.Position }}<br>
         <span class="fw-bold">Number in Class :</span> {{ AnnualStudent.Totalnumber }}
       </div>
@@ -242,7 +256,7 @@
               <td>{{data.SecondTerm}}</td>
               <td>{{data.ThirdTerm}}</td>
               <td>{{data.Total}} </td>
-              <td>{{data.Average}}</td>
+              <td>{{data.Average|floatformat:2}}</td>
               <td>{{data.Grade}}</td>
               <td>{{data.SubjectPosition}}</td>
               <td>{{data.Remark}}</td>
