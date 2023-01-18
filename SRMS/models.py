@@ -5653,7 +5653,7 @@ class Student(models.Model):
 			ws=wb[sheet.title]
 			Name=str(ws['B4'].value).upper().strip()
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,23),start=1):
+			for count, row in enumerate(range(10,24),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,15),start=1):
 						char=get_column_letter(col)
@@ -6069,6 +6069,39 @@ class Student(models.Model):
 							SubjectPosition=ws[char+str(row)].value
 						elif count == 14:
 							Remark=ws[char+str(row)].value
+				elif count == 14:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTest=ws[char+str(row)].value
+						elif count == 4:
+							SecondTest=ws[char+str(row)].value
+						elif count == 5:
+							Project=ws[char+str(row)].value
+						elif count == 6:
+							MidTermTest=ws[char+str(row)].value
+						elif count == 7:
+							FirstAss=ws[char+str(row)].value
+						elif count == 8:
+							SecondAss=ws[char+str(row)].value
+						elif count == 9:
+							CA=ws[char+str(row)].value
+						elif count == 10:
+							Exam=ws[char+str(row)].value
+						elif count == 11:
+							Total=ws[char+str(row)].value
+						elif count == 12:
+							Grade=ws[char+str(row)].value
+						elif count == 13:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 14:
+							Remark=ws[char+str(row)].value
+
 				Result.objects.create(SN=SN,Name=Name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 # Ss2 //////////////////////////////////////////				
 	def createSeniorResult2a(self,*args,**kwargs) -> None:
