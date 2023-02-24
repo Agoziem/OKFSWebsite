@@ -19,7 +19,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 
-ALLOWED_HOSTS = ['127.0.0.1','okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','okfswebapp.herokuapp.com','www.oceanofknowledgefoundationschool.org','okfswebsite-production.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','okfswebapp.herokuapp.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
 
 
 # Application definition
