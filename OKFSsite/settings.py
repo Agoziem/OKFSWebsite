@@ -19,7 +19,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 
-ALLOWED_HOSTS = ['127.0.0.1','okfs.herokuapp.com','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','okfswebapp.herokuapp.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','okfswebapp.herokuapp.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
 
 
 # Application definition
@@ -188,6 +188,6 @@ PAYSTACK_SECRET_KEY = config('PAYSTACK_SECRET_KEY', default='')
 
 MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 
-if os.getcwd() == '/app':
-	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
-	SECURE_SSL_REDIRECT=True
+# if os.getcwd() == '/app':
+# 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
+# 	SECURE_SSL_REDIRECT=True
