@@ -25,6 +25,7 @@ ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanof
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
 ]
 
 DJANGO_ADMIN_LOGS_DELETABLE = True
-DJANGO_ADMIN_LOGS_ENABLED = False
+DJANGO_ADMIN_LOGS_ENABLED = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -191,3 +192,12 @@ MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 # if os.getcwd() == '/app':
 # 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
 # 	SECURE_SSL_REDIRECT=True
+
+JAZZMIN_SETTINGS = {
+    # "site_logo": "images/St Marks Logo.png",
+    "site_logo_classes": "img-circle",
+    "login_logo": None,
+    "copyright": "Ocean of Knowledge Secondary School Awada",
+    "show_ui_builder":True,
+    # "custom_css": "css/admin.css",
+}
