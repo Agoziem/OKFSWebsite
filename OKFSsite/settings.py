@@ -19,13 +19,13 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 
-ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','okfswebapp.herokuapp.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -193,11 +193,11 @@ MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 # 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
 # 	SECURE_SSL_REDIRECT=True
 
-JAZZMIN_SETTINGS = {
-    # "site_logo": "images/St Marks Logo.png",
-    "site_logo_classes": "img-circle",
-    "login_logo": None,
-    "copyright": "Ocean of Knowledge Secondary School Awada",
-    "show_ui_builder":True,
-    # "custom_css": "css/admin.css",
-}
+# JAZZMIN_SETTINGS = {
+#     # # "site_logo": "images/St Marks Logo.png",
+#     # "site_logo_classes": "img-circle",
+#     # "login_logo": None,
+#     # "copyright": "Ocean of Knowledge Secondary School Awada",
+#     # "show_ui_builder":True,
+#     # # "custom_css": "css/admin.css",
+# }
