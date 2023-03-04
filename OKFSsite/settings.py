@@ -182,16 +182,15 @@ USE_TZ = True
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID', default='')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY', default='')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'us-east-1'
-AWS_S3_FILE_OVERWRITE = True
+AWS_S3_SIGNATURE_NAME = config('AWS_S3_SIGNATURE_NAME', default='')
+AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME', default='')
 AWS_DEFAULT_ACL =  None
 AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_LOCATION = 'static'
-STATIC_ROOT=os.path.join(BASE_DIR,AWS_LOCATION) 
+AWS_LOCATION = 'staticfiles'
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles') 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
 STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
 
