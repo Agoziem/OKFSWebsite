@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanof
 # Application definition
 
 INSTALLED_APPS = [
-    # 'jazzmin',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -161,13 +161,14 @@ AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME', default='')
 AWS_S3_SIGNATURE_NAME = config('AWS_S3_SIGNATURE_NAME', default='')
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME', default='')
 AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE='OKFSsite.storages.MediaStore'
 
-
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 AWS_LOCATION = 'static'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "assets"),]
 STATIC_URL='https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN,AWS_LOCATION)
+
 
 # STATIC_URL = '/static/'
 # STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
@@ -193,11 +194,11 @@ MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 # 	SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDING_PROTO','https')
 # 	SECURE_SSL_REDIRECT=True
 
-# JAZZMIN_SETTINGS = {
-#     # # "site_logo": "images/St Marks Logo.png",
-#     # "site_logo_classes": "img-circle",
-#     # "login_logo": None,
-#     # "copyright": "Ocean of Knowledge Secondary School Awada",
-#     # "show_ui_builder":True,
-#     # # "custom_css": "css/admin.css",
-# }
+JAZZMIN_SETTINGS = {
+    # "site_logo": "images/St Marks Logo.png",
+    "site_logo_classes": "img-circle",
+    "login_logo": None,
+    "copyright": "Ocean of Knowledge Secondary School Awada",
+    "show_ui_builder":True,
+    "custom_css": "css/admin.css",
+}
