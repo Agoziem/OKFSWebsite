@@ -195,7 +195,7 @@ MAPBOXGL_ACCESSTOKEN=config('MAPBOXGL_ACCESSTOKEN', default='')
 # 	SECURE_SSL_REDIRECT=True
 
 JAZZMIN_SETTINGS = {
-    # "site_logo": "images/St Marks Logo.png",
+    "site_logo": "OKFS.png",
     "site_logo_classes": "img-circle",
     "login_logo": None,
     "copyright": "Ocean of Knowledge Secondary School Awada",
