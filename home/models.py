@@ -3,7 +3,7 @@ from ckeditor.fields import RichTextField
 
 class School(models.Model):
 	Schoolid=models.IntegerField()
-	Schoollogo=models.ImageField(upload_to='assets', blank=True)
+	Schoollogo=models.ImageField(upload_to='assets/Schoollogo', blank=True)
 	Schoolname= models.CharField(max_length= 300, blank=True)
 	SchoolPhonenumber= models.CharField(max_length= 300, blank=True)
 	Schoolmotto= models.CharField(max_length= 300, blank=True)
@@ -45,14 +45,14 @@ class Header(models.Model):
 		return self.About[:220] + '...'
 
 class PhotoGallery(models.Model):
-	Photo=models.ImageField(upload_to='assets')
+	Photo=models.ImageField(upload_to='assets/Photogallery')
 	Description= models.CharField(max_length= 300, blank=False)
 	
 	def __str__(self):
 		return str(self.Description)
 		
 class UpcomingEvents(models.Model):
-	Flier=models.ImageField(upload_to='assets', blank=True)
+	Flier=models.ImageField(upload_to='assets/Eventsflier', blank=True)
 	Eventtitle= models.CharField(max_length= 300, blank=True)
 	EventTopic= models.CharField(max_length= 300, blank=True)
 	Eventspeaker_Chairman= models.CharField(max_length= 300, blank=True)
