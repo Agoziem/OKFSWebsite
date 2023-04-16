@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div id="Resultcover">
      <div id="Elibrarywrapper">
@@ -19,49 +19,79 @@
                     <div class="ps-3">
                          <div class="d-flex">
                               <i class="bi bi-check-circle-fill me-2"></i>
-                              <p>Select your Class from the Class List </p>
+                              <p>Select the Student Class in order to Populate the Students List</p>
                          </div>
                          <div class="d-flex">
                               <i class="bi bi-check-circle-fill me-2"></i>
-                              <p>Click on the Class </p>
+                              <p>Select the Student Name from the Student List</p>
                          </div>
                          <div class="d-flex">
                               <i class="bi bi-check-circle-fill me-2"></i>
-                              <p>on the next page select the Name of the Student</p>
+                              <p>Enter your Student ID Correctly like "smss/1234"</p>
                          </div>
                          <div class="d-flex">
                               <i class="bi bi-check-circle-fill me-2"></i>
-                              <p>and Finally input the pin Correctly</p>
+                              <p>Enter your Card Pin Correctly</p>
+                         </div>
+                         <div class="d-flex">
+                              <i class="bi bi-check-circle-fill me-2"></i>
+                              <p>Then click on the "View result Button"</p>
+                         </div>
+                         <div class="d-flex">
+                              <i class="bi bi-check-circle-fill me-2"></i>
+                              <p>If you encounter any Challenges contact the Site Administrators <br><strong>(the number in your Access Card)</strong> </p>
                          </div>
                     </div>
                </div>
-               <div class="col-md mt-3 mt-md-0 shadow-sm p-2" style="max-width: 400px;">
-                    <ul id="myUL" class="list-group-flush p-0">
-                         <div class="d-md-flex">
-                              <h5 class="">Okfs Class list</h5>
-                              <form class="ms-auto">
-                                   <div class="input-group mb-2 news-input">
-                                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
-                                             placeholder="type in the Class here" />
-                                        <button class="btn btn-md" type="submit" value="Save"
-                                             style="background-color: #00072B; color:white;"><i class="fa fa-search"
-                                                  aria-hidden="true"></i></button>
-                                   </div>
-                              </form>
-                         </div>
-                         {% for class in classes %}
-                         <li id="list" class="list-group-item" style="display:block;">
-                              <div class="my-2">
-                                   <a href="{% url 'SRMS:students' class.Class class.id %}"
-                                        class="text-decoration-none">{{ class.Class }}</a>
+               <div class="col-md mt-3 mt-md-0 shadow-sm p-2 bg-light" style="max-width: 400px;">
+                    <div class="class_board col-md mt-3 mt-md-0  p-4" style="max-width: 410px;">
+                         <div>
+                              <h4 class="text-center">Student Details</h4>
+                              {% if messages %}
+                              {% for message in messages %}
+                              <div class="alert {{ message.tags }} alert-dismissible alert-success" role="alert">
+                                     {{ message }}
+                                   <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
                               </div>
-                         </li>
-                         {% endfor %}
-                    </ul>
+                              {% endfor %}
+                              {% endif %}
+                         </div>
+                         <form action="." method="POST">
+                              {% csrf_token %}
+                              <div class="mb-3">
+                                   <label for="class">Classes:</label>
+                                   <select id="class" name="student_class" class="form-select" required>
+                                        <option value="">--Select your class--</option>
+                                        {% for class in classes %}
+                                        <option value="{{ class.Class }}">{{ class.Class }}</option>
+                                        {% endfor %}
+                                   </select>
+                              </div>
+                              <div class="mb-3">
+                                   <label for="Students">Students List:</label>
+                                   <select id="Students" name="student_name" class="form-select" required></select>
+                              </div>
+     
+                              <div class="mb-3">
+                                   <input type="text" class="form-control" placeholder="enter your Student id" required
+                                        name="student_id">
+                              </div>
+                              <div class="my-2 form-floating">
+                                   <input type="text" name="student_pin" class="form-control" id="pin"
+                                        placeholder="enter your Card Pin" required>
+                                   <label for="pin">enter your Card Pin</label>
+                              </div>
+                              <button class=" my-2 w-100 btn btn-md btn-primary" type="submit" value="submit">
+                                   View your result
+                              </button>
+     
+                         </form>
+                    </div>
                </div>
 
           </div>
      </div>
 </section>
-
+<script src="{% static 'js/Result.js' %}"></script>
 {% endblock %}

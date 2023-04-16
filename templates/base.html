@@ -24,8 +24,29 @@
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
   <script src="https://kit.fontawesome.com/d05833c098.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   <title>OKFS Onitsha</title>
+  <script>
+    var user = '{{request.user}}'
+
+    function getToken(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken')
+  </script>
 </head>
 
 <body class="position-relative d-flex flex-column min-vh-100">

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<style>
+   .display1{
+    line-height: 7.5vh;
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+</style>
+<section>
+  <div class="404_container d-flex flex-column justify-content-center align-items-center">
+      <img src="{% static 'OKFS1.png' %}" alt="" class="schoollogo" style="width:100%; max-width:200px;">
+      <h3 class="display1 mt-0">Ocean of Knowledge Foundation Secondary School</h3>
+      <p class="sideline_text"><i class="fa-solid fa-triangle-exclamation h3 me-2"></i> Result upload in Progress ............ please Check Back Tomorrow </p>
+  </div>
+</section>
+{% endblock %}

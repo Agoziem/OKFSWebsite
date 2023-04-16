@@ -22,7 +22,7 @@
         <img src="{% static 'ca2.jpg' %}" class="d-block w-100" alt="...">
 
         <div class="container">
-          <div class="carousel-caption  ">
+          <div class="carousel-caption">
             <h3 class="animate__animated animate__fadeInLeft" style="animation-delay: 1s; color:white;">Engagement &
               Mastery learning</h3>
             <div class="multiplerule my-2 d-flex justify-content-center">
@@ -298,7 +298,7 @@
 </section>
 
 <!-- Management -->
-<section id="Management" class="p-3 py-4">
+<section id="Management" class="p-3 py-5">
   <div class="container ">
     <h4 class="text-center  fw-bold">SCHOOL MANAGEMENT</h4>
     <div class="multiplerule my-3 d-flex justify-content-center">
@@ -306,10 +306,10 @@
       <div class="Nrule2"></div>
     </div>
     <p class=" text-center mb-3"> Ensuring quality Leadership, proper nurturing and Welfare of the Student</p>
-    <div class="row g-4 justify-content-center align-items-start">
+    <div class="row g-3 justify-content-center align-items-start" >
       {% for management in managements %}
-      <div class="col-md-6 col-lg-3">
-        <div class="card shadow-sm ">
+      <div class="col-md-6 col-lg-3" style="height: 300px;">
+        <div class="card shadow-sm h-100 " >
           <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
             <div class="management_profile mb-2">
               <img src="{{management.Profileimage.url}}" class="management_profile_image" alt="" />
@@ -353,12 +353,12 @@
       <div class="Nrule"></div>
       <div class="Nrule2"></div>
     </div>
-    <div class="container row g-3 p-0">
+    <div class="container row g-2 p-0">
       {% for photo in photos %}
       <div class="col-md-6 col-lg-4">
         <div class="container mb-2">
-          <div class="card rounded shadow-sm" style="width: 18rem;">
-            <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a>
+          <div class="card h-100 rounded shadow-sm" style="width: 18rem;">
+            <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..." style="height:250px; object-fit: cover;"></a>
             <div class="card-body">
               <p class="card-text">{{ photo.Description }}</p>
             </div>

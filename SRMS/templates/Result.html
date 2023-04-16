@@ -23,6 +23,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/Result.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
   <title>OKFS Onitsha</title>
 </head>
 
@@ -141,55 +142,63 @@
       </div>
     </div>
 
+  <div id="container_result">
     <section>
       <div class="container">
-        {% for logo in schoollogo %}
-        <img src="{{ logo.Schoollogo.url }}" class="schoollogo" alt="...">
-        {% endfor %}
+        <img src="{% static 'OKFS1.png' %}" class="schoollogo" alt="..." style="width:100%; max-width:200px;">
       </div>
     </section>
 
     <section class="px-2 pt-2">
-      <div class="container text-center  mb-0">
-        <h1 class=" fw-normal" style="text-transform: uppercase;">{{Student.Name}}</h1>
+      <div class="text-center  mb-0">
+        <h4 class="mt-2">{{ Result_details.Term }} Result</h4>
+        <h1 class=" fw-normal" style="text-transform: uppercase;">{{student_details.student_name}}</h1>
         <div class="multiplerule my-3 d-flex justify-content-center">
           <div class="rule"></div>
           <div class="rule2"></div>
         </div>
       </div>
 
-      <div class="container bg-light p-4 rounded" id="details">
-        <span class="fw-bold">Class :</span> {{ Student.Class }}<br>
-        <span class="fw-bold">Term :</span> {{ Student.Term }}<br>
-        <span class="fw-bold">Session :</span> {{ Student.Academicsession }}<br>
-        <span class="fw-bold">Total score :</span> {{ Student.TotalScore }}<br>
-        <span class="fw-bold">Average :</span> {{ Student.Average|floatformat:2 }}<br>
-        <span class="fw-bold">Position :</span> {{ Student.Position }}<br>
-        <span class="fw-bold">Number in Class :</span> {{ Student.Totalnumber }}
-      </div>
+      <section class="details_container ">
+        <div class="details container bg-light p-4 rounded d-flex">
+          <div>
+            <span class="fw-bold">Class :</span> {{ student_details.student_class }}<br>
+            <span class="fw-bold">Term :</span> {{ Result_details.Term }}<br>
+            <span class="fw-bold">Session :</span> {{ Result_details.Academicsession }}<br>
+            <span class="fw-bold">Total score :</span> {{ Result_details.TotalScore }}<br>
+          </div>
+  
+          <div class="ms-5">
+            <span class="fw-bold">Average :</span> {{ Result_details.Average|floatformat:2 }}<br>
+            <span class="fw-bold">Position :</span> {{ Result_details.Position }}<br>
+            <span class="fw-bold">Number in Class :</span> {{ Result_details.Totalnumber }}
+          </div>
+  
+        </div>
+      </section>
 
-      <div class="container-fluid">
+      <div class="container-fluid px-4">
         <table>
           <thead>
             <tr>
               <th scope="col">S/N</th>
               <th scope="col">Subjects</th>
-              <th scope="col">1st Test</th>
-              <th scope="col">2nd Test</th>
-              <th scope="col">Project</th>
-              <th scope="col">Mid Term Test</th>
-              <th scope="col">1st Ass</th>
-              <th scope="col">2nd Ass</th>
-              <th scope="col">CA</th>
-              <th scope="col">Exam</th>
-              <th scope="col">Total</th>
+              <th scope="col">1st Test (5)</th>
+              <th scope="col">2nd Test (5)</th>
+              <th scope="col">Project (10)</th>
+              <th scope="col">Mid Term Test (10)</th>
+              <th scope="col">1st Ass (5)</th>
+              <th scope="col">2nd Ass (5)</th>
+              <th scope="col">CA (40)</th>
+              <th scope="col">Exam (60)</th>
+              <th scope="col">Total (100)</th>
               <th scope="col">Grade</th>
               <th scope="col">Position</th>
               <th scope="col">Remark</th>
             </tr>
           </thead>
           <tbody>
-            {% for data in Result %}
+            {% for data in Results %}
             <tr>
               <td>{{forloop.counter}}</td>
               <td>{{data.Subject}}</td>
@@ -214,7 +223,7 @@
 
     <!-- Annual Results Starts here  -->
 
-<!-- {% if AnnualResult %}
+    {% if Annual_Result %}
     <section class="px-2 pt-2">
       <div class="container text-center  mb-0">
         <h1 class=" fw-normal">Annual Result </h1>
@@ -269,39 +278,19 @@
         </table>
       </div>
     </section>
-    {% endif %} -->
-    <!--Newsletter-->
-    {% if letter %}
-    <section class="p-2">
-      <div>
-        <h2 class="ms-3 text-center">{{ Student.Term }} Newsletter for {{ Student.Academicsession }} Academic Session </h4>
-          <hr>
-          <h4 class="text-center">Ocean Of Knowledge Foundation Schools </h5>
-            <div class="text-center">
-              <span class="fw-normal">No 30 Isiokpo Street Awada</span><br>
-              <span class="text-danger fw-normal"> Pro Scientia et Sapientia</span><br>
-              <span class=" fw-normal small text-secondary"><span class="fw-bold"> Website: </span> www.oceanofknowledgefoundationschool.com</span><br>
-              <span class=" fw-normal small text-secondary"><span class="fw-bold">Email:</span>
-                oceanofknowledgefoundationschool23@gmail.com</span><br>
-              <span class=" fw-normal small text-secondary">Phone:08023182402,08086586235 </span>
-            </div>
-            <hr>
-      </div>
-      {% for news in letter %}
-      <div class="container">
-        <p class="px-0 px-md-5 text-primary">
-          {{ news.newsletter|safe }}
-        </p>
-      </div>
-      {% endfor %}
-    </section>
-    {% endif %}
+    {% endif %} 
+  </div>
+
+
     <section class=" ms-4 my-3 px-2 px-md-5">
       <div class="container">
-        <a id="redgrad" href="{% url 'SRMS:pdf' Name=Student.Name Classname=Student.Class %}" class="btn"> Save as Pdf
-        <i class="fa fa-download ms-1"></i></a>
+        <a id="result_btn" class="btn"> Save as Pdf
+          <span class="spinner-border text-light spinner-border-sm d-none ms-1" role="status" aria-hidden="true"></span>
+        </a>
+        <a  href="{% url 'home' %}" class="ms-2 btn btn-primary">back to Home
+          <i class="fa fa-house ms-1"></i></a>
       </div>
-      </section>
+    </section>
   </main>
   <footer class="py-3" style="background-color: #00072B; color:white;">
     <ul class="nav justify-content-center pb-3 mb-1">
@@ -324,7 +313,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
+<script src="{% static 'js/Result_sheet.js' %}"></script>
 </body>
 
 </html>

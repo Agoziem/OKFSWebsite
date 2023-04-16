@@ -5,7 +5,8 @@ app_name = 'SRMS'
 urlpatterns = [
     path('', classes_view, name='classes'),
     path('activation/', activation_view, name='activation'),
-
+    path('<str:Classname>/', get_Students, name='get_students'),
+    path('activation/pins/', createPin, name='Pin'),   
 # TERMLY RESULT
 
 # Junior Termly Details Url //////////////////////////////////////////////////////////
@@ -96,10 +97,6 @@ urlpatterns = [
     path('activation/createseniorAnnualresults3a/', createseniorresultAnnual3a_view, name='seniorresultannual3a'),
     path('activation/createseniorAnnualresults3b/', createseniorresultAnnual3b_view, name='seniorresultannual3b'),
 
-    path('activation/pins/', createPin, name='Pin'),   
-    path('<str:Classname>/<int:id>/',students_view, name='students'),
-    path('<str:Classname>/result/',result_view, name='result'),
-    path('<str:Classname>/<str:Name>/pdf',result_pdf_view, name='pdf'),
-    
+     
     
     ]

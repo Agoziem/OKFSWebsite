@@ -74,7 +74,7 @@ td {
     vertical-align: middle;
 }
 
-#redgrad {
+#result_btn {
     background: rgb(177, 0, 0);
     background: -webkit-linear-gradient(rgb(255, 34, 34), rgb(179, 1, 1));
     background: -moz-linear-gradient(rgb(255, 34, 34), rgb(141, 0, 0));
@@ -90,6 +90,7 @@ thead th{
     color: #fff;
     font-size: 14px;
     text-align: start;
+    font-weight: bold;
 }
 
 th:first-child {
@@ -116,11 +117,12 @@ td:first-child {
 
 .schoollogo {
     display: block;
-   margin: 40px auto;
+   margin: -35px  auto;
     width: 75%;
 }
 
-#details {
-    background-color: #f3f3f7;
-    border-left: #e60000 3px solid;
+
+.details{
+    padding: 0 200px 0 200px; 
+    border-left: #e60000 6px solid;
 }

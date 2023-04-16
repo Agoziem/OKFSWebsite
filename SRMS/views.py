@@ -10,101 +10,78 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.contrib import messages
+from django.http import JsonResponse
+
+def get_Students(request, Classname):
+    Students = Students_Pin_and_ID.objects.filter(student_class=Classname)
+    Students_list = list(Students.values('id', 'student_name'))
+    return JsonResponse(Students_list, safe=False)
+
 
 def classes_view(request):
 	queryset= Class.objects.all()
-	context = {
-		"classes": queryset,
-    }
-	return render(request, "Classes.html", context)
-	
-def students_view(request,Classname,id):
-	queryset=Student.objects.filter(Class=Classname)
-	queryset3=Assignments.objects.filter(Class=id)
-	queryset2=Class.objects.get(Class=Classname)
-	context = {
-		"students": queryset,
-		"class":queryset2,
-		"Assignments":queryset3,
-    }
-	return render(request, "Students.html", context)
-	
-def result_view(request,Classname):
-	stu=str(request.POST.get('Name'))
-	# studentname=stu.upper().strip()
-
-	queryset3=Class.objects.get(Class=Classname)
-
-	queryset1=Student.objects.filter(Class=Classname)	
-	stuff1=Student.objects.get(Name=stu,Class=Classname)
-	queryset4=Result.objects.filter(Name=stu,Class=Classname)
-
-	# queryset2=AnnualStudent.objects.filter(Class=Classname)
-	# stuff2=get_object_or_404(AnnualStudent,Name=studentname)
-	# queryset5=AnnualResult.objects.filter(Name=studentname,Class=Classname)
-	
-	
-	letter=Newsletter.objects.all()
-	school=School.objects.all()
-	if request.method=='POST':
+	if request.method == 'POST':
+	# get the Student name from the inque
+		student_name=str(request.POST['student_name'])
+		student_id=str(request.POST['student_id'])
+		Pin=str(request.POST['student_pin'])
+		labels=[]
+		data=[]
+		Annual_Result=False
+		# Get the Student details, the Students_Result_Details and the Results (Both Annual & Termly )
 		try:
-			enteredpin=request.POST.get('Pin')
-			mainpin=int(enteredpin)
-			studentpin=get_object_or_404(Students_Pin_and_ID,student_name=stu)
-			if mainpin == studentpin.student_pin:
-				context={
-					"Student":stuff1,
-					# "AnnualStudent":stuff2,
-					"Result":queryset4,
-					# 'AnnualResult': queryset5,
-					'schoollogo': school,
-					'letter':letter,
-					}
-				return render(request,"Result.html", context)
+			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_id=student_id,student_pin=Pin)
+			if Student.objects.filter(student_name=student_name,Student_id=student_id).exists():
+				Student_Result_details=Student.objects.get(student_name=student_name,Student_id=student_id)
+				Student_Results=Result.objects.filter(student_name=student_name,Student_id=student_id)
+				for result in Student_Results:
+					labels.append(result.Subject)
+					data.append(result.Total)
+					
+				if AnnualStudent.objects.filter(student_name=student_name,Student_id=student_id).exists():
+					Annual_Result=True
+					Annual_Student_Result_details=AnnualStudent.objects.get(student_name=student_name,Student_id=student_id)
+					Annual_Student_Results=AnnualResult.objects.filter(student_name=student_name,Student_id=student_id)
+					context={
+						"student_details":student,
+						"Result_details":Student_Result_details,
+						"Results":Student_Results,
+						"labels":labels,
+						"data":data,
+						"AnnualStudent":Annual_Student_Result_details,
+						'AnnualResult': Annual_Student_Results,
+						"Annual_Result":Annual_Result,
+						}
+					return render(request,"Result.html", context)
+				else:
+					Annual_Result=False	
+					context={
+						"Annual_Result":Annual_Result,
+						"student_details":student,
+						"Result_details":Student_Result_details,
+						"Results":Student_Results,
+						"labels":labels,
+						"data":data,
+								}
+					return render(request,"Result.html", context)
 			else:
-				messages.error(request, 'Invalid card pin , check your input and try again or text your "name","class","the Pin on the Card" & "okfs" to 08080982606 to recieve your correct pin') 
-				context = {
-					"students": queryset1,
-					"class":queryset3
-					}
-				return render(request, "Students.html", context)
-		except:
-			messages.error(request, 'Invalid card pin , check your input and try again') 
-			context = {
-				"students": queryset1,
-				"class":queryset3
+				return render(request,"404.html")
+
+		except Students_Pin_and_ID.DoesNotExist:
+			# Display an error message if the student does not exist
+			classes=Class.objects.all()
+			context={
+				"classes":classes,
 			}
-			return render(request, "Students.html", context)
-		
-
-def result_pdf_view(request,Name,Classname):
-	stuff=get_object_or_404(Student,Name=Name)
-	# stuff2=get_object_or_404(AnnualStudent,Name=Name)
-	queryset4=Result.objects.filter(Name=Name,Class=Classname)
-	# queryset5=AnnualResult.objects.filter(Name=Name,Class=Classname)
-	school=School.objects.all()
-	letter=Newsletter.objects.all()
-	template_path ='Result_pdf.html'
-	context={
-		# "AnnualStudent":stuff2,
-		"Student":stuff,
-		"Result":queryset4,
-		'schoollogo': school,
-		'letter':letter,
-		# 'AnnualResult': queryset5,
+			messages.error(request, 'Check your Student id or the Pin and try again , make sure you are entering it Correctly')
+			return render(request, "Classes.html",context)
+	else:
+		context={
+			"classes": queryset,
 		}
-	response = HttpResponse(content_type='application/pdf')
-	response['Content-Disposition'] = 'attachment'; filename="Result.pdf"
-	template = get_template(template_path)
-	html = template.render(context)
-	pisa_status = pisa.CreatePDF(
-		html, dest=response)
-	if pisa_status.err:
-		return HttpResponse('We had some errors <pre>' + html + '</pre>')
-	return response
+		return render(request, "Classes.html",context)
 
 
-	
 def activation_view(request):
 	context = {
 		}
