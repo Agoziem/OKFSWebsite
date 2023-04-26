@@ -2506,7 +2506,7 @@ class AnnualStudent(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,20),start=1):
+			for count, row in enumerate(range(10,21),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,11),start=1):
 						char=get_column_letter(col)
@@ -5704,7 +5704,7 @@ class Student(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,24),start=1):
+			for count, row in enumerate(range(10,23),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,15),start=1):
 						char=get_column_letter(col)
