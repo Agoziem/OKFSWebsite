@@ -1904,7 +1904,7 @@ class AnnualStudent(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,23),start=1):
+			for count, row in enumerate(range(10,24),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,11),start=1):
 						char=get_column_letter(col)
@@ -2194,6 +2194,30 @@ class AnnualStudent(models.Model):
 						elif count == 10:
 							Remark=ws[char+str(row)].value
 				elif count == 13:
+					for count, col in enumerate(range(1,15),start=1):
+						char=get_column_letter(col)
+						
+						if count == 1:
+							SN=ws[char+str(row)].value
+						elif count == 2:
+							Subject=ws[char+str(row)].value
+						elif count == 3:
+							FirstTerm=ws[char+str(row)].value
+						elif count == 4:
+							SecondTerm=ws[char+str(row)].value
+						elif count == 5:
+							ThirdTerm=ws[char+str(row)].value
+						elif count == 6:
+							Total=ws[char+str(row)].value
+						elif count == 7:
+							Average=ws[char+str(row)].value
+						elif count == 8:
+							Grade=ws[char+str(row)].value
+						elif count == 9:
+							SubjectPosition=ws[char+str(row)].value
+						elif count == 10:
+							Remark=ws[char+str(row)].value
+				elif count == 14:
 					for count, col in enumerate(range(1,15),start=1):
 						char=get_column_letter(col)
 						
@@ -5704,7 +5728,7 @@ class Student(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			for count, row in enumerate(range(10,23),start=1):
+			for count, row in enumerate(range(10,24),start=1):
 				if count == 1:
 					for count, col in enumerate(range(1,15),start=1):
 						char=get_column_letter(col)
@@ -6152,7 +6176,6 @@ class Student(models.Model):
 							SubjectPosition=ws[char+str(row)].value
 						elif count == 14:
 							Remark=ws[char+str(row)].value
-
 				Result.objects.create(SN=SN,Student_id=Student_id,student_name=student_name,Class=Class,Subject=Subject,FirstTest=FirstTest,SecondTest=SecondTest,Project=Project,MidTermTest=MidTermTest,FirstAss=FirstAss,SecondAss=SecondAss,CA=CA,Exam=Exam,Total=Total,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
 # Ss2 //////////////////////////////////////////				
 	def createSeniorResult2a(self,*args,**kwargs) -> None:
