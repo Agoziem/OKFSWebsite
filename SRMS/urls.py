@@ -42,7 +42,7 @@ urlpatterns = [
 
     path('activation/createjuniorstudentsAnnual2a/', createjuniorstudentAnnual2a_view, name='juniorstudentsannual2a'),
     path('activation/createjuniorstudentsAnnual2b/', createjuniorstudentAnnual2b_view, name='juniorstudentsannual2b'),
-    path('activation/createjuniorstudentsAnnual2b/', createjuniorstudentAnnual2c_view, name='juniorstudentsannual2c'),
+    path('activation/createjuniorstudentsAnnual2c/', createjuniorstudentAnnual2c_view, name='juniorstudentsannual2c'),
 
     path('activation/createjuniorstudentsAnnual3a/', createjuniorstudentAnnual3a_view, name='juniorstudentsannual3a'),
     path('activation/createjuniorstudentsAnnual3b/', createjuniorstudentAnnual3b_view, name='juniorstudentsannual3b'),
