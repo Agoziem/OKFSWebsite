@@ -420,7 +420,7 @@ def createseniorresultAnnual2a_view(request):
 	return render(request, "Congratulation.html", context)
 def createseniorresultAnnual2b_view(request):
 	result=AnnualStudent()
-	result.createSeniorAnnual2a()
+	result.createSeniorAnnual2b()
 	context = {
 		}
 	return render(request, "Congratulation.html", context)
