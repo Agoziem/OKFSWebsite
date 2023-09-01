@@ -54,11 +54,11 @@ urlpatterns = [
 
     path('activation/createjuniorAnnualresults2a/', createjuniorresultAnnual2a_view, name='juniorresultannual2a'),
     path('activation/createjuniorAnnualresults2b/', createjuniorresultAnnual2b_view, name='juniorresultannual2b'),
-    path('activation/createjuniorAnnualresults2b/', createjuniorresultAnnual2c_view, name='juniorresultannual2c'),
+    path('activation/createjuniorAnnualresults2c/', createjuniorresultAnnual2c_view, name='juniorresultannual2c'),
 
 
-    path('activation/createjuniorAnnualresults3/', createjuniorresultAnnual3a_view, name='juniorresultannual3a'),
-    path('activation/createjuniorAnnualresults3/', createjuniorresultAnnual3b_view, name='juniorresultannual3b'),
+    path('activation/createjuniorAnnualresults3a/', createjuniorresultAnnual3a_view, name='juniorresultannual3a'),
+    path('activation/createjuniorAnnualresults3b/', createjuniorresultAnnual3b_view, name='juniorresultannual3b'),
 
 
 # TERMLY RESULT
