@@ -7769,12 +7769,12 @@ class Excelfiles(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			Position=ws['K20'].value
-			Average=ws['H20'].value
-			TotalScore=ws['E20'].value
-			Totalnumber=ws['F6'].value
-			Term=ws['H6'].value
-			Academicsession=ws['K6'].value
+			Position=ws['P20'].value
+			Average=ws['M20'].value
+			TotalScore=ws['J20'].value
+			Totalnumber=ws['k6'].value
+			Term=ws['M6'].value
+			Academicsession=ws['P6'].value
 			AnnualStudent.objects.create(Student_id=Student_id,student_name=student_name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2b(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
@@ -7786,12 +7786,12 @@ class Excelfiles(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			Position=ws['K20'].value
-			Average=ws['H20'].value
-			TotalScore=ws['E20'].value
-			Totalnumber=ws['F6'].value
-			Term=ws['H6'].value
-			Academicsession=ws['K6'].value
+			Position=ws['P20'].value
+			Average=ws['M20'].value
+			TotalScore=ws['J20'].value
+			Totalnumber=ws['k6'].value
+			Term=ws['M6'].value
+			Academicsession=ws['P6'].value
 			AnnualStudent.objects.create(Student_id=Student_id,student_name=student_name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 	def createJuniorStudentAnnual2c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
@@ -7803,12 +7803,12 @@ class Excelfiles(models.Model):
 			Student_id=str(ws['B4'].value)
 			student_name=str(ws['B5'].value)
 			Class=ws['B6'].value
-			Position=ws['K20'].value
-			Average=ws['H20'].value
-			TotalScore=ws['E20'].value
-			Totalnumber=ws['F6'].value
-			Term=ws['H6'].value
-			Academicsession=ws['K6'].value
+			Position=ws['P20'].value
+			Average=ws['M20'].value
+			TotalScore=ws['J20'].value
+			Totalnumber=ws['k6'].value
+			Term=ws['M6'].value
+			Academicsession=ws['P6'].value
 			AnnualStudent.objects.create(Student_id=Student_id,student_name=student_name,Class=Class,Position=Position,Average=Average,TotalScore=TotalScore,Totalnumber=Totalnumber,Term=Term,Academicsession=Academicsession)
 # Jss3 //////////////////////////////////////////
 	def createJuniorStudentAnnual3a(self,*args,**kwargs) -> None:
