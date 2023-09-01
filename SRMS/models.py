@@ -1206,8 +1206,6 @@ class AnnualStudent(models.Model):
 						elif count == 10:
 							Remark=ws[char+str(row)].value
 				AnnualResult.objects.create(SN=SN,Student_id=Student_id,student_name=student_name,Class=Class,Subject=Subject,FirstTerm=FirstTerm,SecondTerm=SecondTerm,ThirdTerm=ThirdTerm,Total=Total,Average=Average,Grade=Grade,SubjectPosition=SubjectPosition,Remark=Remark)
-# Jss2 //
-
 	def createJuniorAnnual2c(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
 		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/Jss2CAnnual.xlsx') 
@@ -2494,7 +2492,6 @@ class AnnualStudent(models.Model):
 							SubjectPosition=ws[char+str(row)].value
 						elif count == 10:
 							Remark=ws[char+str(row)].value
-
 				if count == 11:
 					for count, col in enumerate(range(1,11),start=1):
 						char=get_column_letter(col)
@@ -7764,7 +7761,7 @@ class Excelfiles(models.Model):
 # Jss2 //////////////////////////////////////////
 	def createJuniorStudentAnnual2a(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/Jss2AAnnual1.xlsx') 
+		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/Jss2AAnnual.xlsx') 
 		binary_data = obj['Body'].read()
 		wb = load_workbook(io.BytesIO(binary_data))
 		for sheet in wb:
@@ -7872,8 +7869,8 @@ class Excelfiles(models.Model):
 # Ss2 //////////////////////////////////////////	
 	def createSeniorStudentsAnnual2(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS2AnnualArt.xlsx')
-		obj2= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS2AnnualScience.xlsx')
+		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS2ArtAnnual.xlsx')
+		obj2= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS2ScienceAnnual.xlsx')
 		seniorClassExcel=[obj,obj2]
 		for count,file in enumerate(seniorClassExcel,start=1):
 			if count == 1:
@@ -7909,8 +7906,8 @@ class Excelfiles(models.Model):
 # Ss3 //////////////////////////////////////////
 	def createSeniorStudentsAnnual3(self,*args,**kwargs) -> None:
 		s3 = boto3.client('s3')
-		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS3AnnualArt.xlsx')
-		obj2= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS3AnnualScience.xlsx')
+		obj= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS3ArtAnnual.xlsx')
+		obj2= s3.get_object(Bucket='okfsappbucket', Key='media/media/SS3ScienceAnnual.xlsx')
 		seniorClassExcel=[obj,obj2]
 		for count,file in enumerate(seniorClassExcel,start=1):
 			binary_data = file['Body'].read()
