@@ -42,6 +42,7 @@ def classes_view(request):
 					Annual_Result=True
 					Annual_Student_Result_details=AnnualStudent.objects.get(student_name=student_name,Student_id=student_id)
 					Annual_Student_Results=AnnualResult.objects.filter(student_name=student_name,Student_id=student_id)
+					PromotionVerdict=int(Annual_Student_Result_details.Average)
 					context={
 						"student_details":student,
 						"Result_details":Student_Result_details,
@@ -51,6 +52,7 @@ def classes_view(request):
 						"AnnualStudent":Annual_Student_Result_details,
 						'AnnualResult': Annual_Student_Results,
 						"Annual_Result":Annual_Result,
+						"PromotionVerdict":PromotionVerdict
 						}
 					return render(request,"Result.html", context)
 				else:
