@@ -7,8 +7,6 @@ from .forms import PaymentForm2
 import base64
 base64.encodestring = base64.encodebytes
 base64.decodestring = base64.decodebytes
-from django.template.loader import get_template
-from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.contrib import messages
 from home.models import School
@@ -102,21 +100,6 @@ def admission_details(request):
 		}
 		return render(request, 'Admission_details.html', context)
 	
-def form_pdf_view(request , id : int) -> HttpResponse:
-	student=get_object_or_404(Student,id=id)
-	school=School.objects.all()
-	template_path ='Admission_details_pdf.html'
-	context = {
-				"object":student,
-				"school":school,
-				}
-	response = HttpResponse(content_type='application/pdf')
-	response['Content-Disposition'] = 'attachment'; filename="Receipt.pdf"
-	template = get_template(template_path)
-	html = template.render(context)
-	pisa_status = pisa.CreatePDF(
-		html, dest=response)
-	if pisa_status.err:
-		return HttpResponse('We had some errors <pre>' + html + '</pre>')
-	return response
+
+	# I deleted the View for the PDF, because we are now using jspdf for the Purpose of Printing PDF
 

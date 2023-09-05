@@ -202,3 +202,22 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder":True,
     "custom_css": "css/admin.css",
 }
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table', 'HorizontalRule', 'SpecialChar'],
+            ['Undo', 'Redo'],
+            ['Source'],
+        ],
+        'height': 300,
+        'width': 500,
+        'removePlugins': 'stylesheetparser',
+        'allowedContent': True,
+    }
+}

@@ -6,8 +6,6 @@ from django.contrib.auth.decorators import login_required
 import base64
 base64.encodestring = base64.encodebytes
 base64.decodestring = base64.decodebytes
-from django.template.loader import get_template
-from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.contrib import messages
 from django.http import JsonResponse
@@ -28,16 +26,22 @@ def classes_view(request):
 		labels=[]
 		data=[]
 		Annual_Result=False
+		isTermNewsletter=False
 		# Get the Student details, the Students_Result_Details and the Results (Both Annual & Termly )
 		try:
 			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_id=student_id,student_pin=Pin)
 			if Student.objects.filter(student_name=student_name,Student_id=student_id).exists():
 				Student_Result_details=Student.objects.get(student_name=student_name,Student_id=student_id)
 				Student_Results=Result.objects.filter(student_name=student_name,Student_id=student_id)
+
+				# for Newsletter ///
+				if Newsletter.objects.filter(Term=Student_Result_details.Term).exists():
+					isTermNewsletter=True
+					TermNewsletter=Newsletter.objects.get(Term=Student_Result_details.Term)
+
 				for result in Student_Results:
 					labels.append(result.Subject)
-					data.append(result.Total)
-					
+					data.append(result.Total)					
 				if AnnualStudent.objects.filter(student_name=student_name,Student_id=student_id).exists():
 					Annual_Result=True
 					Annual_Student_Result_details=AnnualStudent.objects.get(student_name=student_name,Student_id=student_id)
@@ -52,11 +56,13 @@ def classes_view(request):
 						"AnnualStudent":Annual_Student_Result_details,
 						'AnnualResult': Annual_Student_Results,
 						"Annual_Result":Annual_Result,
-						"PromotionVerdict":PromotionVerdict
+						"PromotionVerdict":PromotionVerdict,
+						"isTermNewsletter":isTermNewsletter,
+						"TermNewsletter":TermNewsletter
 						}
 					return render(request,"Result.html", context)
 				else:
-					Annual_Result=False	
+					Annual_Result=False
 					context={
 						"Annual_Result":Annual_Result,
 						"student_details":student,
@@ -64,6 +70,8 @@ def classes_view(request):
 						"Results":Student_Results,
 						"labels":labels,
 						"data":data,
+						"isTermNewsletter":isTermNewsletter,
+						"TermNewsletter":TermNewsletter
 								}
 					return render(request,"Result.html", context)
 			else:
@@ -83,6 +91,7 @@ def classes_view(request):
 		}
 		return render(request, "Classes.html",context)
 
+# Result Activation Code /////////////////////////////////////
 
 def activation_view(request):
 	context = {
