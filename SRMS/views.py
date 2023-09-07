@@ -23,10 +23,6 @@ def classes_view(request):
 		student_name=str(request.POST['student_name'])
 		student_id=str(request.POST['student_id'])
 		Pin=str(request.POST['student_pin'])
-		labels=[]
-		data=[]
-		Annual_Result=False
-		isTermNewsletter=False
 		# Get the Student details, the Students_Result_Details and the Results (Both Annual & Termly )
 		try:
 			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_id=student_id,student_pin=Pin)
@@ -35,10 +31,14 @@ def classes_view(request):
 				Student_Results=Result.objects.filter(student_name=student_name,Student_id=student_id)
 
 				# for Newsletter ///
+				is_term_newsletter = False
+				term_newsletter = None
 				if Newsletter.objects.filter(Term=Student_Result_details.Term).exists():
-					isTermNewsletter=True
-					TermNewsletter=Newsletter.objects.get(Term=Student_Result_details.Term)
+					is_term_newsletter=True
+					term_newsletter=Newsletter.objects.get(Term=Student_Result_details.Term)
 
+				labels = []
+				data = []
 				for result in Student_Results:
 					labels.append(result.Subject)
 					data.append(result.Total)					
@@ -57,8 +57,8 @@ def classes_view(request):
 						'AnnualResult': Annual_Student_Results,
 						"Annual_Result":Annual_Result,
 						"PromotionVerdict":PromotionVerdict,
-						"isTermNewsletter":isTermNewsletter,
-						"TermNewsletter":TermNewsletter
+						"isTermNewsletter":is_term_newsletter,
+						"TermNewsletter":term_newsletter
 						}
 					return render(request,"Result.html", context)
 				else:
@@ -70,8 +70,9 @@ def classes_view(request):
 						"Results":Student_Results,
 						"labels":labels,
 						"data":data,
-						"isTermNewsletter":isTermNewsletter,
-						"TermNewsletter":TermNewsletter
+						"PromotionVerdict":PromotionVerdict,
+						"isTermNewsletter":is_term_newsletter,
+						"TermNewsletter":term_newsletter
 								}
 					return render(request,"Result.html", context)
 			else:

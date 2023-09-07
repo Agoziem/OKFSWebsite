@@ -98,7 +98,7 @@
           {% endif %}
           {% if request.user.is_staff %}
           <li class="nav-item me-2">
-            <a href="/admin" class="nav-link text-light">Admin</a>
+            <a href="/admin" class="nav-link text-light" target="_blank">Admin</a>
           </li>
           {% endif %}
 
@@ -156,7 +156,7 @@
         {% endif %}
         {% if request.user.is_staff %}
         <li class="list-group-item" style="background-color:#00072B;">
-          <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
+          <a href="/admin" class="text-decoration-none text-light" target="_blank"><i class="bi bi-lock me-3"
               style="color:#e60000"></i>Admin</a>
         </li>
         {% endif %}
