@@ -35,7 +35,7 @@ def classes_view(request):
 				term_newsletter = None
 				if Newsletter.objects.filter(Term = "3rd Term").exists():
 					is_term_newsletter=True
-					term_newsletter=Newsletter.objects.get(Term=Student_Result_details.Term)
+					term_newsletter=Newsletter.objects.get(Term="3rd Term")
 
 				labels = []
 				data = []
