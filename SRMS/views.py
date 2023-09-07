@@ -33,7 +33,7 @@ def classes_view(request):
 				# for Newsletter ///
 				is_term_newsletter = False
 				term_newsletter = None
-				if Newsletter.objects.filter(Term=Student_Result_details.Term).exists():
+				if Newsletter.objects.filter(Term = "3rd Term").exists():
 					is_term_newsletter=True
 					term_newsletter=Newsletter.objects.get(Term=Student_Result_details.Term)
 
