@@ -33,6 +33,7 @@ def classes_view(request):
 				# for Newsletter ///
 				is_term_newsletter = False
 				term_newsletter = None
+				# endeavour to change the Hard Coding "3rd Term" later to str(Student_Result_details.Term)
 				if Newsletter.objects.filter(Term = "3rd Term").exists():
 					is_term_newsletter=True
 					term_newsletter=Newsletter.objects.get(Term="3rd Term")
