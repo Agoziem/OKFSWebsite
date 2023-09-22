@@ -8305,7 +8305,7 @@ class Excelfiles(models.Model):
 						if count == 1:
 							SN=ws[char+str(row)].value
 						elif count == 2:
-							sstudent_name=str(ws[char+str(row)].value).upper().strip()
+							student_name=str(ws[char+str(row)].value).upper().strip()
 						elif count == 3:
 							student_pin=ws[char+str(row)].value
 						elif count == 4:
