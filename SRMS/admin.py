@@ -1,48 +1,16 @@
 from django.contrib import admin
 from.models import *
 
-# admin.site.register(Student)
-# admin.site.register(Class)
-# admin.site.register(Result)
+
 admin.site.register(Excelfiles)
 admin.site.register(Newsletter)
-# admin.site.register(Pin)
-# admin.site.register(Assignments)
-
-
-@admin.register(Students_Pin_and_ID)
-class Students_Pin_and_IDAdmin(admin.ModelAdmin):
-    list_display=('student_name','student_id','student_pin','student_class')
-    search_fields=('student_pin','student_name','student_class','student_id')
-    list_filter=('student_class',)
-
-@admin.register(Student)
-class StudentAdmin(admin.ModelAdmin):
-    list_display=('student_name','Student_id','Class','Position')
-    ordering=('Student_id','student_name')
-    search_fields=('Student_id','Class','Position','student_name',)
-    list_filter=('Class','Position')
-
-@admin.register(Result)
-class ResultAdmin(admin.ModelAdmin):
-    list_display=('student_name','Student_id','Class','Subject')
-    ordering=('Student_id','student_name',)
-    search_fields=('Student_id','student_name','Class','Subject')
-    list_filter=('Class','Subject')
-
-@admin.register(AnnualStudent)
-class AnnualStudentAdmin(admin.ModelAdmin):
-    list_display=('student_name','Student_id','Class','Position')
-    ordering=('Student_id','student_name',)
-    search_fields=('Student_id','student_name','Class','Position')
-    list_filter=('Class','Position')
-
-@admin.register(AnnualResult)
-class AnnualResult(admin.ModelAdmin):
-    list_display=('student_name','Student_id','Class','Subject')
-    ordering=('Student_id','student_name',)
-    search_fields=('Student_id','student_name','Class','Subject')
-    list_filter=('Class','Subject')
+admin.site.register(AcademicSession)
+admin.site.register(Term)
+admin.site.register(Subjectallocation)
+admin.site.register(Student_Result_Data)
+admin.site.register(Result)
+admin.site.register(AnnualStudent)
+admin.site.register(AnnualResult)
 
 @admin.register(Class)
 class ClassAdmin(admin.ModelAdmin):
@@ -54,3 +22,51 @@ class AssignmentsAdmin(admin.ModelAdmin):
     search_fields=('Class','subject')
     ordering=('Class',)
     list_filter=('Class','subject')
+
+@admin.register(Subject)
+class SubjectAdmin(admin.ModelAdmin):
+    list_display=('subject_name','subject_code')
+    ordering=('subject_name','subject_code')
+    search_fields=('subject_name','subject_code')
+    list_filter=('subject_name','subject_code')
+
+@admin.register(Students_Pin_and_ID)
+class Students_Pin_and_IDAdmin(admin.ModelAdmin):
+    list_display=('student_name','student_id','student_class')
+    ordering=('student_name','student_class')
+    search_fields=('student_name','student_class')
+    list_filter=('student_class',"student_name")
+
+# @admin.register(Student_Result_Data)
+# class Student_Result_DataAdmin(admin.ModelAdmin):
+#     list_display=('Student_name','Position','display_Class','Average')
+#     ordering=('Student_name','Position','Average')
+#     search_fields=('Position','Average')
+#     list_filter=('Student_name','Position','Average')
+
+#     def display_Class(self, obj):
+#         return obj.Student_name.student_class
+
+#     display_Class.short_description = 'Class'
+
+# @admin.register(Result)
+# class ResultAdmin(admin.ModelAdmin):
+#     list_display = ('student','student_class','Subject')
+#     ordering = ('student','student_class','Subject')
+#     search_fields = ('student_class','Subject') 
+#     list_filter = ('student','student_class','Subject')
+
+# @admin.register(AnnualStudent)
+# class AnnualStudentAdmin(admin.ModelAdmin):
+#     list_display=('Student_name','TotalScore','Average','Position')
+#     ordering=('Student_name','TotalScore','Average','Position')
+#     search_fields=('TotalScore','Average','Position')
+#     list_filter=('Student_name','TotalScore','Average','Position')
+
+# @admin.register(AnnualResult)
+# class ResultAdmin(admin.ModelAdmin):
+#     list_display = ('students_result_data__Student_name','Subject')
+#     ordering = ('students_result_data__Student_name','Subject')
+#     search_fields = ('students_result_data__Student_name','Subject') 
+#     list_filter = ('students_result_data__Student_name','Subject')
+

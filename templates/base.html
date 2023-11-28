@@ -9,7 +9,6 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'OKFS.png' %}">
   <link rel="icon" type="image/png" sizes="48x48" href="{% static 'OKFS.png' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-  <link rel="icon" href="https://www.oceanofknowledgefoundationschool.com/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -73,7 +72,7 @@
             <a href="{% url 'about' %}" class="nav-link text-light">about Us</a>
           </li>
           <li class="nav-item me-2">
-            <a href="{% url 'TMS:teachers' %}" class="nav-link text-light">Teachers</a>
+            <a href="{% url 'TMS:Teachers_dashboard' %}" class="nav-link text-light">Teachers Portal</a>
           </li>
 
           <li class="nav-item me-2">
@@ -91,11 +90,7 @@
           <li class="nav-item me-2">
             <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
           </li>
-          {% if request.user.is_superuser %}
-          <li class="nav-item me-2">
-            <a href="{% url 'SRMS:activation' %}" class="nav-link text-light">Activation</a>
-          </li>
-          {% endif %}
+
           {% if request.user.is_staff %}
           <li class="nav-item me-2">
             <a href="/admin" class="nav-link text-light" target="_blank">Admin</a>
@@ -125,8 +120,8 @@
               style="color:#e60000"></i>about Us</a>
         </li>
         <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'TMS:teachers' %}" class="text-decoration-none text-light"><i class="bi bi-person-circle me-3"
-              style="color:#e60000"></i>Teachers profile</a>
+          <a href="{% url 'TMS:Teachers_dashboard' %}" class="text-decoration-none text-light"><i class="bi bi-person-circle me-3"
+              style="color:#e60000"></i>Teachers Portal</a>
         </li>
 
         <li class="list-group-item" style="background-color:#00072B;">
@@ -148,12 +143,7 @@
           <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3"
               style="color:#e60000"></i>Photo Gallery</a>
         </li>
-        {% if request.user.is_superuser %}
-        <li class="list-group-item" style="background-color:#00072B;">
-          <a href="{% url 'SRMS:activation' %}" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
-              style="color:#e60000"></i>Activation</a>
-        </li>
-        {% endif %}
+  
         {% if request.user.is_staff %}
         <li class="list-group-item" style="background-color:#00072B;">
           <a href="/admin" class="text-decoration-none text-light" target="_blank"><i class="bi bi-lock me-3"
@@ -192,15 +182,6 @@
       <i class="bi bi-arrow-up-circle h1"></i>
     </a>
   </footer>
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoib2tmcyIsImEiOiJjbDFodTNjMG8wNnh6M2tycHN0ZDhzamYzIn0.H1VgtMiBAjkMEe7GXREzvA';
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [6.800465, 6.124938],
-      zoom: 12,
-    });
-  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>

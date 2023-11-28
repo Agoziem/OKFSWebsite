@@ -28,7 +28,27 @@ class Management(models.Model):
 	
 	def __str__(self):
 		return str(self.Profilename)
-		
+
+class TopTeacher(models.Model):
+	Profileimage=models.ImageField(upload_to='assets', blank=True)
+	Profilename= models.CharField(max_length= 300, blank=True)
+	Role= models.CharField(max_length= 300, blank=True)
+	Phonenumber= models.CharField(max_length= 300, blank=True)
+	Emailaddress= models.CharField(max_length= 300, blank=True)
+	Facebookpage= models.CharField(max_length= 300, blank=True)
+	Twitterpage= models.CharField(max_length= 300, blank=True)
+	Whatsapp= models.CharField(max_length= 300, blank=True)
+	
+	def __str__(self):
+		return str(self.Profilename)
+	
+	def TopTeachersimageURL(self):
+		try:
+			url= self.Profileimage.url
+		except:
+			url=""
+		return url
+	
 class Subscription(models.Model):
 	Email= models.EmailField(blank = True,null=True)
 	

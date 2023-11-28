@@ -51,7 +51,7 @@
               <a href="{% url 'about' %}" class="nav-link text-light">about Us</a>
             </li>
             <li class="nav-item">
-              <a href="{% url 'TMS:teachers' %}" class="nav-link text-light">Teachers</a>
+              <a href="{% url 'TMS:Teachers_dashboard' %}" class="nav-link text-light">Teachers</a>
             </li>
 
             <li class="nav-item">
@@ -69,12 +69,6 @@
             <li class="nav-item">
               <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
             </li>
-
-            {% if request.user.is_superuser %}
-            <li class="nav-item me-2">
-              <a href="{% url 'SRMS:activation' %}" class="nav-link text-light">Result Activation</a>
-            </li>
-            {% endif %}
             {% if request.user.is_staff %}
             <li class="nav-item me-2">
               <a href="/admin" class="nav-link text-light">Admin</a>
@@ -103,7 +97,7 @@
                 style="color:#e60000"></i>about Us</a>
           </li>
           <li class="list-group-item" style="background-color:#00072B;">
-            <a href="{% url 'TMS:teachers' %}" class="text-decoration-none text-light"><i
+            <a href="{% url 'TMS:Teachers_dashboard' %}" class="text-decoration-none text-light"><i
                 class="bi bi-person-circle me-3" style="color:#e60000"></i>Teachers profile</a>
           </li>
 
@@ -126,12 +120,7 @@
             <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3"
                 style="color:#e60000"></i>Photo Gallery</a>
           </li>
-          {% if request.user.is_superuser %}
-          <li class="list-group-item" style="background-color:#00072B;">
-            <a href="{% url 'SRMS:activation' %}" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
-                style="color:#e60000"></i>Activation</a>
-          </li>
-          {% endif %}
+
           {% if request.user.is_staff %}
           <li class="list-group-item" style="background-color:#00072B;">
             <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
@@ -163,8 +152,8 @@
           <div class="details container bg-light p-4 rounded d-flex">
             <div>
               <span class="fw-bold">Class :</span> {{ student_details.student_class }}<br>
-              <span class="fw-bold">Term :</span> {{ Result_details.Term }}<br>
-              <span class="fw-bold">Session :</span> {{ Result_details.Academicsession }}<br>
+              <span class="fw-bold">Term :</span> {{ Result_details.Term.term }}<br>
+              <span class="fw-bold">Academic Session : {{ Result_details.Academicsession }}</span><br>
               <span class="fw-bold">Total score :</span> {{ Result_details.TotalScore }}<br>
             </div>
 

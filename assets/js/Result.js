@@ -1,5 +1,13 @@
 const classSelect = document.getElementById('class');
 const StudentsSelect = document.getElementById('Students');
+const userInput = document.querySelector('#studentId');
+
+userInput.addEventListener('input', processinput)
+function processinput() {
+     // Get the input element
+     const processedValue = userInput.value.toLowerCase().replace(/\s/g, '');
+     userInput.value = processedValue;
+}
 
 classSelect.addEventListener('change', () => {
      const classname = classSelect.value;
@@ -8,7 +16,6 @@ classSelect.addEventListener('change', () => {
                .then(response => response.json())
                .then(data => {
                     StudentsSelect.innerHTML = '';
-                    console.log(data)
                     data.forEach(student => {
                          const option = document.createElement('option');
                          option.value = student.student_name;

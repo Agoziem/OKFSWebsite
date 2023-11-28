@@ -58,35 +58,57 @@
                               {% endif %}
                          </div>
                          <form action="." method="POST">
-                              {% csrf_token %}
-                              <div class="mb-3">
-                                   <label for="class">Classes:</label>
-                                   <select id="class" name="student_class" class="form-select" required>
-                                        <option value="">--Select your class--</option>
-                                        {% for class in classes %}
-                                        <option value="{{ class.Class }}">{{ class.Class }}</option>
+                         {% csrf_token %}
+                         <div class="row">
+                              <div class="col-md mb-3">
+                                   <label for="AcademicSession">Academic Session:</label>
+                                   <select id="AcademicSession" name="AcademicSession" class="form-select" required>
+                                        <option value="" disabled selected >Select the Academic Session</option>
+                                        {% for Session in academic_session %}
+                                        <option value="{{ Session.session }}">{{ Session.session }}</option>
                                         {% endfor %}
                                    </select>
                               </div>
-                              <div class="mb-3">
-                                   <label for="Students">Students List:</label>
-                                   <select id="Students" name="student_name" class="form-select" required></select>
+                              <div class=" col-md mb-3">
+                                   <label for="term">Term:</label>
+                                   <select id="term" name="Term" class="form-select" required>
+                                        <option value="" disabled selected >Select the Term</option>
+                                        {% for Term in Terms %}
+                                        <option value="{{ Term.term }}">{{ Term.term }}</option>
+                                        {% endfor %}
+                                   </select>
                               </div>
-     
-                              <div class="mb-3">
-                                   <input type="text" class="form-control" placeholder="enter your Student id" required
-                                        name="student_id">
-                              </div>
-                              <div class="my-2 form-floating">
-                                   <input type="text" name="student_pin" class="form-control" id="pin"
-                                        placeholder="enter your Card Pin" required>
-                                   <label for="pin">enter your Card Pin</label>
-                              </div>
-                              <button class=" my-2 w-100 btn btn-md btn-primary" type="submit" value="submit">
-                                   View your result
-                              </button>
-     
-                         </form>
+                         </div>
+                         <div class="mb-3">
+                              <label for="class">Classes:</label>
+                              <select id="class" name="student_class" class="form-select" required>
+                                   <option value="" disabled selected>--Select your class--</option>
+                                   {% for class in classes %}
+                                   <option value="{{ class.Class }}">{{ class.Class }}</option>
+                                   {% endfor %}
+                              </select>
+                         </div>
+                         <div class="mb-3">
+                              <label for="Students">Students List:</label>
+                              <select id="Students" name="student_name" class="form-select" required></select>
+                         </div>
+
+                         <div class="mb-3">
+                              <label for="Students">Student id:</label>
+                              <input type="text" id="studentId" class="form-control" placeholder="enter your Student id" required
+                                   name="student_id">
+                         </div>
+                         <div class="my-2 form-floating">
+                              <input type="text" name="student_pin" class="form-control" id="pin"
+                              placeholder="enter your Card Pin" required>
+                              <label for="pin">enter your Card Pin</label>
+                              
+                         </div>
+                         <button class=" my-2 w-100 btn btn-md btn-primary" type="submit" value="submit">
+                              View your result
+                         </button>
+
+                    </form>
                     </div>
                </div>
 

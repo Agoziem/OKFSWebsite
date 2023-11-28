@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import PhotoGallery,School,Management,Subscription,Header,FAQ,UpcomingEvents,Contact
+from .models import *
 from .forms import Contactform
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -29,6 +29,13 @@ def home_view(request):
 	'photos':homePhotos,
 	}
 	return render(request,'home.html',context)
+
+def teachers_view(request):
+	queryset= TopTeacher.objects.all()
+	context = {
+		"Teachers": queryset,
+    }
+	return render(request, "teachers_data.html", context)
 	
 def about_view(request):
 	queryset3=Header.objects.all()

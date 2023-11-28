@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from home.views import home_view,about_view,photo_gallery_view,home2_view,contact_form
+from home.views import *
 from django.urls import path,include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
@@ -10,6 +10,7 @@ urlpatterns = [
 	path('', home_view, name='home'),
     path('about/',about_view, name='about'),
     path('gallery/', photo_gallery_view, name='gallery'),
+    path('teachers/', teachers_view, name='teachers'),
     path('home/', home2_view, name='home2'),
     path('contact/', contact_form, name='contact'),
     path('admin/', admin.site.urls),
@@ -18,6 +19,7 @@ urlpatterns = [
     path('TMS/', include('TMS.urls')),
     path('Payments/', include('Payments.urls')),
     path('Admission/', include('Admission.urls')),
+    path('Accounts/', include('Accounts.urls')),
 ]
 
 # if settings.DEBUG:
