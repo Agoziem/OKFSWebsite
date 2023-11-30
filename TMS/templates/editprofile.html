@@ -2,7 +2,7 @@
 {% load static %}
 {% block content%}
 
-<section class="px-2 px-md-5 d-flex align-items-center flex-column">
+<section class="pt-4">
     <nav class="ms-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'TMS:Teachers_dashboard' %}">Dashboard</a></li>
@@ -10,8 +10,9 @@
         </ol>
     </nav>
     <hr>
+    <div class="px-2 px-md-5 d-flex align-items-center flex-column">
         <div class="text-center mb-2">
-                <h1 class="mt-4">edit Profile</h1>
+                <h1 class="mt-3">edit Profile</h1>
         </div>
         <div class="form-container  d-flex flex-column align-items-center ">
         <!--Profile Picture and Username and Id -->
@@ -144,6 +145,7 @@
             </form>
    
         </div>
+    </div>
    
 </section>
 

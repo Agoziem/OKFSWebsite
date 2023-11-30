@@ -15,7 +15,7 @@
                 <h1 class="mt-4">Class Attendance</h1>
                 <ol class="breadcrumb mb-4">
                     {% if teacher.FirstName == "None" %}
-                    <div><a href="{% url 'Teachers_portal:profile' teacher.id %}" class="text-decoration-none"> edit your Teachers Profile to perform futher Action </a></div>
+                    <div><a href="{% url 'TMS:profile' teacher.id %}" class="text-decoration-none"> edit your Teachers Profile to perform futher Action </a></div>
                     {% else %}
                     <li class="breadcrumb-item active">Welcome Teacher {{ request.user }}</li>
                     {% endif %} 

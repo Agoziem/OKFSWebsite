@@ -124,12 +124,12 @@
                             View Students
                         </a>
                         <a class="nav-link" href="{% url 'TMS:PublishResults' Classname=request.user.teacher.classFormed %}">
-                            <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-column"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Publish Result
                         </a>
                         <a class="nav-link" href="{% url 'TMS:mark_attendance' Classname=request.user.teacher.classFormed %}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Class Attendance
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-column"></i></div>
+                            Class Analytics
                         </a>
                         {% endif %}
                         <a class="nav-link" href="{% url 'TMS:profile' id=request.user.teacher.id %}">

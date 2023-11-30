@@ -70,7 +70,7 @@
             <h1 class="mt-4">Result Publishing</h1>
             <ol class="breadcrumb mb-4">
                 {% if teacher.FirstName == "None" %}
-                <div><a href="{% url 'Teachers_portal:profile' teacher.id %}" class="text-decoration-none"> edit your
+                <div><a href="{% url 'TMS:profile' teacher.id %}" class="text-decoration-none"> edit your
                         Teachers Profile to perform futher Action </a></div>
                 {% else %}
                 <li class="breadcrumb-item active">{{ class.Class }} Students Result Table</li>
