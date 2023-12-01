@@ -58,29 +58,31 @@ def result_computation_view(request,Classname,id):
 @login_required
 def get_students_result_view(request):
     data=json.loads(request.body)
-    classobject = Class.objects.get(Class=data['studentclass'])
-    subjectobject = Subject.objects.get(subject_name=data['studentsubject'])
-    term=Term.objects.get(term=data['selectedTerm'])
-    session=AcademicSession.objects.get(session=data['selectedAcademicSession'])
-    students = Students_Pin_and_ID.objects.filter(student_class=classobject)
     studentResults = []
-    
-    for studentresult in students:
-        student_result_details,created = Student_Result_Data.objects.get_or_create(Student_name=studentresult,Term=term,Academicsession=session)
-        student_result_object, created = Result.objects.get_or_create(Subject=subjectobject, students_result_summary=student_result_details)
+    try:
+        classobject = Class.objects.get(Class=data['studentclass'])
+        subjectobject = Subject.objects.get(subject_name=data['studentsubject'])
+        term=Term.objects.get(term=data['selectedTerm'])
+        session=AcademicSession.objects.get(session=data['selectedAcademicSession'])
+        students = Students_Pin_and_ID.objects.filter(student_class=classobject)
         
-        studentResults.append({
-            'Name': student_result_object.students_result_summary.Student_name.student_name,
-            '1sttest': student_result_object.FirstTest,
-            '1stAss': student_result_object.FirstAss,
-            'Project': student_result_object.Project,
-            'MidTermTest': student_result_object.MidTermTest,
-            '2ndTest': student_result_object.SecondAss,
-            '2ndAss': student_result_object.SecondTest,
-            'Exam': student_result_object.Exam,
-        })
-
-    return JsonResponse(studentResults, safe=False)
+        for studentresult in students:
+            student_result_details,created = Student_Result_Data.objects.get_or_create(Student_name=studentresult,Term=term,Academicsession=session)
+            student_result_object, created = Result.objects.get_or_create(Subject=subjectobject, students_result_summary=student_result_details)
+            
+            studentResults.append({
+                'Name': student_result_object.students_result_summary.Student_name.student_name,
+                '1sttest': student_result_object.FirstTest,
+                '1stAss': student_result_object.FirstAss,
+                'Project': student_result_object.Project,
+                'MidTermTest': student_result_object.MidTermTest,
+                '2ndTest': student_result_object.SecondAss,
+                '2ndAss': student_result_object.SecondTest,
+                'Exam': student_result_object.Exam,
+            })
+        return JsonResponse(studentResults, safe=False)
+    except:
+        return JsonResponse(studentResults, safe=False)
 
 @login_required
 def update_student_result_view(request):
@@ -272,7 +274,6 @@ def createstudent_view(request):
     classobject = Class.objects.get(Class=student_class)
     try:
         newStudent = Students_Pin_and_ID.objects.create(student_name=student_name,Sex=student_sex,student_class=classobject)
-        newStudentResult = Student_Result_Data.objects.create(Student_name=newStudent)
         context={
             'student_ID': newStudent.id, 
             'student_id': newStudent.student_id, 
@@ -324,6 +325,8 @@ def DeleteStudents_view(request):
         return JsonResponse({'error': 'something went wrong' }, safe=False)
 
 
+
+# Form teachers View for CRUD Students Results
 @login_required
 def PublishResults_view(request,Classname):
     Terms=Term.objects.all()

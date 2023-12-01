@@ -78,6 +78,40 @@
                 </ol>
             </div>         
             <div class="row justify-content-center">
+            <!-- display only for small Screen -->
+            <div class="col-md-3 pt-2 d-block d-md-none">
+                <form action="" id="getstudentresultform" class="mb-3 p-3" style="background-color: rgb(209 201 243 / 19%);">
+                    <input type="text" value="{{ class.Class }}" hidden>
+                    <div class="mb-2">
+                        <label>Subject: </label>
+                        <select class="form-select" name="subject" required>
+                            <option value="" disabled selected>Select your Class</option>
+                            {% for subject in subjects_taught_for_class %}
+                            <option value="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label for="academicSessionSelect">Academic Session:</label>
+                        <select id="academicSessionSelect" name="AcademicSession" class="form-select" required>
+                            <option value="" disabled selected>Select the Academic Session</option>
+                            {% for Session in academic_session %}
+                            <option value="{{ Session.session }}">{{ Session.session }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="termSelect">Term:</label>
+                        <select id="termSelect" name="Term" class="form-select" required>
+                            <option value="" disabled selected>Select the Term</option>
+                            {% for Term in Terms %}
+                            <option value="{{ Term.term }}">{{ Term.term }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-4">Submit Subject</button>
+                </form>
+            </div>
             <div class="col-md-8 ">
                 <div class="alertcontainer mb-2">
                 </div>
@@ -143,30 +177,34 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 pt-3 pt-md-0">
+            <!-- display only for big Screen -->
+            <div class="col-md-3 pt-3 pt-md-0 d-none d-md-block">
                 <form action="" id="getstudentresultform" class="mb-3 p-3" style="background-color: rgb(209 201 243 / 19%);">
                     <input type="text" value="{{ class.Class }}" hidden>
                     <div class="mb-2">
                         <label>Subject: </label>
                         <select class="form-select" name="subject" required>
-                             {% for subject in subjects_taught_for_class %}
-                            <option value="{{ subject.subject_name }}" {% if forloop.first %}selected{% endif %}>{{ subject.subject_name }}</option>
+                            <option value="" disabled selected>Select your Class</option>
+                            {% for subject in subjects_taught_for_class %}
+                            <option value="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="mb-2">
                         <label for="academicSessionSelect">Academic Session:</label>
                         <select id="academicSessionSelect" name="AcademicSession" class="form-select" required>
+                            <option value="" disabled selected>Select the Academic Session</option>
                             {% for Session in academic_session %}
-                            <option value="{{ Session.session }}" {% if forloop.first %}selected{% endif %}>{{ Session.session }}</option>
+                            <option value="{{ Session.session }}">{{ Session.session }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="mb-4">
                         <label for="termSelect">Term:</label>
                         <select id="termSelect" name="Term" class="form-select" required>
+                            <option value="" disabled selected>Select the Term</option>
                             {% for Term in Terms %}
-                            <option value="{{ Term.term }}" {% if forloop.first %}selected{% endif %}>{{ Term.term }}</option>
+                            <option value="{{ Term.term }}">{{ Term.term }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -236,6 +274,71 @@
                     </ul>
                 </div>
         
+            </div>
+            <div class="col-md-3 pt-3 pt-md-0 d-block d-md-none" >
+                <button id="publishbtn" class="btn btn-warning text-light w-100 mb-3 shadow-sm">Publish Result <i
+                        class="fa-solid fa-right-from-bracket ms-2"></i></button>
+
+                <button class="btn btn-success w-100 mb-3 shadow-sm">Print to Excel <i
+                        class="fa-solid fa-file-excel ms-2"></i></button>
+
+                <!-- checkboxes to hide rows -->
+                <!-- <button class="btn btn-danger w-100 shadow-sm mb-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapserows" aria-expanded="false" aria-controls="collapserows">
+                    remove students <i class="fa-regular fa-trash-can text-light ms-1"></i>
+                </button> -->
+                <!-- <div class="my-3 mt-2 collapse" id="collapserows">
+                    <ul class="list-group rowgroup">
+    
+                    </ul>
+                </div> -->
+
+                <!-- checkboxes to hide columns -->
+                <button class="btn btn-secondary w-100 shadow-sm" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Hide/Show Columns
+                </button>
+                <div class="my-3 collapse" id="collapseExample">
+                    <!-- this has to be dyamic as well -->
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-secondary">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="UnhideAllCheckbox">
+                            <label class="form-check-label" for="UnhideAllCheckbox"> hide All Columns</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="1" id="firstCheckbox">
+                            <label class="form-check-label" for="firstCheckbox">First Test</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="2" id="secondCheckbox">
+                            <label class="form-check-label" for="secondCheckbox">First Ass</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="3" id="Projectcheckbox">
+                            <label class="form-check-label" for="Projectcheckbox">Project</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="4" id="thirdCheckbox">
+                            <label class="form-check-label" for="thirdCheckbox">Mid Term Test</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="5" id="fouthcheckbox">
+                            <label class="form-check-label" for="fouthcheckbox">Second Test</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="6" id="fifthcheckbox">
+                            <label class="form-check-label" for="fifthcheckbox">Second Ass</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="7" id="sixthcheckbox">
+                            <label class="form-check-label" for="sixthcheckbox">CA</label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input me-2 column-checkbox" type="checkbox" value="8" id="seventhcheckbox">
+                            <label class="form-check-label" for="seventhcheckbox">Exam</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         </div>
