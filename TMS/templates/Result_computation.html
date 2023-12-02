@@ -85,7 +85,7 @@
                     <div class="mb-2">
                         <label>Subject: </label>
                         <select class="form-select" name="subject" required>
-                            <option value="" disabled selected>Select your Class</option>
+                            <option value="" disabled selected>Select your Subject</option>
                             {% for subject in subjects_taught_for_class %}
                             <option value="{{ subject.subject_name }}">{{ subject.subject_name }}</option>
                             {% endfor %}
