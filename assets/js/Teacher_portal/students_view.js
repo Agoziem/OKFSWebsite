@@ -104,7 +104,7 @@ function removefromserver(studentidtoremove) {
 function setUIState() {
     modallabel.innerText = "Add Student Record"
     modalformsubmitbtn.innerText = 'Add Student'
-    const tablesrows = Array.from(datatablesSimple.lastElementChild.children);
+    const tablesrows = Array.from(datatablesSimple.firstElementChild.nextElementSibling.children);
     if (tablesrows.length === 1 && tablesrows[0].firstElementChild.innerText === 'No entries found') {
         removestudentsactionbtn.classList.add('d-none')
         removeallstudentactionbtn.classList.add('d-none')
