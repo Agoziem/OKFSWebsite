@@ -1,12 +1,16 @@
 const inputStudentResultModal = document.querySelector('#inputStudentResultModal')
 const inputform = inputStudentResultModal.querySelector('#inputStudentResultform')
 const getstudentresultform = document.querySelector('#getstudentresultform')
+const rowcheckboxes = document.querySelector('.rowgroup');
 const subjectselect = getstudentresultform.querySelector('select');
 const classinput = getstudentresultform.querySelector('input');
 const termSelect = document.getElementById('termSelect');
 const academicSessionSelect = document.getElementById('academicSessionSelect');
-const rowcheckboxes = document.querySelector('.rowgroup');
-document.querySelector("#publishbtn").addEventListener('click', exportTableToJSON);
+
+
+document.querySelectorAll(".publishbtn").forEach((btn) => {
+     btn.addEventListener('click', exportTableToJSON);
+    })
 
 let classdata = {
     studentclass: classinput.value,
