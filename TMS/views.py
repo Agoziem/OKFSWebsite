@@ -123,7 +123,7 @@ def submitallstudentresult_view(request):
         studentResult = Result.objects.get(students_result_summary=student_result_details, Subject=subjectobject)
         studentResult.FirstTest=result['1sttest']
         studentResult.FirstAss=result['1stAss']
-        studentResult.MidTermTest=result['Project']
+        studentResult.Project=result['Project']
         studentResult.MidTermTest=result['MidTermTest']
         studentResult.SecondAss=result['2ndTest']
         studentResult.SecondTest=result['2ndAss']
