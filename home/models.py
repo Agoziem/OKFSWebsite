@@ -30,6 +30,7 @@ class Management(models.Model):
 		return str(self.Profilename)
 
 class TopTeacher(models.Model):
+	S_N=models.CharField(max_length= 300, blank=True)
 	Profileimage=models.ImageField(upload_to='assets', blank=True)
 	Profilename= models.CharField(max_length= 300, blank=True)
 	Role= models.CharField(max_length= 300, blank=True)
