@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import *
-from home.models import School
 from django.contrib.auth.decorators import login_required
 import base64
 base64.encodestring = base64.encodebytes

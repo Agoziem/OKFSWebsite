@@ -1,7 +1,6 @@
 from django.shortcuts import render,get_object_or_404, redirect
 from .models import Payment,Amount
 from .forms import PaymentForm
-from home.models import School
 import base64
 base64.encodestring = base64.encodebytes
 base64.decodestring = base64.decodebytes
