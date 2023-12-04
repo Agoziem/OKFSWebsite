@@ -71,6 +71,13 @@ class PhotoGallery(models.Model):
 	
 	def __str__(self):
 		return str(self.Description)
+	
+	def imageURL(self):
+		try:
+			url= self.Photo.url
+		except:
+			url=""
+		return url
 		
 class UpcomingEvents(models.Model):
 	Flier=models.ImageField(upload_to='assets/Eventsflier', blank=True)

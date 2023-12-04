@@ -14,7 +14,7 @@
         <div class="grid">
                 {% for photo in photos %}
                 <div class="card rounded shadow-sm">
-                        <a href="{{ photo.Photo.url }}"><img src="{{ photo.Photo.url }}" class="card-img-top" alt="..."> </a> 
+                        <a href="{{ photo.imageURL }}"><img src="{{ photo.imageURL }}" class="card-img-top" alt="..."> </a> 
                          <div class="card-body">
                            <p class="card-text">{{ photo.Description }}</p>
                          </div>
