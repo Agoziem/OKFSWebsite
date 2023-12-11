@@ -93,7 +93,7 @@ def update_student_result_view(request):
     classobject= Class.objects.get(Class=Classdata)
     term=Term.objects.get(term=data['classdata']['selectedTerm'])
     session=AcademicSession.objects.get(session=data['classdata']['selectedAcademicSession'])
-    print(student)
+    print(f'is working {student}')
     studentobject= Students_Pin_and_ID.objects.get(student_name=student,student_class=classobject)
     subjectobject = Subject.objects.get(subject_name=subject)
     student_result_details = Student_Result_Data.objects.get(Student_name=studentobject,Term=term,Academicsession=session)
