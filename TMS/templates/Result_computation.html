@@ -218,6 +218,7 @@
                                     <th scope="col">Grade</th>
                                     <th scope="col">Position</th>
                                     <th scope="col">Remark</th>
+                                    <th scope="col">studentID</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -329,12 +330,14 @@
                         <label for="student_name" class="form-label">Full name</label>
                         <input type="text" class="form-control" id="student_name" name="Name" readonly>
                     </div>
+                    
+                    <input type="text" class="form-control" id="studentID" name="studentID" hidden>
+                    
                     <!-- Scores and Grades -->
                     <div class="mb-3 row g-2 justify-content-between">
                         <div class="col-6">
                             <label for="FirstTest" class="form-label">Resumption Test (5)</label>
                             <input type="number" class="form-control" id="FirstTest" name="1sttest" min="0" max="5">
-
                         </div>
                         <div class="col-6">
                             <label for="FirstAss" class="form-label">First Ass (5)</label>

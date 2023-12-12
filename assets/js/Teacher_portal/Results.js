@@ -286,6 +286,7 @@ function populatetable(tabledata) {
             <td>${data['Grade'] || '-'}</td>
             <td>${data['Position'] || '-'}</td>
             <td>${data['Remarks'] || '-'}</td>
+            <td>${data['studentID']}</td>
         </tr>`
     ).join('');
 }
@@ -634,6 +635,9 @@ class DataTable {
 
         const studentnameinput = inputform.querySelector('#student_name')
         studentnameinput.value = tabledata[1].innerText
+
+        const studentidinput = inputform.querySelector('#studentID')
+        studentidinput.value = tabledata[14].innerText
 
         const FirstTest = inputform.querySelector('#FirstTest')
         FirstTest.value = tabledata[2].innerText
