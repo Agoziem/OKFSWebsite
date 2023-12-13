@@ -95,7 +95,7 @@ def update_student_result_view(request):
     classobject= Class.objects.get(Class=Classdata)
     term=Term.objects.get(term=data['classdata']['selectedTerm'])
     session=AcademicSession.objects.get(session=data['classdata']['selectedAcademicSession'])
-    studentobject= Students_Pin_and_ID.objects.get(student_id=studentID,student_class=classobject)
+    studentobject= Students_Pin_and_ID.objects.get(student_id=studentID,student_name=student,student_class=classobject)
     subjectobject = Subject.objects.get(subject_name=subject)
     student_result_details = Student_Result_Data.objects.get(Student_name=studentobject,Term=term,Academicsession=session)
     studentResult = Result.objects.get(students_result_summary=student_result_details, Subject=subjectobject)
@@ -120,7 +120,7 @@ def submitallstudentresult_view(request):
     for result in data['data']:
         classobject= Class.objects.get(Class=Classdata)
         subjectobject = Subject.objects.get(subject_name=subject)
-        studentobject= Students_Pin_and_ID.objects.get(student_id=result['studentID'],student_class=classobject)
+        studentobject= Students_Pin_and_ID.objects.get(student_id=result['studentID'],student_name=result['Name'],student_class=classobject)
         student_result_details = Student_Result_Data.objects.get(Student_name=studentobject,Term=term,Academicsession=session)
         studentResult = Result.objects.get(students_result_summary=student_result_details, Subject=subjectobject)
         studentResult.FirstTest=result['1sttest']
