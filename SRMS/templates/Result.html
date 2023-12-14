@@ -69,6 +69,11 @@
             <li class="nav-item">
               <a href="{% url 'gallery' %}" class="nav-link text-light">Photo Gallery</a>
             </li>
+            {% if user.is_superuser %}
+            <li class="nav-item me-2">
+              <a href="{% url 'cardactivate' %}">Students Card</a>
+            </li>
+            {% endif %}
             {% if request.user.is_staff %}
             <li class="nav-item me-2">
               <a href="/admin" class="nav-link text-light">Admin</a>
@@ -120,7 +125,13 @@
             <a href="{% url 'gallery' %}" class="text-decoration-none text-light"><i class="bi bi-images me-3"
                 style="color:#e60000"></i>Photo Gallery</a>
           </li>
-
+          {% if user.is_superuser %}
+          <li class="list-group-item" style="background-color:#00072B;">
+            <a href="{% url 'cardactivate' %}"><i class="bi bi-lock me-3"
+                style="color:#e60000"></i>Students Card
+              </a>
+          </li>
+          {% endif %}
           {% if request.user.is_staff %}
           <li class="list-group-item" style="background-color:#00072B;">
             <a href="/admin" class="text-decoration-none text-light"><i class="bi bi-lock me-3"

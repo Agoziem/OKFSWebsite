@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from .models import *
+from SRMS.models import Students_Pin_and_ID
 from .forms import Contactform
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 def home_view(request):
 	queryset1=School.objects.all()
@@ -29,6 +31,15 @@ def home_view(request):
 	'photos':homePhotos,
 	}
 	return render(request,'home.html',context)
+
+def student_card_view(request):
+	P = Paginator(Students_Pin_and_ID.objects.all(),21)
+	page= request.GET.get('page')
+	students = P.get_page(page)
+	context = {
+        "students":students
+    }
+	return render(request,'Card_Activation.html',context)
 
 def teachers_view(request):
 	queryset= TopTeacher.objects.all()
