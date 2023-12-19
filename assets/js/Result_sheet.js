@@ -27,9 +27,11 @@ result_btn.addEventListener('click', () => {
     var opt =
     {
         margin: 0.2,
-        filename: 'Result' + '.pdf',
+        filename: 'OKFS Result' + '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 4 },
+        html2canvas: { scale: 4 ,
+        useCORS:true
+      },
         jsPDF: { unit: 'in', format: 'A3', orientation: 'Portrait' }
     };
     // New Promise-based usage:
@@ -45,3 +47,4 @@ result_btn.addEventListener('click', () => {
           });
       });
 }
+

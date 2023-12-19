@@ -143,12 +143,15 @@
     </div>
 
     <div id="container_result">
+
+      <!-- The School Logo -->
       <section>
         <div class="container">
           <img src="{% static 'OKFS1.png' %}" class="schoollogo" alt="..." style="width:100%; max-width:200px;">
         </div>
       </section>
 
+       <!-- The School Name and Result details -->
       <section class="px-2 pt-2">
         <div class="text-center  mb-0">
           <h4 class="mt-2">{{ Result_details.Term }} Result</h4>
@@ -158,7 +161,9 @@
             <div class="rule2"></div>
           </div>
         </div>
+      </section>
 
+        <!-- Result details -->
         <section class="details_container ">
           <div class="details container bg-light p-4 rounded d-flex">
             <div>
@@ -167,16 +172,15 @@
               <span class="fw-bold">Academic Session : {{ Result_details.Academicsession }}</span><br>
               <span class="fw-bold">Total score :</span> {{ Result_details.TotalScore }}<br>
             </div>
-
             <div class="ms-5">
               <span class="fw-bold">Average :</span> {{ Result_details.Average|floatformat:2 }}<br>
               <span class="fw-bold">Position :</span> {{ Result_details.Position }}<br>
               <span class="fw-bold">Number in Class :</span> {{ Result_details.Totalnumber }}
             </div>
-
           </div>
         </section>
 
+        <!-- Result table -->
         <section class="px-4 pt-2">
           <table>
             <thead>
@@ -219,10 +223,9 @@
             </tbody>
           </table>
         </section> 
-      </section>
+      
 
       <!-- Annual Results Starts here  -->
-
       {% if Annual_Result %}
       <section class="px-2 pt-2">
         <div class="container text-center  mb-0">
@@ -285,6 +288,7 @@
         </div>
       </section>
       {% endif %}
+      
     </div>
 
 
@@ -307,6 +311,7 @@
         </a>
       </div>
     </section>
+
   </main>
   <footer class="py-3" style="background-color: #00072B; color:white;">
     <ul class="nav justify-content-center pb-3 mb-1">

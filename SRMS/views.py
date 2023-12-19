@@ -31,9 +31,10 @@ def classes_view(request):
 		try:
 			resultTerm=Term.objects.get(term=term)
 			resultSession= AcademicSession.objects.get(session=academic_session)
-			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_id=student_id,student_pin=Pin)
+			studentClass=Class.objects.get(Class=request.POST['student_class'])
+			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_class=studentClass,student_id=student_id,student_pin=Pin,)
 			if Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession).exists():
-				Student_Result_details=Student_Result_Data.objects.get(Student_name=student,Term=resultTerm,Academicsession=resultSession)
+				Student_Result_details=Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession).first()
 				Student_Results=Result.objects.filter(students_result_summary=Student_Result_details)
 
 				# for Newsletter ///
