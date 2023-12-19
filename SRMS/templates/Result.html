@@ -71,7 +71,7 @@
             </li>
             {% if user.is_superuser %}
             <li class="nav-item me-2">
-              <a href="{% url 'cardactivate' %}">Students Card</a>
+              <a href="{% url 'cardactivate' %}" class="nav-link text-light">Students Card</a>
             </li>
             {% endif %}
             {% if request.user.is_staff %}
@@ -127,7 +127,7 @@
           </li>
           {% if user.is_superuser %}
           <li class="list-group-item" style="background-color:#00072B;">
-            <a href="{% url 'cardactivate' %}"><i class="bi bi-lock me-3"
+            <a href="{% url 'cardactivate' %}" class="text-decoration-none text-light"><i class="bi bi-lock me-3"
                 style="color:#e60000"></i>Students Card
               </a>
           </li>
@@ -288,7 +288,7 @@
         </div>
       </section>
       {% endif %}
-      
+
     </div>
 
 
