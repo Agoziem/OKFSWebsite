@@ -29,8 +29,10 @@ result_btn.addEventListener('click', () => {
         margin: 0.2,
         filename: 'OKFS Result' + '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 4 ,
-        useCORS:true
+        html2canvas: { 
+          scale: 4 ,
+          useCORS: true,
+          allowTaint: true,
       },
         jsPDF: { unit: 'in', format: 'A3', orientation: 'Portrait' }
     };
