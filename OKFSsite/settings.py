@@ -16,8 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-
-DEBUG_ENV = config('DEBUG_ENV', default=False, cast=bool)
+DEBUG_ENV = False
 
 ALLOWED_HOSTS = ['127.0.0.1','www.oceanofknowledgefoundationschool.com','oceanofknowledgefoundationschool.com','www.oceanofknowledgefoundationschool.org','web-production-741b.up.railway.app']
 
