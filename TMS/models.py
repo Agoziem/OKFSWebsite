@@ -10,6 +10,7 @@ import secrets
 ROLE_CHOICES = [
         ('Teacher', 'Teacher'),
         ('Formteacher', 'Formteacher'),
+		('Admin', 'Admin'),
     ]
 
 class Teacher(models.Model):

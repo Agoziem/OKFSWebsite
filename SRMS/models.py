@@ -127,6 +127,7 @@ class Student_Result_Data(models.Model):
 	Remark=models.CharField(max_length=100, blank=True,null=True , default="-")
 	Term=models.ForeignKey(Term,on_delete=models.CASCADE,blank=True,null=True)
 	Academicsession=models.ForeignKey(AcademicSession,on_delete=models.CASCADE,blank=True,null=True)
+	published=models.BooleanField(default=False)
 
 	def __str__(self):
 		return str(self.Student_name.student_name)
@@ -148,6 +149,7 @@ class Result(models.Model):
 	Grade=models.CharField(max_length=100, blank=True ,default="-")
 	SubjectPosition=models.CharField(max_length=100, blank=True ,default="-")
 	Remark=models.CharField(max_length= 100, blank=True ,default="-")
+	published=models.BooleanField(default=False)
 
 	def __str__(self):
 		return str(self.students_result_summary.Student_name.student_name +"-"+ self.Subject.subject_name)
@@ -159,6 +161,7 @@ class AnnualStudent(models.Model):
 	Totalnumber=models.CharField(max_length=100, blank=True)
 	Average=models.CharField(max_length=100, blank=True)
 	Position=models.CharField(max_length=100, blank=True)
+	published=models.BooleanField(default=False)
 
 	def __str__(self):
 		return str(self.Student_name.student_name)
@@ -175,7 +178,7 @@ class AnnualResult(models.Model):
 	Grade=models.CharField(max_length=100, blank=True,null=True,default="-")
 	SubjectPosition=models.CharField(max_length=100, blank=True,null=True,default="-")
 	Remark=models.CharField(max_length= 100, blank=True,null=True, default="-")
-
+	published=models.BooleanField(default=False)
 	def __str__(self):
 		return str(self.students_result_data.Student_name.student_name +"-"+ self.Subject.subject_name)
 
