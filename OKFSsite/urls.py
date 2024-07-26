@@ -11,6 +11,7 @@ urlpatterns = [
     path('about/',about_view, name='about'),
     path('gallery/', photo_gallery_view, name='gallery'),
     path('activate/',student_card_view, name='cardactivate'),
+    path('regeneratepins/',regenerate_all_pin_view, name='regenerate'),
 
     path('teachers/', teachers_view, name='teachers'),
     path('home/', home2_view, name='home2'),

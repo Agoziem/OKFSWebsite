@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import JsonResponse
+import random
 
 def home_view(request):
 	queryset1=School.objects.all()
@@ -40,6 +42,19 @@ def student_card_view(request):
         "students":students
     }
 	return render(request,'Card_Activation.html',context)
+
+
+def random_14_digit():
+	return str(random.randint(10**13, 10**14 - 1))
+
+def regenerate_all_pin_view(request):
+	try:
+		for student in Students_Pin_and_ID.objects.all():
+			student.student_pin = random_14_digit()
+			student.save()
+		return JsonResponse({'message':'All pins have been regenerated successfully'}, safe=False)
+	except:
+		return JsonResponse({'message':'An error occured, please try again later'}, safe=False)
 
 def teachers_view(request):
 	queryset= TopTeacher.objects.all()
