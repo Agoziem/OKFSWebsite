@@ -93,22 +93,16 @@ function saveformSelections() {
     subjectselect.options[subjectselect.selectedIndex].value;
   // check if the studentclass is Jss3A,Jss3B,Jss3C & jss3B , and the term selected is 3rdTerm
   // then make the Exam over 100
-  if (
-    (classdata.studentclass === "Jss3A" ||
-      classdata.studentclass === "Jss3B" ||
-      classdata.studentclass === "Jss3C" ||
-      classdata.studentclass === "Jss3D") &&
-    termSelect.value === "3rd Term"
-  ) {
+  if (termSelect.value == "3rd Term") {
     Examforminput.innerHTML = "";
     Examforminput.innerHTML = `
                             <label for="Exam" class="form-label">Exam Score (100)</label>
-                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="100">`;
+                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">`;
   } else {
     Examforminput.innerHTML = "";
     Examforminput.innerHTML = `
                             <label for="Exam" class="form-label">Exam Score (60)</label>
-                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="60">`;
+                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">`;
   }
   readJsonFromFile();
 }
@@ -146,22 +140,16 @@ function loadsavedSelection() {
 
   // check if the studentclass is Jss3A,Jss3B,Jss3C & jss3B , and the term selected is 3rdTerm
   // then make the Exam over 100
-  if (
-    (classdata.studentclass === "Jss3A" ||
-      classdata.studentclass === "Jss3B" ||
-      classdata.studentclass === "Jss3C" ||
-      classdata.studentclass === "Jss3D") &&
-    termSelect.value === "3rd Term"
-  ) {
+  if (termSelect.value === "3rd Term") {
     Examforminput.innerHTML = "";
     Examforminput.innerHTML = `
                             <label for="Exam" class="form-label">Exam Score (100)</label>
-                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="100">`;
+                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">`;
   } else {
     Examforminput.innerHTML = "";
     Examforminput.innerHTML = `
                             <label for="Exam" class="form-label">Exam Score (60)</label>
-                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="60">`;
+                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">`;
   }
   readJsonFromFile();
 }
