@@ -20,6 +20,7 @@ const rowcheckboxes = document.querySelector(".rowgroup");
 const subjectselect = getstudentresultform.querySelector("select");
 const classinput = getstudentresultform.querySelector("input");
 const termSelect = document.getElementById("termSelect");
+const Examforminput = document.querySelector("#Examinput");
 const academicSessionSelect = document.getElementById("academicSessionSelect");
 const alertcontainer1 = document.querySelector(".alertcontainer1"); // for small screen
 const alertcontainer2 = document.querySelector(".alertcontainer2"); // for large screen
@@ -50,32 +51,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   document
-  .getElementById("inputStudentResultform")
-  .addEventListener("submit", (e) => {
-    e.preventDefault();
-    const formData = new FormData(inputform);
-    const formDataObject = {};
-    formData.forEach((value, key) => {
-      formDataObject[key] = value;
+    .getElementById("inputStudentResultform")
+    .addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(inputform);
+      const formDataObject = {};
+      formData.forEach((value, key) => {
+        formDataObject[key] = value;
+      });
+      classdata.studentsubject =
+        subjectselect.options[subjectselect.selectedIndex].value;
+      (classdata.selectedTerm = termSelect.value),
+        (classdata.selectedAcademicSession = academicSessionSelect.value),
+        updatestudentresult(
+          formDataObject,
+          classdata,
+          readJsonFromFile,
+          displayalert
+        );
+      $(inputStudentResultModal).modal("hide");
     });
-    classdata.studentsubject =
-    subjectselect.options[subjectselect.selectedIndex].value;
-    (classdata.selectedTerm = termSelect.value),
-    (classdata.selectedAcademicSession = academicSessionSelect.value),
-    updatestudentresult(
-      formDataObject,
-      classdata,
-      readJsonFromFile,
-      displayalert
-    );
-    $(inputStudentResultModal).modal("hide");
-  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   loadsavedSelection();
-})
-
+});
 
 // ---------------------------------------------------
 // Function to save selected values to localStorage
@@ -91,6 +91,25 @@ function saveformSelections() {
   classdata.selectedAcademicSession = academicSessionSelect.value;
   classdata.studentsubject =
     subjectselect.options[subjectselect.selectedIndex].value;
+  // check if the studentclass is Jss3A,Jss3B,Jss3C & jss3B , and the term selected is 3rdTerm
+  // then make the Exam over 100
+  if (
+    (classdata.studentclass === "Jss3A" ||
+      classdata.studentclass === "Jss3B" ||
+      classdata.studentclass === "Jss3C" ||
+      classdata.studentclass === "Jss3D") &&
+    termSelect.value === "3rd Term"
+  ) {
+    Examforminput.innerHTML = "";
+    Examforminput.innerHTML = `
+                            <label for="Exam" class="form-label">Exam Score (100)</label>
+                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="100">`;
+  } else {
+    Examforminput.innerHTML = "";
+    Examforminput.innerHTML = `
+                            <label for="Exam" class="form-label">Exam Score (60)</label>
+                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="60">`;
+  }
   readJsonFromFile();
 }
 
@@ -125,6 +144,25 @@ function loadsavedSelection() {
     classdata.studentsubject = subjectselect.value;
   }
 
+  // check if the studentclass is Jss3A,Jss3B,Jss3C & jss3B , and the term selected is 3rdTerm
+  // then make the Exam over 100
+  if (
+    (classdata.studentclass === "Jss3A" ||
+      classdata.studentclass === "Jss3B" ||
+      classdata.studentclass === "Jss3C" ||
+      classdata.studentclass === "Jss3D") &&
+    termSelect.value === "3rd Term"
+  ) {
+    Examforminput.innerHTML = "";
+    Examforminput.innerHTML = `
+                            <label for="Exam" class="form-label">Exam Score (100)</label>
+                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="100">`;
+  } else {
+    Examforminput.innerHTML = "";
+    Examforminput.innerHTML = `
+                            <label for="Exam" class="form-label">Exam Score (60)</label>
+                            <input type="number" class="form-control" id="Examinput" name="Exam" min="0" max="60">`;
+  }
   readJsonFromFile();
 }
 
@@ -193,8 +231,8 @@ function exportTableToJSON() {
   classdata.studentclass = classinput.value;
   (classdata.selectedTerm = termSelect.value),
     (classdata.selectedAcademicSession = academicSessionSelect.value),
-    submitallstudentresult(url,datatosubmit, classdata, displayalert);
-    updateResultBadge("setbadge", datatosubmit[0]);
+    submitallstudentresult(url, datatosubmit, classdata, displayalert);
+  updateResultBadge("setbadge", datatosubmit[0]);
 }
 
 // -----------------------------------------------------
@@ -226,7 +264,6 @@ function displayalert(type, message) {
     alertdiv.remove();
   }, 5000);
 }
-
 
 // ------------------------------------------------------------------------------------------------
 // function to update the result badge

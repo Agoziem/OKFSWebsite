@@ -266,7 +266,7 @@ class StudentResultDatatable {
     const SecondTest = this.inputform.querySelector("#SecondTest");
     SecondTest.value = tabledata[7].innerText;
 
-    const Exam = this.inputform.querySelector("#Exam");
+    const Exam = this.inputform.querySelector("#Examinput");
     Exam.value = tabledata[9].innerText;
 
     $(this.inputStudentResultModal).modal("show");
