@@ -65,7 +65,7 @@ class AnnualStudentAdmin(admin.ModelAdmin):
 
 @admin.register(AnnualResult)
 class AnnualResultAdmin(admin.ModelAdmin):
-    list_display = ('students_result_data', 'Subject')
-    ordering = ('students_result_data', 'Subject')
-    search_fields = ('students_result_data__Student_name__student_class', 'Subject__subject_name')
-    list_filter = ('students_result_data__Student_name__student_class', 'Subject__subject_name')
+    list_display = ('Student_name', 'Subject')
+    ordering = ('Student_name', 'Subject')
+    search_fields = ('Student_name', 'Subject__subject_name')
+    list_filter = ('Student_name', 'Subject__subject_name')
