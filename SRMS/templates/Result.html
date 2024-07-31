@@ -237,19 +237,13 @@
         </div>
 
         <div class="container bg-light p-5 rounded" id="details">
-          <span class="fw-bold">Class :</span> {{ AnnualStudent.Class }}<br>
-          <span class="fw-bold">Term :</span> {{ AnnualStudent.Term }}<br>
-          <span class="fw-bold">Session :</span> {{ AnnualStudent.Academicsession }}<br>
+          <span class="fw-bold">Session :</span> {{ AnnualStudent.academicsession }}<br>
           <span class="fw-bold">Total score :</span> {{ AnnualStudent.TotalScore|floatformat:2 }}<br>
           <span class="fw-bold">Average :</span> {{ AnnualStudent.Average|floatformat:2 }}<br>
           <span class="fw-bold">Position :</span> {{ AnnualStudent.Position }}<br>
           <span class="fw-bold">Number in Class :</span>{{ AnnualStudent.Totalnumber }}<br>
           <span class="fw-bold">Principal's Verdict:</span>
-          {% if PromotionVerdict >= 40 %}
-          Promoted
-          {% else %}
-          Not Promoted
-          {% endif %}
+          <p>{{ AnnualStudent.Verdict }}</p>
         </div>
 
         <div class="container-fluid">
