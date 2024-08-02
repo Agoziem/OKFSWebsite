@@ -170,12 +170,19 @@ def annual_result_computation_view(request):
                 termsobject[term.term] = student_result.Total
             except (Student_Result_Data.DoesNotExist, Result.DoesNotExist):
                 continue
-        students_annuals.append({
-            "studentID": student.student_id,
-            'Name': student.student_name,
-            'terms': termsobject,
-            'published': student_annual_details.published
-        })
+            except Exception as e:
+                print(str(e))
+                continue
+        try:
+            students_annuals.append({
+                "studentID": student.student_id,
+                'Name': student.student_name,
+                'terms': termsobject,
+                'published': student_annual_details.published
+            })
+        except Exception as e:
+            print(str(e))
+            continue
     
     return JsonResponse(students_annuals, safe=False)
 
