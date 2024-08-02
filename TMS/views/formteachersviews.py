@@ -204,7 +204,8 @@ def annual_class_computation_view(request):
     final_list = []
     for student in students:
         studentdict={
-            'Name':student.student_name
+            'Name':student.student_name,
+            "subjects":[]
         }
         for subobject in subjects_allocated.subjects.all():
             subject = {}
@@ -221,7 +222,7 @@ def annual_class_computation_view(request):
                 subject['subject_name'] = subobject.subject_name
                 subject['Average'] = "-"
                 subject['published'] = False
-            studentdict[subobject.subject_code] = subject
+            studentdict['subjects'].append(subject)
             studentdict['published'] = studentAnnual.published
         final_list.append(studentdict)
     return JsonResponse(final_list, safe=False)

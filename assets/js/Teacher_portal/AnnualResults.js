@@ -94,6 +94,7 @@ async function readJsonFromFile() {
     const jsonData = await getannualresultdata(classdata);
     const studentHandler = new AnnualResulthandler(jsonData);
     const studentsWithCalculatedFields = studentHandler.getStudents();
+    console.log(studentsWithCalculatedFields);
     studentResult = studentsWithCalculatedFields;
     updateResultBadge("update", studentsWithCalculatedFields[0]);
     populatetable(studentsWithCalculatedFields);
