@@ -75,7 +75,6 @@ function loadSelection() {
 async function readJsonFromFile() {
   try {
     const jsonData = await getannualclassresult(classdata);
-    console.log(jsonData);
     const studentHandler = new AnnualClassResultHandler(jsonData);
     const studentsWithCalculatedFields = studentHandler.getStudents();
     ClassResult = studentsWithCalculatedFields;
