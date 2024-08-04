@@ -32,6 +32,8 @@ class ClassResultHandler {
     return total;
   }
 
+  // 
+
   // this has to be Calulated dynamically
   calculateAverage(student) {
     let validSubjectsCount = student.subjects.reduce((count, subject) => {
