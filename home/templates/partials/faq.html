@@ -1,0 +1,91 @@
+<!-- FAQ -->
+{% load static %}
+<section id="FAQ" class="p-2 pb-4 my-4 bg-light text-dark" style="background-color:#F1F6FF;">
+    <div class="container">
+      <div class="row justify-content-between align-items-start">
+
+        <!-- UPCOMING EVENTS -->
+        <div class="col-md pt-3">
+          <h5 class="text-center fw-bold">UPCOMING EVENTS</h5>
+          <div id="events">
+            {% if events %}
+            <ol class="list-group-flush  bg-light p-0">
+              {% for program in events %}
+              <li class="list-group-item d-flex align-items-center">
+                <div class="ms-2 ">
+                  <h4 class="text-start"> {{ program.Eventtitle}}</h4>
+                  <p>
+                    <span class="fw-bold">{{ program.EventTopic}}</span><br>
+                    <span class="fw-bold"> {{ program.Eventspeaker_Chairman }}</span>
+                  </p>
+                  <p class="small">
+                    <span class="fw-bold"><i class="bi bi-clock-fill me-3"></i></span>{{program.Eventtime }}<br>
+                    <span class="fw-bold"><i class="bi bi-calendar-event-fill me-3"></i></span>{{program.Eventdate }}<br>
+                    <span class="fw-bold"><i class="bi bi-geo-alt-fill me-3"></i></span>{{program.Eventvenue }}<br>
+                  </p>
+                </div>
+                {% if not program.Flier %}
+                <div class="ms-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" fill="currentColor"
+                    class="bi bi-file-earmark-image" viewBox="0 0 16 16">
+                    <path d="M6.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                    <path
+                      d="M14 14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5V14zM4 1a1 1 0 0 0-1 1v10l2.224-2.224a.5.5 0 0 1 .61-.075L8 11l2.157-3.02a.5.5 0 0 1 .76-.063L13 10V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4z" />
+                  </svg>
+                  <p class="text-center">flier not available</p>
+                </div>
+                {% else %}
+                <div class="ms-0 ms-md-auto d-none d-sm-block d-md-block  w-50">
+                  <img src="{{ program.Flier.url }}" class="img-fluid img-thumbnail mb-3  " alt="" />
+                </div>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ol>
+            {% else %}
+            <div class="py-5 bg-light">
+              <h5 class="px-3 text-secondary text-center">no Events yet !!</h5>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="col-md">
+          <h5 class=" text-center fw-bold my-4">FREQUENTLY ASKED QUESTIONS</h5>
+          <div class="multiplerule my-3 d-flex justify-content-center">
+            <div class="Nrule"></div>
+            <div class="Nrule2"></div>
+          </div>
+          {% if FAQ %}
+          <div class="accordion text-dark accordion-flush" id="questions">
+            <!-- Item 1 -->
+            <div class="container" style="max-width: 400px;">
+              {% for question in FAQ %}
+              <div class="accordion-item">
+                <h5 class="accordion-header text-dark">
+                  <button class="accordion-button text-dark collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#question-{{ question.questionnumber}}"
+                    style="font-family: 'League Spartan', sans-serif;">
+                    {{ question.Questions }}
+                  </button>
+                </h5>
+                <div id="question-{{ question.questionnumber}}" class="accordion-collapse collapse"
+                  data-bs-parent="#questions">
+                  <div class="accordion-body">
+                    {{ question.Answer }}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% else %}
+          <div class="py-3 bg-light">
+            <h5 class="px-3 text-secondary text-center">no Questions yet !!</h5>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>

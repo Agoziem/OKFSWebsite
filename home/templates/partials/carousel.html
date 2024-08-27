@@ -1,0 +1,30 @@
+{% load static %}
+<section>
+    <div id="myCarousel" class="carousel slide text-white" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for item in carousel_items %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ item.image.url }}" class="d-block w-100" alt="{{ item.title }}">
+                <div class="carousel-caption">
+                    <h3 class="animate__animated animate__{{ item.animation_title }}" style="animation-delay: 1s;color:white;">
+                        {{ item.title }}
+                    </h3>
+                    <div class="multiplerule my-2 d-flex justify-content-center">
+                        <div class="rule"></div>
+                        <div class="rule2"></div>
+                    </div>
+                    <p id="tag" class="animate__animated animate__{{ item.animation_tag }}" style="animation-delay: 2s;">
+                        OKFS Awada
+                    </p>
+                    <p>
+                        <a href="{{ item.cta_link }}" class="animate__animated animate__{{ item.animation_cta }} text-decoration-none"
+                            style="animation-delay: 3s;">
+                            {{ item.cta_text }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,76 @@
+<!-- Management -->
+{% load static %}
+<section id="Management" class="p-3 py-5">
+  <div class="container">
+    <h4 class="text-center fw-bold">SCHOOL MANAGEMENT</h4>
+    <div class="multiplerule my-3 d-flex justify-content-center">
+      <div class="Nrule"></div>
+      <div class="Nrule2"></div>
+    </div>
+
+    {% if managements %}
+    <p class="text-center mb-3">
+      Ensuring quality Leadership, proper nurturing and Welfare of the Student
+    </p>
+    <div class="row g-3 justify-content-center align-items-start">
+      {% for management in managements %}
+      <div class="col-md-6 col-lg-3" style="height: 300px">
+        <div class="card shadow-sm h-100">
+          <div
+            class="card-body text-center d-flex flex-column justify-content-center align-items-center"
+          >
+            <div class="management_profile mb-2">
+              <img
+                src="{{management.Profileimage.url}}"
+                class="management_profile_image"
+                alt=""
+              />
+            </div>
+            <div class="card-title">
+              <h6 class="mb-0">{{ management.Profilename }}</h6>
+              <p class="text-muted my-1">
+                {{management.Role}} <br />
+                {{ management.Phonenumber }}
+              </p>
+            </div>
+            <div>
+              <a href="{{ management.Twitterpage }}"
+                ><i class="bi bi-twitter text-dark mx-1 h6"></i
+              ></a>
+              <a href="{{ management.Facebookpage }}"
+                ><i class="bi bi-facebook text-dark mx-1 h6"></i
+              ></a>
+              <a href="{{ management.Whatsapp }}"
+                ><i class="bi bi-whatsapp text-dark mx-1 h6"></i
+              ></a>
+              <a href="{{ management.Phonenumber }}"
+                ><i class="bi bi-instagram text-dark mx-1 h6"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div
+      class="d-flex px-2 mt-2 justify-content-center align-items-center"
+      style="padding: 0 40px"
+    >
+      <img
+        src="{% static 'Teachers (1).png' %}"
+        class="img-fluid"
+        width="150"
+      />
+      <div class="">
+        <a href="{% url 'teachers' %}" class="btn btn-light"
+          >See our Teachers profile
+        </a>
+      </div>
+    </div>
+
+    {% else %}
+    <p class="text-center">No Management available</p>
+    {% endif %}
+  </div>
+</section>

@@ -8,6 +8,10 @@ class School(models.Model):
 	SchoolPhonenumber= models.CharField(max_length= 300, blank=True)
 	Schoolmotto= models.CharField(max_length= 300, blank=True)
 	Schoollocation= models.CharField(max_length= 300, blank=True)
+	SchoolVision= RichTextField(blank=True)
+	SchoolMission= RichTextField(blank=True)
+	SchoolAbout= RichTextField(blank=True)
+	SchoolAimsandObjectives= RichTextField(blank=True)
 	Facebookpage= models.CharField(max_length= 300, blank=True)
 	Twitterpage= models.CharField(max_length= 300, blank=True)
 	Whatsapp= models.CharField(max_length= 300, blank=True)
@@ -55,14 +59,6 @@ class Subscription(models.Model):
 	def __str__(self):
 		return str(self.Email)
 		
-class Header(models.Model):
-	About=RichTextField(blank=True,null=True)
-	Aims_and_Objectives= RichTextField(blank=True,null=True)
-	Vision=models.TextField(blank=True,null=True)
-	Mission=models.TextField(blank=True,null=True)
-	
-	def snippet(self):
-		return self.About[:220] + '...'
 
 class PhotoGallery(models.Model):
 	Photo=models.ImageField(upload_to='assets/Photogallery')
@@ -106,3 +102,18 @@ class Contact(models.Model):
 	def __str__(self):
 		return str(self.email)
 	
+class CarouselItem(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='carousel_images/')
+    animation_title = models.CharField(max_length=50, default='fadeInRight')
+    animation_tag = models.CharField(max_length=50, default='fadeInLeft')
+    animation_cta = models.CharField(max_length=50, default='fadeInBottomLeft')
+    cta_link = models.CharField(max_length=255, default='#')
+    cta_text = models.CharField(max_length=100, default='Register now')
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.title

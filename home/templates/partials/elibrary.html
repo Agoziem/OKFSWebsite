@@ -1,0 +1,25 @@
+<!--Elibrary-->
+{% load static %}
+<section class="p-2">
+    <div class="container">
+      <div
+        class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative align-items-center">
+        <div class="col-md col-lg p-5 d-flex flex-column position-static">
+          <h4 class=" fw-bold">Digital E-library for Online learning Resources</h4>
+          <div class="multiplerule my-3 d-flex ">
+            <div class="Nrule"></div>
+            <div class="Nrule2"></div>
+          </div>
+          <p class="mb-2 text-muted  mb-3">at OKFS Awada, one of our Goal at is to help our Student spend less time
+            searching for books Online, so you can spend more time reading! .That’s why we’ve uploaded and hosted a lot of
+            Textbooks & Workbooks in Pdf formats .go ahead and Explore our wide range of resources covering Subjects like
+            English Mathematies, Chemistry, Physics, Biology , Geography , Futher Mathematies and lots more </p>
+          <a href="{% url 'Elibrary:subjects' %}" class="stretched-link text-decoration-none">Explore now </a>
+        </div>
+        <div class="col-md col-md ">
+          <img src="{% static 'library2.jpeg' %}" class=" img-fluid " alt="...">
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>

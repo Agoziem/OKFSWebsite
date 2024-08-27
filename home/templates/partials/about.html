@@ -1,0 +1,192 @@
+<!-- About Section-->
+{% load static %}
+<section class="px-2">
+  <div class="container py-0">
+    {% for info in headers %}
+    <p>{{ info.snippet|safe }}</p>
+    {% endfor %}
+
+    <div id="design" class="text-start bg-light p-2 mt-4 ps-4">
+      <span class="fw-bold mx-0 px-0" style="color: #00072b"
+        >OFFICE HOURS :</span
+      ><br />
+      <span class="pb-0 mt-1 small">
+        <i class="bi bi-telephone-fill me-1"></i>08108346849<br />
+        <i class="fa fa-clock me-1"></i>Mon-Fri 8:00am -16:00pm
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="p-4 mt-3">
+  <h3 class="text-center">ABOUT OKFS AWADA</h3>
+  <div class="my-3 d-flex justify-content-center mb-5">
+    <div class="Nrule"></div>
+    <div class="Nrule2"></div>
+  </div>
+  <div class="container">
+    <div class="row g-4 justify-content-between">
+      <!-- About -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'Value.png' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">About</h5>
+          {% if header.SchoolAbout %}
+          <p>{{ header.SchoolAbout|safe }}</p>
+          {% else %}
+          <p>
+            Our school is a place where children are encouraged to say, “I see
+            it, I get it, I can do it.” We believe that every child is unique
+            and special and that they all have the ability to learn. We believe
+            that it is our responsibility as educators to nurture and develop
+            every child to their maximum potential.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Vision -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'Vision2.png' %}"
+            class="img-fluid mb-2"
+            width="100"
+            height="100"
+          />
+
+          <h5 class="fw-bold">Vision</h5>
+          {% if header.SchoolVision %}
+          <p>{{ header.SchoolVision|safe }}</p>
+          {% else %}
+          <p>
+            Our vision is to provide a happy, caring and stimulating
+            environment where children will recognize and achieve their fullest
+            potential, so that they can make their best contribution to society.
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Mission -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'Value.png' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">Mission</h5>
+          {% if header.SchoolMission %}
+          <p>{{ header.SchoolMission|safe }}</p>
+          {% else %}
+          <p>
+            Our mission is to provide a high quality education for all our
+            students, delivering a curriculum that is engaging, challenging and
+            meaningful. We aim to create a safe, caring and inclusive
+            environment that promotes the academic, social, emotional and
+            physical development of each child.
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Mastery learning -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'learning.png' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">Mastery learning</h5>
+          <p>
+            Our commitment is to encourage every student to achieve the highest
+            academic standard in all that they do. Our academic programme
+            ensures that students are challenged to learn. They are taught the
+            importance of practice, perseverance and determination to succeed,
+            and to recognize the productivity benefits.
+          </p>
+        </div>
+      </div>
+
+      <!-- Self learning -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'selflearning.jpeg' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">Self Learning</h5>
+          <p>
+            Our teachers knows it's more a "calling" than it is a "job". Quality
+            education is important...and that takes great teachers. We know that
+            quality education occurs when an environment is safe, stable and
+            caring
+          </p>
+        </div>
+      </div>
+
+      <!-- Graduation Degree -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'graduation.png' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">Graduation Degree</h5>
+          <p>
+            Our commitment is to encourage every student to achieve the highest
+            academic standard in all that they do. Our academic programme
+            ensures that students are challenged to learn. They are taught the
+            importance of practice, perseverance and determination to succeed,
+            and to recognize the productivity benefits.
+          </p>
+        </div>
+      </div>
+
+      <!-- Curriculum -->
+      <div class="col-md-4 col-lg-4 text-center" style="color: #00072b">
+        <div class="border border-2 p-4 rounded-3">
+          <img
+            src="{% static 'curriculum.png' %}"
+            class="img-fluid rounded-circle mb-2"
+            width="75"
+            height="75"
+          />
+
+          <h5 class="fw-bold">Curriculum</h5>
+          <p>
+            The curriculum of our school is designed to take care of the
+            Interest of students from all parts of the world. The school
+            operates basically Nigerian curriculum but patterned to suit
+            students from any other Part of the world.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="my-3 mb-5 text-center">
+      <a
+        href="{% url 'about' %}"
+        class="btn btn-outline-primary mt-0 mb-1 px-5"
+      >
+        Know more
+      </a>
+    </div>
+  </div>
+</section>

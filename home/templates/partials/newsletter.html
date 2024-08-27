@@ -1,0 +1,29 @@
+<!--Newsletter-->
+{% load static %}
+<section class=" text-dark bg-light p-4 mt-0">
+    <div class="container">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert  {{ message.tags }} alert-success alert-dismissible fade show
+        " role="alert">
+          {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <div class="d-md-flex justify-content-between align-items-center">
+        <h5 class=" mb-1" style="font-family: 'League Spartan', sans-serif;">Sign Up For Our Newsletter</h5>
+  
+        <form action="{% url 'home2' %}" method="POST">
+          {% csrf_token %}
+          <div class="input-group news-input">
+            <input type="text" name="email" class="form-control" placeholder="Enter Email" />
+            <button class="btn btn-md" type="submit" value="Save"
+              style="background-color: #00072B; color:white;">Submit</button>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </section>
+  

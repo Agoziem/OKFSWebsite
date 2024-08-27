@@ -1,0 +1,37 @@
+<!-- Gallery -->
+{% load static %}
+<hr class="featurette-divider">
+<section id="gallery" class="py-2 mb-3">
+  <div class=" container py-2 mb-0 text-center  text-white ">
+    <h5 class="h4 fw-bold ">PHOTO GALLERY</h5>
+    <div class="multiplerule my-3 d-flex justify-content-center">
+      <div class="Nrule"></div>
+      <div class="Nrule2"></div>
+    </div>
+
+    {% if photos %}
+    <div class="container row g-2 p-0">
+      {% for photo in photos %}
+      <div class="col-md-6 col-lg-4">
+        <div class="container mb-2">
+          <div class="card h-100 rounded shadow-sm" style="width: 18rem;">
+            <a href="{{ photo.imageURL }}"><img src="{{ photo.imageURL }}" class="card-img-top" alt="..." style="height:250px; object-fit: cover;"></a>
+            <div class="card-body">
+              <p class="card-text">{{ photo.Description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      {% endfor %}
+    </div>
+    <a href="{% url 'gallery' %}" class=" btn mt-3" style="background-color: #00072B; color:white;">
+      View more photos
+    </a>
+    {% else %}
+    <p class="text-center">No photos available</p>
+    {% endif %}
+  </div>
+</section>

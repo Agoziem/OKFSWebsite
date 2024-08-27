@@ -13,10 +13,11 @@ import random
 def home_view(request):
 	queryset1=School.objects.all()
 	queryset2=Management.objects.all()
-	queryset3=Header.objects.all()
+	queryset3=School.objects.all()[:1]
 	queryset4=FAQ.objects.all()
 	queryset5=UpcomingEvents.objects.all()
 	queryset6=PhotoGallery.objects.all()
+	carousel_items = CarouselItem.objects.all()
 	
 	photos=[]
 	homePhotos=[]
@@ -27,10 +28,11 @@ def home_view(request):
 	'mapbox_private_key':settings.MAPBOXGL_ACCESSTOKEN,
 	'schools':queryset1,
 	'managements':queryset2,
-	'headers':queryset3,
+	'header':queryset3,
 	'FAQ':queryset4,
 	'events':queryset5,
 	'photos':homePhotos,
+	'carousel_items': carousel_items
 	}
 	return render(request,'home.html',context)
 
@@ -64,9 +66,9 @@ def teachers_view(request):
 	return render(request, "teachers_data.html", context)
 	
 def about_view(request):
-	queryset3=Header.objects.all()
+	queryset3=School.objects.all()[:1]
 	context= {
-	'headers':queryset3,
+	'header':queryset3,
 	}
 	return render(request,'about.html',context)
 
