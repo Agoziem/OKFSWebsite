@@ -18,6 +18,7 @@ def home_view(request):
 	queryset5=UpcomingEvents.objects.all()
 	queryset6=PhotoGallery.objects.all()
 	carousel_items = CarouselItem.objects.all()
+	documents = SchoolDocument.objects.all()
 	
 	photos=[]
 	homePhotos=[]
@@ -32,7 +33,8 @@ def home_view(request):
 	'FAQ':queryset4,
 	'events':queryset5,
 	'photos':homePhotos,
-	'carousel_items': carousel_items
+	'carousel_items': carousel_items,
+	'documents': documents,
 	}
 	return render(request,'home.html',context)
 

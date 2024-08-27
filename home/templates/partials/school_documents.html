@@ -1,0 +1,61 @@
+<!-- Payments-->
+{% load static %}
+<section id="Payments" class="p-2 my-5">
+  <div class="container pb-5">
+    <div class="row px-2 align-items-center justify-content-between">
+      <div class="col-md text-center">
+        <img
+          src="{% static 'school_Documents.jpg' %}"
+          class="img-fluid img-thumbnail"
+          style="width: 75%"
+          alt=""
+        />
+      </div>
+      <div class="col-md py-5">
+        <h3>PUBLIC SCHOOL DOCUMENT</h3>
+        <div class="multiplerule my-3 d-flex">
+          <div class="Nrule"></div>
+          <div class="Nrule2"></div>
+        </div>
+        <p>
+          you can now easily download some school documents here. The documents
+          are in PDF format.
+        </p>
+        <!-- Responsive boostrap bordered table -->
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">Document</th>
+                <th scope="col">Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if documents %} {% for document in documents %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ document.title }}</td>
+                <td>
+                  <a
+                    href="{{ document.document.url }}"
+                    download
+                    ><i class="fas fa-download"></i
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %} {% else %}
+              <tr>
+                <td colspan="3" class="text-center">No document available</td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+</section>
+
+

@@ -17,3 +17,8 @@ class CarouselItemAdmin(admin.ModelAdmin):
     list_filter = ('title', 'cta_text')
 
 
+@admin.register(SchoolDocument)
+class SchoolDocumentAdmin(admin.ModelAdmin):
+    list_display = ('title', 'document')
+    search_fields = ('title', 'document')
+    list_filter = ('title', 'document')

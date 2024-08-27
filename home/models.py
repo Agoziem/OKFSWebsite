@@ -52,6 +52,7 @@ class TopTeacher(models.Model):
 		except:
 			url=""
 		return url
+
 	
 class Subscription(models.Model):
 	Email= models.EmailField(blank = True,null=True)
@@ -117,3 +118,14 @@ class CarouselItem(models.Model):
 
     def __str__(self):
         return self.title
+	
+class SchoolDocument(models.Model):
+	title = models.CharField(max_length=255)
+	document = models.FileField(upload_to='school_documents/')
+	order = models.PositiveIntegerField(default=0)
+
+	class Meta:
+		ordering = ['order']
+
+	def __str__(self):
+		return self.title
