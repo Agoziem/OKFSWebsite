@@ -52,7 +52,7 @@ class AnnualResulthandler {
       return "-";
     }
     const greaterThanOrEqualToOneCount = values.filter(
-      (value) => parseInt(value) > 0 && value !== "-" && value !== ""
+      (value) => parseInt(value) >= 0 && value !== "-" && value !== ""
     ).length;
     // Check if greaterThanOrEqualToOneCount is not zero before performing the division
     const average =

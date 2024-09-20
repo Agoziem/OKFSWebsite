@@ -39,7 +39,7 @@ class AnnualClassResultHandler {
   calculateAverage(student) {
     let validSubjectsCount = student.subjects.reduce((count, subject) => {
       const average = subject.Average;
-      return count + (isNaN(average) || average === 0 || average === "-" ? 0 : 1);
+      return count + (isNaN(average) || parseInt(average) === 0 || average === "-" ? 0 : 1);
     }, 0);
 
     let total = this.calculateTotal(student);
