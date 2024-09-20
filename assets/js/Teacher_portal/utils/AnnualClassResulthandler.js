@@ -39,7 +39,7 @@ class AnnualClassResultHandler {
   calculateAverage(student) {
     let validSubjectsCount = student.subjects.reduce((count, subject) => {
       const average = subject.Average;
-      return count + (isNaN(average) || average === "-" ? 0 : 1);
+      return count + (isNaN(average) || average === 0 || average === "-" ? 0 : 1);
     }, 0);
 
     let total = this.calculateTotal(student);
@@ -52,6 +52,7 @@ class AnnualClassResultHandler {
     if (student.Average >= 70) return "A";
     else if (student.Average >= 55) return "C";
     else if (student.Average >= 40) return "P";
+    else if (student.Average === "-") return "-";
     else return "F";
   }
 
