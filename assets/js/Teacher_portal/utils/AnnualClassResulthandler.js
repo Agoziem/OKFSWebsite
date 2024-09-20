@@ -52,6 +52,7 @@ class AnnualClassResultHandler {
     if (student.Average >= 70) return "A";
     else if (student.Average >= 55) return "C";
     else if (student.Average >= 40) return "P";
+    else if (student.Average === 0) return "-";
     else if (student.Average === "-") return "-";
     else return "F";
   }
