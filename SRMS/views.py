@@ -35,7 +35,6 @@ def classes_view(request):
 			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_class=studentClass,student_id=student_id,student_pin=Pin)
 			if Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession,published=True).exists():
 				Student_Result_details=Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession,published=True).first()
-				print(Student_Result_details.Average,Student_Result_details.TotalScore)
 				Student_Results=Result.objects.filter(students_result_summary=Student_Result_details,published=True)
 
 				# for Newsletter ///
