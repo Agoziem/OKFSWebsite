@@ -9,11 +9,16 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.http import JsonResponse
 
-def get_Students(request, Classname):
-	classobject=Class.objects.get(Class=Classname)
-	Students = Students_Pin_and_ID.objects.filter(student_class=classobject)
-	Students_list = list(Students.values('id', 'student_name'))
-	return JsonResponse(Students_list, safe=False)
+
+def get_Students(request, Classname, session_id):
+    sessionobject = AcademicSession.objects.get(id=session_id)
+    classobject = Class.objects.get(Class=Classname)
+    Studentsenrolled = StudentClassEnrollment.objects.filter(
+        student_class=classobject, academic_session=sessionobject
+    )
+    Students = [enrolled.student for enrolled in Studentsenrolled]
+    Students_list = [{'id': student.id, 'student_name': student.student_name} for student in Students]
+    return JsonResponse(Students_list, safe=False)
 
 
 def classes_view(request):
@@ -30,9 +35,9 @@ def classes_view(request):
 		# Get the Student details, the Students_Result_Details and the Results (Both Annual & Termly )
 		try:
 			resultTerm=Term.objects.get(term=term)
-			resultSession= AcademicSession.objects.get(session=academic_session)
+			resultSession= AcademicSession.objects.get(id=academic_session)
 			studentClass=Class.objects.get(Class=request.POST['student_class'])
-			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_class=studentClass,student_id=student_id,student_pin=Pin)
+			student = Students_Pin_and_ID.objects.get(student_name=student_name,student_id=student_id,student_pin=Pin)
 			if Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession,published=True).exists():
 				Student_Result_details=Student_Result_Data.objects.filter(Student_name=student,Term=resultTerm,Academicsession=resultSession,published=True).first()
 				Student_Results=Result.objects.filter(students_result_summary=Student_Result_details,published=True)
@@ -58,6 +63,7 @@ def classes_view(request):
 						"student_details":student,
 						"Result_details":Student_Result_details,
 						"Results":Student_Results,
+						"studentClass":studentClass,
 						"labels":labels,
 						"data":data,
 						"AnnualStudent":Annual_Student_Result_details,
@@ -74,6 +80,7 @@ def classes_view(request):
 						"student_details":student,
 						"Result_details":Student_Result_details,
 						"Results":Student_Results,
+						"studentClass":studentClass,
 						"labels":labels,
 						"data":data,
 						"isTermNewsletter":is_term_newsletter,

@@ -77,6 +77,12 @@
   </nav>
   <hr />
   <input type="text" id="studentclass" value="{{ class.Class }}" hidden />
+  <input
+    type="text"
+    id="academicsession"
+    value="{{ session.session }}"
+    hidden
+  />
   <div class="container-fluid px-4">
     <div class="d-flex flex-column align-items-center justify-content-center">
       <h1 class="mt-4">{{ class.Class }} Students</h1>
@@ -138,7 +144,7 @@
                       <input
                         class="form-check-input me-3"
                         type="checkbox"
-                        value="{{ student.id }}"
+                        value="{{ student.student.id }}"
                         id="selectstudentcheckbox"
                       />
                     </td>
@@ -146,11 +152,11 @@
                       <a
                         class="editstudentinfo text-decoration-none"
                         style="cursor: pointer"
-                        >{{ student.student_name }}</a
+                        >{{ student.student.student_name }}</a
                       >
                     </td>
-                    <td class="studentID">{{ student.student_id }}</td>
-                    <td class="sex">{{ student.Sex }}</td>
+                    <td class="studentID">{{ student.student.student_id }}</td>
+                    <td class="sex">{{ student.student.Sex }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>

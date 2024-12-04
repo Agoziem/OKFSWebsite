@@ -49,9 +49,7 @@
       rel="stylesheet"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-     
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-     
     <link
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
@@ -279,15 +277,46 @@
               <div class="sb-sidenav-menu-heading">
                 FORM TEACHER {{ request.user.teacher.classFormed }}
               </div>
-              <a
-                class="nav-link"
-                href="{% url 'TMS:Students' Classname=request.user.teacher.classFormed %}"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-chart-area"></i>
-                </div>
-                View Students
-              </a>
+      
+               <!-- Teachers Class -->
+               <a
+               class="nav-link collapsed"
+               href="#"
+               data-bs-toggle="collapse"
+               data-bs-target="#collapseLayouts3"
+               aria-expanded="false"
+               aria-controls="collapseLayouts3"
+             >
+               <div class="sb-nav-link-icon">
+                 <i class="fa-solid fa-users"></i>
+               </div>
+               View Students
+               <div class="sb-sidenav-collapse-arrow">
+                 <i class="fas fa-angle-down"></i>
+               </div>
+             </a>
+
+             <div
+               class="collapse"
+               id="collapseLayouts3"
+               aria-labelledby="headingOne"
+               data-bs-parent="#sidenavAccordion"
+             >
+               <nav class="sb-sidenav-menu-nested nav">
+                 {% for session in sessions %}
+                 <a
+                   class="nav-link"
+                   href="{% url 'TMS:Students' Classname=request.user.teacher.classFormed session_id=session.id %}"
+                 >
+                   {{ request.user.teacher.classFormed.Class }}
+                   {{ session.session }}
+                 </a>
+                 {% endfor %}
+               </nav>
+             </div>
+
+
+
               <a
                 class="nav-link"
                 href="{% url 'TMS:PublishResults' Classname=request.user.teacher.classFormed %}"

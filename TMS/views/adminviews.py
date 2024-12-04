@@ -13,6 +13,7 @@ def schoolresult_view(request):
         'school_classes': school_classes,
         'academic_session': academic_session,
         'terms': terms,
+        'sessions':academic_session
     }
     return render(request,'schoolresults.html',context)
 
@@ -26,10 +27,10 @@ def getclasspublishedResults(request):
         termobject = Term.objects.get(term=term)
         academic_sessionobject = AcademicSession.objects.get(session=academic_session)
         subject_allocations = Subjectallocation.objects.get(classname=classobject)
-        classstudent = Students_Pin_and_ID.objects.filter(student_class=classobject).first()
+        classstudent = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=academic_sessionobject).first()
         classresultdata = {}
         try:
-            resultsummary = Student_Result_Data.objects.get(Student_name=classstudent,Term=termobject,Academicsession=academic_sessionobject)
+            resultsummary = Student_Result_Data.objects.get(Student_name=classstudent.student,Term=termobject,Academicsession=academic_sessionobject)
             classresultdata["classname"] =  classobject.Class
             classresultdata['published'] = resultsummary.published
             subjectResults = []
@@ -60,6 +61,7 @@ def schoolannualresult_view(request):
     context = {
         'school_classes': school_classes,
         'academic_session': academic_session,
+        'sessions':academic_session
     }
     return render(request,'schoolannualresults.html',context)
 
@@ -71,10 +73,10 @@ def getclassannualpublishedResults(request):
         classobject = Class.objects.get(Class=class_)
         academic_sessionobject = AcademicSession.objects.get(session=academic_session)
         subject_allocations = Subjectallocation.objects.get(classname=classobject)
-        classstudent = Students_Pin_and_ID.objects.filter(student_class=classobject).first()
+        classstudent = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=academic_sessionobject).first()
         classannualresultdata = {}
         try:
-            annualresultsummary = AnnualStudent.objects.get(Student_name=classstudent,academicsession=academic_sessionobject)
+            annualresultsummary = AnnualStudent.objects.get(Student_name=classstudent.student,academicsession=academic_sessionobject)
             classannualresultdata["classname"] =  classobject.Class
             classannualresultdata['published'] = annualresultsummary.published
             annualsubjectResults = []

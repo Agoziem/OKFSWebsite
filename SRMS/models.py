@@ -80,7 +80,6 @@ class Excelfiles(models.Model):
 		return str(self.Excel)	
 
 
-
 class Students_Pin_and_ID(models.Model):
 	SN=models.CharField(max_length=100, blank=True,null=True)
 	student_Photo=models.ImageField(upload_to="assets/Students",blank=True,null=True)
@@ -88,7 +87,6 @@ class Students_Pin_and_ID(models.Model):
 	Sex=models.CharField(max_length=100, blank=True,null=True)
 	student_id=models.CharField(max_length=100, blank=True,null=True)
 	student_pin=models.CharField(max_length=100, blank=True,null=True)
-	student_class=models.ForeignKey(Class,on_delete=models.CASCADE,default=1,null=True)
 	student_password=models.CharField(max_length=100, blank=True,null=True,default="No password")
 
 
@@ -115,9 +113,16 @@ class Students_Pin_and_ID(models.Model):
 					self.student_pin = random_14_digit
 			super().save(*args, **kwargs)
 
+# New Model: StudentClassEnrollment
+class StudentClassEnrollment(models.Model):
+    student = models.ForeignKey("Students_Pin_and_ID", on_delete=models.CASCADE)
+    student_class = models.ForeignKey(Class, on_delete=models.CASCADE)
+    academic_session = models.ForeignKey(AcademicSession, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.student.student_name} - {self.student_class.Class} in {self.academic_session.session}"
 
 # Model for the Termly Students data
-
 class Student_Result_Data(models.Model):
 	Student_name=models.ForeignKey(Students_Pin_and_ID,on_delete=models.CASCADE)
 	TotalScore=models.CharField(max_length=100, blank=True, default="-")

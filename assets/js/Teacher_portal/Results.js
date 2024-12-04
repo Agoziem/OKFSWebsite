@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // update student result
 document.addEventListener("DOMContentLoaded", () => {
   document
@@ -147,7 +146,7 @@ function loadsavedSelection() {
   } else {
     classdata.studentsubject = subjectselect.value;
   }
-  
+
   if (
     (classinput.value === "Jss3A" ||
       classinput.value === "Jss3B" ||
@@ -193,9 +192,10 @@ async function readJsonFromFile() {
 // ------------------------------------------------------
 function populatetable(tabledata) {
   const tbody = document.querySelector("#dataTable").lastElementChild;
-  tbody.innerHTML = tabledata
-    .map(
-      (data, index) => `
+  tbody.innerHTML = tabledata.length
+    ? tabledata
+        .map(
+          (data, index) => `
         <tr data-rowindex='${index + 1}'>
             <td>${index + 1}</td>
             <td class="text-primary text-uppercase"><a class="inputdetailsformmodelbtn text-decoration-none" style="cursor:pointer">${
@@ -215,8 +215,11 @@ function populatetable(tabledata) {
             <td>${data["Remarks"] || "-"}</td>
             <td>${data["studentID"]}</td>
         </tr>`
-    )
-    .join("");
+        )
+        .join("")
+    : `<tr data-rowindex="1">
+           <td colspan="15" class="text-center">No Student Records Found</td>
+       </tr>`;
 }
 
 // -----------------------------------------------------
