@@ -1,12 +1,12 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
-from SRMS.models import Students_Pin_and_ID
+from SRMS.models import AcademicSession, StudentClassEnrollment, Students_Pin_and_ID
 from .forms import Contactform
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.conf import settings
 from django.contrib import messages
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
 import random
 
@@ -39,13 +39,39 @@ def home_view(request):
 	return render(request,'home.html',context)
 
 def student_card_view(request):
-	P = Paginator(Students_Pin_and_ID.objects.all(),21)
-	page= request.GET.get('page')
-	students = P.get_page(page)
-	context = {
-        "students":students
+	# Fetch the academic session dynamically or fall back to a default
+    session = request.GET.get("session", "2024/2025")  # Allow session to be passed as a query parameter
+    sessionobject = get_object_or_404(AcademicSession, session=session)
+    
+    # Filter enrolled students for the given session
+    studentenrollment = StudentClassEnrollment.objects.filter(academic_session=sessionobject)
+    
+    # Prepare the list of student details
+    students_list = [
+        {
+            "student_name": enrollment.student.student_name,
+            "student_id": enrollment.student.student_id,
+            "student_pin": enrollment.student.student_pin,
+            "student_class": enrollment.student_class.Class,
+        }
+        for enrollment in studentenrollment
+    ]
+    
+    # Paginate the filtered student list
+    paginator = Paginator(students_list, 21)  # Show 21 students per page
+    page = request.GET.get("page")
+    try:
+        students = paginator.page(page)
+    except PageNotAnInteger:
+        students = paginator.page(1)
+    except EmptyPage:
+        students = paginator.page(paginator.num_pages)
+
+    # Context for the template
+    context = {
+        "students": students
     }
-	return render(request,'Card_Activation.html',context)
+    return render(request, "Card_Activation.html", context)
 
 
 def random_14_digit():
