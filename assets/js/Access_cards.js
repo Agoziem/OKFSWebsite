@@ -66,44 +66,45 @@ download_back_btn.addEventListener("click", () => {
 // function to generate the PDF
 // ---------------------------------------------------------
 function myFunction(e) {
+ 
   if (!element) {
-    console.error("Target element not found!");
-    return;
-}
-  var opt = {
-    margin: [0, 0],
-    filename: "OKFS Access Cards" + ".pdf",
-    image: { type: "jpeg", quality: 1 },
-    html2canvas: {
-      scale: 4,
-      width: element.offsetWidth,
-      height: element.offsetHeight,
-      useCORS: true,
-      allowTaint: true,
-    },
-    jsPDF: {
-      unit: "px",
-      format: [element.offsetWidth, element.offsetHeight],
-      orientation: "Portrait",
-      hotfixes: ["px_scaling"],
-    },
+      console.error("Target element not found!");
+      return;
+  }
+
+  const opt = {
+      margin: [0, 0],
+      filename: "OKFS Access Cards" + ".pdf",
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { 
+          scale: 4, // Reduced scale for better performance
+          useCORS: true, // Ensures cross-origin images are included
+      },
+      jsPDF: { 
+          unit: 'px', 
+          format: [element.offsetWidth, element.offsetHeight], 
+          orientation: 'portrait', 
+          hotfixes: ["px_scaling"] 
+      }
   };
-  // New Promise-based usage:
+
+  // Promise-based usage
   return new Promise((resolve, reject) => {
-    html2pdf()
-      .set(opt)
-      .from(element)
-      .save()
-      .then(() => {
-        // PDF generation is complete, resolve the promise
-        resolve();
-      })
-      .catch((error) => {
-        // PDF generation encountered an error, reject the promise with the error
-        reject(error);
-      });
+      html2pdf()
+          .set(opt)
+          .from(element)
+          .save()
+          .then(() => {
+              console.log("PDF generated successfully!");
+              resolve();
+          })
+          .catch((error) => {
+              console.error("Error generating PDF:", error);
+              reject(error);
+          });
   });
 }
+
 
 // ---------------------------------------------------------
 // event listener for the regenerate button
