@@ -193,17 +193,21 @@ def publishstudentresult_view(request):
         termobject=data['classdata']['selectedTerm']
         Acadsessionobject=data['classdata']['selectedAcademicSession']
         Classdata=data['classdata']['studentclass']
+        classobject=Class.objects.get(Class=Classdata)
+        resultterm = Term.objects.get(term=termobject)
+        resultsession = AcademicSession.objects.get(session=Acadsessionobject)
         
-        print(data['data'])
         for studentdata in data['data']:
-            classobject=Class.objects.get(Class=Classdata)
-            resultterm = Term.objects.get(term=termobject)
-            resultsession = AcademicSession.objects.get(session=Acadsessionobject)
             studentnumber = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=resultsession).count()
-            student = Students_Pin_and_ID.objects.get(student_name=studentdata['Name'])
+            student_enrolled = StudentClassEnrollment.objects.get(
+                student__student_name=studentdata['Name'],
+                student__id = studentdata['id'],
+                student_class=classobject,
+                academic_session=resultsession
+            )
 
             try:
-                studentresult=Student_Result_Data.objects.get(Student_name=student,Term=resultterm,Academicsession=resultsession)
+                studentresult=Student_Result_Data.objects.get(Student_name=student_enrolled.student,Term=resultterm,Academicsession=resultsession)
                 studentresult.TotalScore=studentdata['Total']
                 studentresult.Totalnumber= studentnumber
                 studentresult.Average=studentdata['Ave']
@@ -223,13 +227,17 @@ def unpublish_classresults_view(request):
     data=json.loads(request.body)
     termobject=Term.objects.get(term=data['classdata']['selectedTerm'])
     Acadsessionobject=AcademicSession.objects.get(session=data['classdata']['selectedAcademicSession'])
+    classobject=Class.objects.get(Class=data['classdata']['studentclass'])
     
     for student_data in data['data']:
         try:
-            student = Students_Pin_and_ID.objects.get(
-                    student_name=student_data['Name']
-                )
-            studentresult=Student_Result_Data.objects.get(Student_name=student,Term=termobject,Academicsession=Acadsessionobject)
+            student_enrolled = StudentClassEnrollment.objects.get(
+                student__student_name=student_data['Name'],
+                student__id = student_data['id'],
+                student_class=classobject,
+                academic_session=Acadsessionobject
+            )
+            studentresult=Student_Result_Data.objects.get(Student_name=student_enrolled.student,Term=termobject,Academicsession=Acadsessionobject)
             studentresult.published = False
             studentresult.save()
         except:
