@@ -1,3 +1,34 @@
+"""
+Computer-Based Testing (CBT) Views Module
+
+This module contains views for managing Computer-Based Testing functionality.
+Currently, most CBT features are disabled/commented out, but the infrastructure
+remains for future implementation.
+
+Key Features (Currently Disabled):
+- CBT question management and creation
+- Question set administration for different classes
+- Answer validation and scoring
+- Time-limited test configuration
+
+Status: INACTIVE
+- All CBT-related views are currently commented out
+- Functionality preserved for future activation
+- May require model updates before reactivation
+
+Dependencies:
+- SRMS.models: Student and academic data models
+- TMS.models: Teacher models
+- CBT.models: Computer-based testing models (commented out)
+- Django authentication and Q objects for complex queries
+
+Future Activation:
+- Uncomment CBT.models import
+- Verify model compatibility
+- Test question and answer functionality
+- Implement proper authentication and authorization
+"""
+
 from django.shortcuts import render, redirect, get_object_or_404
 from SRMS.models import *
 from ..models import *
@@ -8,6 +39,27 @@ from django.db.models import Q
 # # CBT Teachers Views for CRUD and Submitting Questions
 # @login_required
 # def CBT_Questions_view(request,teachers_id):
+#     """
+#     Display CBT question management interface for teachers.
+#     
+#     This view would allow teachers to create and manage Computer-Based Test
+#     questions for their subjects and assigned classes.
+#     
+#     CURRENTLY DISABLED - All CBT functionality is commented out
+#     
+#     Intended Functionality:
+#     - Question creation and editing interface
+#     - Subject and class selection for tests
+#     - Time configuration for CBT sessions
+#     - Question set management
+#     
+#     Args:
+#         request: HTTP request object
+#         teachers_id (int): ID of the teacher creating questions
+#     
+#     Returns:
+#         HttpResponse: Would render CBT question management templates
+#     """
 #     subjects=Subject.objects.all()
 #     classes=Class.objects.all()
 #     teacher=Teacher.objects.get(id=teachers_id)
