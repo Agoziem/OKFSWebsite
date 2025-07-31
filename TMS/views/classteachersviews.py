@@ -37,7 +37,8 @@ def get_students_result_view(request):
         for studentresult in students:
             student_result_details,created = Student_Result_Data.objects.get_or_create(Student_name=studentresult.student,Term=term,Academicsession=session)
             student_result_object, created = Result.objects.get_or_create(Subject=subjectobject, students_result_summary=student_result_details)
-            studentResults.append({
+            if student_result_object.students_result_summary:
+                studentResults.append({
                 'Name': student_result_object.students_result_summary.Student_name.student_name,
                 '1sttest': student_result_object.FirstTest,
                 '1stAss': student_result_object.FirstAss,
@@ -49,9 +50,11 @@ def get_students_result_view(request):
                 "studentID":student_result_object.students_result_summary.Student_name.student_id,
                 'published': student_result_object.published,
             })
-        return JsonResponse(studentResults, safe=False)
+            else:
+                return JsonResponse({"error": f"No result found/created for {studentresult.student.student_name}."}, status=404)
+        return JsonResponse(studentResults, safe=False, status=200)
     except:
-        return JsonResponse(studentResults, safe=False)
+        return JsonResponse(studentResults, safe=False, status=404)
 
 @login_required
 def update_student_result_view(request):
@@ -76,7 +79,7 @@ def update_student_result_view(request):
     studentResult.Exam = data['formDataObject']['Exam']
     studentResult.save()
 
-    return JsonResponse('Result Updated Successfully', safe=False)
+    return JsonResponse('Result Updated Successfully', safe=False, status=200)
     
 
 def submitallstudentresult_view(request):
@@ -105,7 +108,7 @@ def submitallstudentresult_view(request):
         studentResult.Remark=result['Remarks']
         studentResult.published=True
         studentResult.save()
-    return JsonResponse('Results submitted Successfully', safe=False)
+    return JsonResponse('Results submitted Successfully', safe=False, status=200)
 
 
 def unpublish_results_view(request):
@@ -128,7 +131,7 @@ def unpublish_results_view(request):
         except Exception as e:
             print(str(e))
             continue
-    return JsonResponse('Results have been unpublished and its no longer opened to the Students', safe=False)
+    return JsonResponse('Results have been unpublished and its no longer opened to the Students', safe=False, status=200)
 
 
 # ---------------------------------
@@ -150,41 +153,40 @@ def annualresult_computation(request,Classname,id):
 
 def annual_result_computation_view(request):
     data = json.loads(request.body)
-    subject_name = data['studentsubject']
-    class_name = data['studentclass']
-    academic_session = data['selectedAcademicSession']
-    class_object = Class.objects.get(Class=class_name)
-    session = AcademicSession.objects.get(session=academic_session)
-    subject_object = Subject.objects.get(subject_name=subject_name)
+    try:
+        subject_name = data['studentsubject']
+        class_name = data['studentclass']
+        academic_session = data['selectedAcademicSession']
+        class_object = Class.objects.get(Class=class_name)
+        session = AcademicSession.objects.get(session=academic_session)
+        subject_object = Subject.objects.get(subject_name=subject_name)
+    except (Class.DoesNotExist, AcademicSession.DoesNotExist, Subject.DoesNotExist) as e:
+        return JsonResponse({"error": str(e)}, status=404)
+
+       # Fetch students enrolled in the class for the academic session
     students = StudentClassEnrollment.objects.filter(student_class=class_object,academic_session=session)
     terms = Term.objects.all()
     students_annuals = []
 
     for student in students:
-        studentAnnual,created = AnnualStudent.objects.get_or_create(Student_name=student, academicsession=session)
+        studentAnnual,created = AnnualStudent.objects.get_or_create(Student_name=student.student, academicsession=session)
         student_annual_details, created = AnnualResult.objects.get_or_create(Student_name=studentAnnual, Subject=subject_object)
-        student_annual_details.Total = 0  # Ensure Total is initialized to zero
+        student_annual_details.Total = str(0)  # Ensure Total is initialized to zero
         termsobject = {}  # Reset for each student
         for term in terms:
             try:
-                student_result_details, created = Student_Result_Data.objects.get_or_create(Student_name=student, Term=term, Academicsession=session)
+                student_result_details, created = Student_Result_Data.objects.get_or_create(Student_name=student.student, Term=term, Academicsession=session)
                 student_result, created = Result.objects.get_or_create(students_result_summary=student_result_details, Subject=subject_object)
                 termsobject[term.term] = student_result.Total
             except (Student_Result_Data.DoesNotExist, Result.DoesNotExist):
+                print(f"No result found for {student.student.student_name} in {term.term} term for {subject_object.subject_name}.")
                 continue
-            except Exception as e:
-                print(str(e))
-                continue
-        try:
             students_annuals.append({
-                "studentID": student.student_id,
-                'Name': student.student_name,
+                "studentID": student.student.student_id,
+                'Name': student.student.student_name,
                 'terms': termsobject,
                 'published': student_annual_details.published
             })
-        except Exception as e:
-            print(str(e))
-            continue
     
     return JsonResponse(students_annuals, safe=False)
 

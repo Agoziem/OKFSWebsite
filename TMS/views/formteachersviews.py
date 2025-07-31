@@ -58,7 +58,7 @@ def createstudent_view(request):
 
         return JsonResponse(
             {
-                "student_ID": student.id,
+                "student_ID": student.pk,
                 "student_id": student.student_id,
                 "student_name": student.student_name,
                 "student_sex": student.Sex,
@@ -98,7 +98,7 @@ def updatestudent_view(request):
         )
 
         context = {
-            "student_ID": updateStudent.id,
+            "student_ID": updateStudent.pk,
             "student_id": updateStudent.student_id,
             "student_name": updateStudent.student_name,
             "student_sex": updateStudent.Sex,
@@ -135,6 +135,8 @@ def PublishResults_view(request,Classname):
     class_object = Class.objects.get(Class=Classname)
     subjects_allocation = Subjectallocation.objects.filter(classname=class_object).first()
     subject_code = []
+    if not subjects_allocation:
+        return render(request, 'No_Subject_allocation.html', {"class": class_object, "academic_session": academic_session})
     for subobject in subjects_allocation.subjects.all():
         subject_code.append(subobject.subject_code)
     context = {
@@ -164,7 +166,7 @@ def getstudentsubjecttotals_view(request):
     for student in students:
         Resultdetails,_=Student_Result_Data.objects.get_or_create(Student_name=student.student,Term=term_object,Academicsession=session_object)
         student_dict = {
-            'id':student.student.id,
+            'id':student.student.pk,
             'Name': student.student.student_name,
             'subjects':[],
         }
@@ -209,7 +211,7 @@ def publishstudentresult_view(request):
             try:
                 studentresult=Student_Result_Data.objects.get(Student_name=student_enrolled.student,Term=resultterm,Academicsession=resultsession)
                 studentresult.TotalScore=studentdata['Total']
-                studentresult.Totalnumber= studentnumber
+                studentresult.Totalnumber= str(studentnumber)
                 studentresult.Average=studentdata['Ave']
                 studentresult.Position=studentdata['Position']
                 studentresult.Remark=studentdata['Remarks']
@@ -255,6 +257,8 @@ def PublishAnnualResults_view(request,Classname):
     subjects_allocation = Subjectallocation.objects.filter(classname=class_object).first()
     subject_code = []
     sessions = AcademicSession.objects.all()
+    if not subjects_allocation:
+        return render(request, 'No_Subject_allocation.html', {"class": class_object, "academic_session": academic_session})
     for subobject in subjects_allocation.subjects.all():
         subject_code.append(subobject.subject_code)
     context = {
@@ -276,10 +280,12 @@ def annual_class_computation_view(request):
             academic_session=Acadsessionobject
         ).select_related("student")
     subjects_allocated = Subjectallocation.objects.filter(classname=classobject).first()
+    if not subjects_allocated:
+        return JsonResponse({"error": "No subjects allocated to this class"}, status=400)
     final_list = []
     for student in students:
         studentdict={
-            "id": student.student.id,
+            "id": student.student.pk,
             'Name':student.student.student_name,
             "subjects":[]
         }
@@ -293,13 +299,14 @@ def annual_class_computation_view(request):
                 subject['subject_name'] = subobject.subject_name
                 subject['Average'] = subjectAnnual.Average
                 subject['published'] = subjectAnnual.published
+                studentdict['published'] = studentAnnual.published
             except:
                 subject['subject_code'] = subobject.subject_code
                 subject['subject_name'] = subobject.subject_name
                 subject['Average'] = "-"
                 subject['published'] = False
+                studentdict['published'] = False
             studentdict['subjects'].append(subject)
-            studentdict['published'] = studentAnnual.published
         final_list.append(studentdict)
     return JsonResponse(final_list, safe=False)
 
@@ -318,7 +325,7 @@ def publish_annualstudentresult_view(request):
             try:
                 studentresult=AnnualStudent.objects.get(Student_name=student,academicsession=resultsession)
                 studentresult.TotalScore=studentdata['Total']
-                studentresult.Totalnumber= studentnumber
+                studentresult.Totalnumber= str(studentnumber)
                 studentresult.Average=studentdata['Average']
                 studentresult.Position=studentdata['Position']
                 studentresult.Remark=studentdata['Remarks']
