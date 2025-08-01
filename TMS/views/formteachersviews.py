@@ -655,7 +655,7 @@ def annual_class_computation_view(request):
             })
 
             if result and result.published:
-                student_data["published"] = True
+                student_data["published"] = ann_student.published if ann_student else False
 
         final_list.append(student_data)
 
@@ -670,13 +670,13 @@ def publish_annualstudentresult_view(request):
         data=json.loads(request.body)
         Acadsessionobject=data['classdata']['selectedAcademicSession']
         Classdata=data['classdata']['studentclass']
+        classobject=get_object_or_404(Class, Class=Classdata)
+        resultsession = get_object_or_404(AcademicSession, session=Acadsessionobject)
         for studentdata in data['data']:
-            classobject=get_object_or_404(Class, Class=Classdata)
-            resultsession = get_object_or_404(AcademicSession, session=Acadsessionobject)
             student = get_object_or_404(Students_Pin_and_ID, student_name=studentdata['Name'])
             studentnumber = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=resultsession).count()
             try:
-                studentresult=AnnualStudent.objects.get(Student_name=student,academicsession=resultsession)
+                studentresult=get_object_or_404(AnnualStudent, Student_name=student,academicsession=resultsession)
                 studentresult.TotalScore=studentdata['Total']
                 studentresult.Totalnumber= str(studentnumber)
                 studentresult.Average=studentdata['Average']
@@ -700,7 +700,7 @@ def unpublish_annual_classresults_view(request):
     students = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=Acadsessionobject)
     for student in students:
         try:
-            studentresult=AnnualStudent.objects.get(Student_name=student,academicsession=Acadsessionobject)
+            studentresult=get_object_or_404(AnnualStudent, Student_name=student,academicsession=Acadsessionobject)
             studentresult.published = False
             studentresult.save()
         except:

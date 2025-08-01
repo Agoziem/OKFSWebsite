@@ -525,7 +525,6 @@ def publish_annual_results(request):
     """
     data = json.loads(request.body)
     subject_object = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
-    class_object = get_object_or_404(Class, Class=data['classdata']['studentclass'])
     session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for result in data['data']:
         student = get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'], student_name=result['Name'])
