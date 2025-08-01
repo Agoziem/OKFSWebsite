@@ -1,9 +1,17 @@
 import { showSpinner, hideSpinner } from "../../utils/displayspinner.js";
 
 // -----------------------------------------------------
-// getting and updating from the server
+// function to get Subject Students Termly Results
 // ------------------------------------------------------
 async function getstudentdata(classdata) {
+  if (
+    classdata.selectedTerm === "" ||
+    classdata.studentsubject === "" ||
+    classdata.selectedAcademicSession === "" ||
+    classdata.studentclass === ""
+  ) {
+    return;
+  }
   showSpinner("updatesubjectspinner", "subjectbtnmessage", "Loading...");
   const response = await fetch(`/TMS/getstudentresults/`, {
     method: "POST",
@@ -19,9 +27,16 @@ async function getstudentdata(classdata) {
 }
 
 // ---------------------------------------------------
-// function to get Student Annual Result
+// function to get Subject Students Annual Results
 // ---------------------------------------------------
 async function getannualresultdata(classdata) {
+  if (
+    classdata.studentclass === "" ||
+    classdata.studentsubject === "" ||
+    classdata.selectedAcademicSession === ""
+  ) {
+    return;
+  }
   showSpinner("updatesubjectspinner", "subjectbtnmessage", "Loading...");
   console.log(classdata);
   const response = await fetch(`/TMS/annualresultcomputation/`, {
@@ -34,22 +49,6 @@ async function getannualresultdata(classdata) {
   });
   const data = await response.json();
   hideSpinner("updatesubjectspinner", "subjectbtnmessage", "load Results");
-  return data;
-}
-
-// -----------------------------------------------------
-// Function to get Class Annual Result
-// ------------------------------------------------------
-async function getannualclassresult(classdata) {
-  const response = await fetch(`/TMS/annualclassresultcomputation/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": csrftoken,
-    },
-    body: JSON.stringify(classdata),
-  });
-  const data = await response.json();
   return data;
 }
 
@@ -87,7 +86,7 @@ function updatestudentresult(
 }
 
 // -----------------------------------------------------
-// Function to submit all student result
+// Function to submit all Subject Student result
 // ------------------------------------------------------
 function submitallstudentresult(url, data, classdata, displayalert) {
   const resulttosubmit = {
@@ -111,10 +110,18 @@ function submitallstudentresult(url, data, classdata, displayalert) {
     .catch((error) => console.error("Error:", error));
 }
 
+
 // ---------------------------------------------------
-// function to get Student Result
+// function to get Class Students Result
 // ---------------------------------------------------
 async function getstudentresult(classdata) {
+  if (
+    classdata.studentclass === "" ||
+    classdata.selectedTerm === "" ||
+    classdata.selectedAcademicSession === ""
+  ) {
+    return;
+  }
   const response = await fetch(`/TMS/getstudentsubjecttotals/`, {
     method: "POST",
     headers: {
@@ -128,7 +135,7 @@ async function getstudentresult(classdata) {
 }
 
 // ---------------------------------------------------
-// function to publish Student Result
+// function to publish Class Students Result
 // ---------------------------------------------------
 function publishstudentresult(url, data, classdata, displayalert) {
   const fulldata = {
@@ -152,6 +159,31 @@ function publishstudentresult(url, data, classdata, displayalert) {
     })
     .catch((error) => console.error("Error:", error));
 }
+
+
+// -----------------------------------------------------
+// Function to get Class Students Annual Result
+// ------------------------------------------------------
+async function getannualclassresult(classdata) {
+  if (
+    classdata.studentclass === "" ||
+    classdata.selectedTerm === "" ||
+    classdata.selectedAcademicSession === ""
+  ) {
+    return;
+  }
+  const response = await fetch(`/TMS/annualclassresultcomputation/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(classdata),
+  });
+  const data = await response.json();
+  return data;
+}
+
 
 export {
   getstudentdata,

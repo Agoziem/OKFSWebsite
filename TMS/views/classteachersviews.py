@@ -435,7 +435,6 @@ def annual_result_computation_view(request):
         - Logs missing results to console for debugging
     """
     data = json.loads(request.body)
-    print(data)
     session = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
     class_object = get_object_or_404(Class, Class=data['studentclass'])
     subject_object = get_object_or_404(Subject, subject_name=data['studentsubject'])
@@ -456,12 +455,12 @@ def annual_result_computation_view(request):
             except (Student_Result_Data.DoesNotExist, Result.DoesNotExist):
                 print(f"No result found/created for {student.student.student_name} in {term.term} term for {subject_object.subject_name}.")
                 termsobject[term.term] = "-"  # Handle missing results gracefully
-            students_annuals.append({
-                "studentID": student.student.student_id,
-                'Name': student.student.student_name,
-                'terms': termsobject,
-                'published': student_annual_details.published
-            })
+        students_annuals.append({
+            "studentID": student.student.student_id,
+            'Name': student.student.student_name,
+            'terms': termsobject,
+            'published': student_annual_details.published
+        })
     
     return JsonResponse(students_annuals, safe=False)
 
