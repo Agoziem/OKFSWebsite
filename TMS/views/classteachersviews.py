@@ -438,31 +438,76 @@ def annual_result_computation_view(request):
     session = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
     class_object = get_object_or_404(Class, Class=data['studentclass'])
     subject_object = get_object_or_404(Subject, subject_name=data['studentsubject'])
-    students = StudentClassEnrollment.objects.filter(student_class=class_object,academic_session=session)
     terms = Term.objects.all()
-    students_annuals = []
 
+    # 1. Fetch enrolled students with student data
+    enrollments = StudentClassEnrollment.objects.filter(
+        student_class=class_object,
+        academic_session=session
+    ).select_related("student")
+
+    students = [e.student for e in enrollments]
+    student_ids = [s.pk for s in students]
+
+    # 2. Preload AnnualStudent and AnnualResult
+    annual_students = {
+        a.Student_name.pk: a for a in AnnualStudent.objects.filter(
+            Student_name_id__in=student_ids,
+            academicsession=session
+        )
+    }
+
+    annual_results = {
+        (a.Student_name.Student_name.pk, a.Subject.pk): a # type: ignore
+        for a in AnnualResult.objects.filter(
+            Student_name__in=annual_students.values(),
+            Subject=subject_object
+        ).select_related("Student_name")
+    }
+
+    # 3. Preload Student_Result_Data and Result
+    student_result_data = {
+        (r.Student_name.pk, r.Term.pk): r # type: ignore
+        for r in Student_Result_Data.objects.filter(
+            Student_name__in=students,
+            Term__in=terms,
+            Academicsession=session
+        )
+    }
+
+    results = {
+        (r.students_result_summary.Student_name.pk, r.students_result_summary.Term.pk): r # type: ignore
+        for r in Result.objects.filter(
+            students_result_summary__in=student_result_data.values(),
+            Subject=subject_object
+        ).select_related("students_result_summary", "Subject")
+    }
+
+    # 4. Build response
+    response = []
     for student in students:
-        studentAnnual,created = AnnualStudent.objects.get_or_create(Student_name=student.student, academicsession=session)
-        student_annual_details, created = AnnualResult.objects.get_or_create(Student_name=studentAnnual, Subject=subject_object)
-        student_annual_details.Total = str(0)  # Ensure Total is initialized to zero
-        termsobject = {}  # Reset for each student
+        annual_student = annual_students.get(student.pk)
+        if not annual_student:
+            annual_student = AnnualStudent.objects.create(Student_name=student, academicsession=session)
+
+        annual_result = annual_results.get((student.pk, subject_object.pk))
+        if not annual_result:
+            annual_result = AnnualResult.objects.create(Student_name=annual_student, Subject=subject_object)
+
+        terms_object = {}
         for term in terms:
-            try:
-                student_result_details, created = Student_Result_Data.objects.get_or_create(Student_name=student.student, Term=term, Academicsession=session)
-                student_result, created = Result.objects.get_or_create(students_result_summary=student_result_details, Subject=subject_object)
-                termsobject[term.term] = student_result.Total
-            except (Student_Result_Data.DoesNotExist, Result.DoesNotExist):
-                print(f"No result found/created for {student.student.student_name} in {term.term} term for {subject_object.subject_name}.")
-                termsobject[term.term] = "-"  # Handle missing results gracefully
-        students_annuals.append({
-            "studentID": student.student.student_id,
-            'Name': student.student.student_name,
-            'terms': termsobject,
-            'published': student_annual_details.published
+            key = (student.pk, term.pk)
+            total = results.get(key).Total if key in results or not results.get(key)  else "-" # type: ignore
+            terms_object[term.term] = total
+
+        response.append({
+            "studentID": student.student_id,
+            "Name": student.student_name,
+            "terms": terms_object,
+            "published": annual_result.published
         })
-    
-    return JsonResponse(students_annuals, safe=False)
+
+    return JsonResponse(response, safe=False)
 
 
 def publish_annual_results(request):
