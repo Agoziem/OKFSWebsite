@@ -638,7 +638,7 @@ def annual_class_computation_view(request):
         student_data = {
             "id": student.pk,
             "Name": student.student_name,
-            "published": False,
+            "published": ann_student.published if ann_student else False,
             "subjects": []
         }
 
@@ -653,9 +653,6 @@ def annual_class_computation_view(request):
                 "Average": result.Average if result else "-",
                 "published": result.published if result else False,
             })
-
-            if result and result.published:
-                student_data["published"] = ann_student.published if ann_student else False
 
         final_list.append(student_data)
 
