@@ -627,7 +627,7 @@ def annual_class_computation_view(request):
     ).select_related("Subject", "Student_name")
 
     result_map = {
-        (ar.Student_name.pk, ar.Subject.subject_code): ar
+        (ar.Student_name.pk, ar.Subject.subject_code): ar # type: ignore
         for ar in annual_results
     }
 
@@ -642,7 +642,7 @@ def annual_class_computation_view(request):
             "subjects": []
         }
 
-        for sub in subject_alloc.subjects:
+        for sub in subject_alloc.subjects.all():
             code = sub.subject_code
             subject_obj = subject_map.get(code)
             result = result_map.get((ann_student.pk, code)) if ann_student and subject_obj else None
