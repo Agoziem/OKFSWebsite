@@ -606,7 +606,7 @@ def annual_class_computation_view(request):
     ).select_related("student")
 
     subject_alloc = get_object_or_404(Subjectallocation, classname=classobject)
-    subject_codes = [s.subject_code for s in subject_alloc.subjects]
+    subject_codes = [s.subject_code for s in subject_alloc.subjects.all()]
     subject_map = {
         s.subject_code: s for s in Subject.objects.filter(subject_code__in=subject_codes)
     }
