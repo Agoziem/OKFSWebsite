@@ -596,41 +596,72 @@ def PublishAnnualResults_view(request,Classname):
 
 
 def annual_class_computation_view(request):
-    data=json.loads(request.body)
-    classobject=get_object_or_404(Class, Class=data['studentclass'])
-    Acadsessionobject=get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
+    data = json.loads(request.body)
+    classobject = get_object_or_404(Class, Class=data['studentclass'])
+    session = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
+
     students = StudentClassEnrollment.objects.filter(
-            student_class=classobject,
-            academic_session=Acadsessionobject
-        ).select_related("student")
-    subjects_allocated = get_object_or_404(Subjectallocation, classname=classobject)
+        student_class=classobject,
+        academic_session=session
+    ).select_related("student")
+
+    subject_alloc = get_object_or_404(Subjectallocation, classname=classobject)
+    subject_codes = [s.subject_code for s in subject_alloc.subjects]
+    subject_map = {
+        s.subject_code: s for s in Subject.objects.filter(subject_code__in=subject_codes)
+    }
+
+    student_ids = [s.student.pk for s in students]
+
+    annual_student_map = {
+        a.Student_name.pk: a for a in AnnualStudent.objects.filter(
+            Student_name_id__in=student_ids,
+            academicsession=session
+        )
+    }
+
+    # Only use AnnualStudent IDs for fetching AnnualResult
+    annual_results = AnnualResult.objects.filter(
+        Student_name_id__in=[a.pk for a in annual_student_map.values()],
+        Subject__subject_code__in=subject_codes
+    ).select_related("Subject", "Student_name")
+
+    result_map = {
+        (ar.Student_name.pk, ar.Subject.subject_code): ar
+        for ar in annual_results
+    }
+
     final_list = []
-    for student in students:
-        studentdict={
-            "id": student.student.pk,
-            'Name':student.student.student_name,
-            "subjects":[]
+    for student_enroll in students:
+        student = student_enroll.student
+        ann_student = annual_student_map.get(student.pk)
+        student_data = {
+            "id": student.pk,
+            "Name": student.student_name,
+            "published": False,
+            "subjects": []
         }
-        for subobject in subjects_allocated.subjects.all():
-            subject = {}
-            try:
-                subject_object = get_object_or_404(Subject, subject_code=subobject.subject_code)
-                studentAnnual,_ = AnnualStudent.objects.get_or_create(Student_name=student.student, academicsession=Acadsessionobject)
-                subjectAnnual = get_object_or_404(AnnualResult, Student_name=studentAnnual, Subject=subject_object)
-                subject['subject_code'] = subobject.subject_code
-                subject['subject_name'] = subobject.subject_name
-                subject['Average'] = subjectAnnual.Average
-                subject['published'] = subjectAnnual.published
-                studentdict['published'] = studentAnnual.published
-            except:
-                subject['subject_code'] = subobject.subject_code
-                subject['subject_name'] = subobject.subject_name
-                subject['Average'] = "-"
-                subject['published'] = False
-                studentdict['published'] = False
-            studentdict['subjects'].append(subject)
-        final_list.append(studentdict)
+
+        for sub in subject_alloc.subjects:
+            code = sub.subject_code
+            subject_obj = subject_map.get(code)
+            result = result_map.get((ann_student.pk, code)) if ann_student and subject_obj else None
+
+            student_data["subjects"].append({
+                "subject_code": code,
+                "subject_name": sub.subject_name,
+                "Average": result.Average if result else "-",
+                "published": result.published if result else False,
+            })
+
+            if result and result.published:
+                student_data["published"] = True
+
+        final_list.append(student_data)
+
     return JsonResponse(final_list, safe=False)
+
+
 
 
 
