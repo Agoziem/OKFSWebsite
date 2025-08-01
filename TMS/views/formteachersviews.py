@@ -404,112 +404,82 @@ def PublishResults_view(request,Classname):
         }
     return render(request, 'Publish_Result.html', context)
 
+@login_required
 def getstudentsubjecttotals_view(request):
-    """
-    Retrieve student result totals across all subjects for result publication overview.
-    
-    This AJAX view provides form teachers with a comprehensive overview of all
-    students' total scores across all allocated subjects for a specific term and session.
-    
-    Request Method: POST
-    Content-Type: application/json
-    
-    Request Body:
-        {
-            "studentclass": "JSS1A",
-            "selectedTerm": "1st Term",
-            "selectedAcademicSession": "2023/2024"
-        }
-    
-    Returns:
-        JsonResponse: Array of student objects with subject totals:
-        [
-            {
-                "id": 123,
-                "Name": "John Doe",
-                "subjects": [
-                    {
-                        "subject_code": "MTH",
-                        "subject_name": "Mathematics",
-                        "Total": "85",
-                        "published": true
-                    },
-                    {
-                        "subject_code": "ENG", 
-                        "subject_name": "English",
-                        "Total": "-",
-                        "published": false
-                    }
-                ],
-                "published": true
-            },
-            ...
-        ]
-    
-    OR Error response:
-        {
-            "error": "No subjects allocated to this class"
-        }
-    
-    Behavior:
-        - Gets all enrolled students for the class/session
-        - Creates result records if they don't exist (using get_or_create)
-        - Fetches total scores for each allocated subject
-        - Shows "-" for subjects with no computed totals
-        - Includes publication status for each subject and overall result
-        
-    Purpose:
-        - Overview for form teachers before publishing results
-        - Quality assurance to ensure all subject results are complete
-        - Visual confirmation of result computation status
-        - Foundation for class-wide result publication decisions
-        
-    Data Flow:
-        1. Validate class, term, and session
-        2. Get subject allocation for the class
-        3. For each enrolled student:
-           - Create/get result summary record
-           - For each allocated subject:
-             - Get/create subject result record
-             - Extract total score and publication status
-        4. Compile comprehensive result overview
-    """
-    data=json.loads(request.body)
+    data = json.loads(request.body)
+
+    # Step 1: Validate core objects
     class_object = get_object_or_404(Class, Class=data['studentclass'])
     term_object = get_object_or_404(Term, term=data['selectedTerm'])
     session_object = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
+
+    # Step 2: Fetch subject allocation
     subjects_allocated = Subjectallocation.objects.filter(classname=class_object).first()
     if not subjects_allocated:
         return JsonResponse({"error": "No subjects allocated to this class"}, status=400)
-    students = StudentClassEnrollment.objects.filter(
-            student_class=class_object,
-            academic_session=session_object
-        ).select_related("student")
+
+    subject_list = list(subjects_allocated.subjects.all())
+
+    # Step 3: Get all enrolled students
+    enrollments = StudentClassEnrollment.objects.select_related("student").filter(
+        student_class=class_object,
+        academic_session=session_object
+    )
+    student_ids = [en.student.pk for en in enrollments]
+
+    # Step 4: Prefetch all Student_Result_Data for these students
+    srd_queryset = Student_Result_Data.objects.filter(
+        Student_name_id__in=student_ids,
+        Term=term_object,
+        Academicsession=session_object
+    )
+    srd_map = {srd.Student_name.pk: srd for srd in srd_queryset}
+
+    # Step 5: Prefetch all Result objects for all students and all allocated subjects
+    result_queryset = Result.objects.filter(
+        students_result_summary__in=srd_queryset,
+        Subject__in=subject_list
+    ).select_related("Subject", "students_result_summary")
+
+    # (student_id, subject_id) → result
+    result_map = {
+        (res.students_result_summary.Student_name.pk, res.Subject.pk): res # type: ignore
+        for res in result_queryset
+    }
+
     final_list = []
-    # get all the Students related to the Class
-    for student in students:
-        Resultdetails,_=Student_Result_Data.objects.get_or_create(Student_name=student.student,Term=term_object,Academicsession=session_object)
+
+    for enrollment in enrollments:
+        student = enrollment.student
+        srd = srd_map.get(student.pk)
+
+        if not srd:
+            # Create if not exist and update map
+            srd = Student_Result_Data.objects.create(
+                Student_name=student,
+                Term=term_object,
+                Academicsession=session_object
+            )
+            srd_map[student.pk] = srd
+
         student_dict = {
-            'id':student.student.pk,
-            'Name': student.student.student_name,
-            'subjects':[],
+            'id': student.pk,
+            'Name': student.student_name,
+            'subjects': [],
+            'published': srd.published
         }
-        for subobject in subjects_allocated.subjects.all():
-            subject = {}
-            try:
-                subresult = Result.objects.get(students_result_summary=Resultdetails, Subject=subobject)
-                subject['subject_code'] = subobject.subject_code
-                subject['subject_name'] = subobject.subject_name
-                subject['Total'] = subresult.Total
-                subject['published'] = subresult.published
-            except:
-                subject['subject_code'] = subobject.subject_code
-                subject['subject_name'] = subobject.subject_name
-                subject['Total'] = "-"
-                subject['published'] = False
-            student_dict['subjects'].append(subject)
-            student_dict['published'] = Resultdetails.published
+
+        for subject in subject_list:
+            res = result_map.get((student.pk, subject.pk))
+            student_dict['subjects'].append({
+                'subject_code': subject.subject_code,
+                'subject_name': subject.subject_name,
+                'Total': res.Total if res else "-",
+                'published': res.published if res else False
+            })
+
         final_list.append(student_dict)
+
     return JsonResponse(final_list, safe=False)
 
 
@@ -600,17 +570,16 @@ def annual_class_computation_view(request):
     classobject = get_object_or_404(Class, Class=data['studentclass'])
     session = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
 
-    students = StudentClassEnrollment.objects.filter(
-        student_class=classobject,
-        academic_session=session
-    ).select_related("student")
-
     subject_alloc = get_object_or_404(Subjectallocation, classname=classobject)
     subject_codes = [s.subject_code for s in subject_alloc.subjects.all()]
     subject_map = {
         s.subject_code: s for s in Subject.objects.filter(subject_code__in=subject_codes)
     }
 
+    students = StudentClassEnrollment.objects.filter(
+        student_class=classobject,
+        academic_session=session
+    ).select_related("student")
     student_ids = [s.student.pk for s in students]
 
     annual_student_map = {
@@ -625,7 +594,6 @@ def annual_class_computation_view(request):
         Student_name_id__in=[a.pk for a in annual_student_map.values()],
         Subject__subject_code__in=subject_codes
     ).select_related("Subject", "Student_name")
-
     result_map = {
         (ar.Student_name.pk, ar.Subject.subject_code): ar # type: ignore
         for ar in annual_results

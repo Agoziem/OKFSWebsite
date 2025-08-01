@@ -68,75 +68,74 @@ def result_computation_view(request,Classname,id):
 
 @login_required
 def get_students_result_view(request):
-    """
-    Retrieve student results for a specific class, subject, term and session.
-    
-    This AJAX view fetches all students enrolled in a class and their existing
-    result data for the specified subject and term. Creates result records if
-    they don't exist.
-    
-    Request Method: POST
-    Content-Type: application/json
-    
-    Request Body:
-        {
-            "studentclass": "JSS1A",
-            "studentsubject": "Mathematics", 
-            "selectedTerm": "1st Term",
-            "selectedAcademicSession": "2023/2024"
-        }
-    
-    Returns:
-        JsonResponse: List of student result objects with the following structure:
-        [
-            {
-                "Name": "Student Full Name",
-                "1sttest": 15,
-                "1stAss": 10,
-                "Project": 5,
-                "MidTermTest": 20,
-                "2ndTest": 18,
-                "2ndAss": 12,
-                "Exam": 45,
-                "studentID": "STU001",
-                "published": false
-            },
-            ...
-        ]
-    
-    Behavior:
-        - Creates Student_Result_Data and Result objects if they don't exist
-        - Uses get_or_create to avoid duplicate records
-        - Skips students without result data and logs to console
-        - Returns empty scores for new result records
-    """
-    data=json.loads(request.body)
-    studentResults = []
+    data = json.loads(request.body)
     classobject = get_object_or_404(Class, Class=data['studentclass'])
     subjectobject = get_object_or_404(Subject, subject_name=data['studentsubject'])
     term = get_object_or_404(Term, term=data['selectedTerm'])
     session = get_object_or_404(AcademicSession, session=data['selectedAcademicSession'])
-    students = StudentClassEnrollment.objects.filter(student_class=classobject, academic_session=session)
 
-    for studentresult in students:
-        student_result_details, created = Student_Result_Data.objects.get_or_create(Student_name=studentresult.student, Term=term, Academicsession=session)
-        student_result_object, created = Result.objects.get_or_create(Subject=subjectobject, students_result_summary=student_result_details)
-        if student_result_object.students_result_summary:
-                studentResults.append({
-                'Name': student_result_object.students_result_summary.Student_name.student_name,
-                '1sttest': student_result_object.FirstTest,
-                '1stAss': student_result_object.FirstAss,
-                'Project': student_result_object.Project,
-                'MidTermTest': student_result_object.MidTermTest,
-                '2ndTest': student_result_object.SecondAss,
-                '2ndAss': student_result_object.SecondTest,
-                'Exam': student_result_object.Exam,
-                "studentID":student_result_object.students_result_summary.Student_name.student_id,
-                'published': student_result_object.published,
-            })
-        else:
-            print(f"No result found for {studentresult.student.student_name} in {term.term} term for {subjectobject.subject_name}.")
-            continue
+    enrollments = StudentClassEnrollment.objects.select_related('student').filter(
+        student_class=classobject, academic_session=session
+    )
+    student_ids = [e.student.pk for e in enrollments]
+
+    # prefetch Student_Result_Data for the term and session
+    srd_queryset = Student_Result_Data.objects.filter(
+        Student_name__in=student_ids,
+        Term=term,
+        Academicsession=session
+    )
+    srd_map = {srd.Student_name.pk: srd for srd in srd_queryset}
+
+    # Prefetch Results for the subject only
+    result_queryset = Result.objects.filter(
+        students_result_summary__in=srd_queryset,
+        Subject=subjectobject
+    ).select_related('students_result_summary__Student_name')
+
+    result_map = {
+        res.students_result_summary.Student_name.pk: res # type: ignore
+        for res in result_queryset
+    }
+
+    studentResults = []
+
+    for enrollment in enrollments:
+        student = enrollment.student
+
+        # Ensure Student_Result_Data exists
+        srd = srd_map.get(student.pk)
+        if not srd:
+            srd = Student_Result_Data.objects.create(
+                Student_name=student,
+                Term=term,
+                Academicsession=session
+            )
+            srd_map[student.pk] = srd
+
+        # Ensure Result object exists
+        res = result_map.get(student.pk)
+        if not res:
+            res = Result.objects.create(
+                Subject=subjectobject,
+                students_result_summary=srd
+            )
+            result_map[student.pk] = res
+
+        # Build result output
+        studentResults.append({
+            'Name': student.student_name,
+            '1sttest': res.FirstTest,
+            '1stAss': res.FirstAss,
+            'Project': res.Project,
+            'MidTermTest': res.MidTermTest,
+            '2ndTest': res.SecondAss,
+            '2ndAss': res.SecondTest,
+            'Exam': res.Exam,
+            "studentID": student.student_id,
+            'published': res.published,
+        })
+
     return JsonResponse(studentResults, safe=False, status=200)
 
 @login_required
@@ -254,10 +253,10 @@ def submitallstudentresult_view(request):
         - Once published, results become visible to students and parents
     """
     data=json.loads(request.body)
+    subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
+    term = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
+    session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for result in data['data']:
-        subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
-        term = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
-        session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
         studentobject= get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'], student_name=result['Name'])
         student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
         studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
@@ -323,10 +322,10 @@ def unpublish_results_view(request):
         - Uses try-except to handle missing result records gracefully
     """
     data=json.loads(request.body)
+    resultterm = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
+    resultsession = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
+    subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     for studentdata in data['data']:
-        resultterm = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
-        resultsession = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
-        subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
         student = get_object_or_404(Students_Pin_and_ID, student_name=studentdata['Name'], student_id=studentdata['studentID'])
         try:
             student_result_details=get_object_or_404(Student_Result_Data, Student_name=student, Term=resultterm, Academicsession=resultsession)
