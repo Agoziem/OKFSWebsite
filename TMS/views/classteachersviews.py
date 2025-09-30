@@ -496,7 +496,8 @@ def annual_result_computation_view(request):
         terms_object = {}
         for term in terms:
             key = (student.pk, term.pk)
-            total = results.get(key).Total if key in results or not results.get(key)  else "-" # type: ignore
+            result_obj = results.get(key)
+            total = result_obj.Total if result_obj else "-"
             terms_object[term.term] = total
 
         response.append({
