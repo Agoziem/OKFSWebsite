@@ -549,10 +549,7 @@ def publishstudentresult_view(request):
                 print(f"Error publishing result for {studentdata['Name']}: {str(e)}")
                 continue
         
-        return JsonResponse({
-            'message': 'Results have been Published and its now open to the Students',
-            'count': published_count
-        }, safe=False, status=200)
+        return JsonResponse("Results have been Published and its now open to the Students", safe=False, status=200)
     except Exception as e:
         print(f"Error in publishstudentresult_view: {str(e)}")
         return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
@@ -610,10 +607,7 @@ def unpublish_classresults_view(request):
                 print(f"Error unpublishing result for {student_data['Name']}: {str(e)}")
                 continue
         
-        return JsonResponse({
-            'message': 'Results have been Unpublished and its now closed to the Students',
-            'count': unpublished_count
-        }, safe=False, status=200)
+        return JsonResponse("Results have been Unpublished and its now closed to the Students", safe=False, status=200)
     except Exception as e:
         print(f"Error in unpublish_classresults_view: {str(e)}")
         return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
@@ -764,7 +758,7 @@ def publish_annualstudentresult_view(request):
             except Exception as e:
                 print(f"Error publishing result for {student.student_name}: {str(e)}")
                 continue
-        return JsonResponse({'message': 'Results have been Published and its now open to the Students'}, safe=False, status=200)
+        return JsonResponse("Results have been Published and its now open to the Students", safe=False, status=200)
     except Exception as e:
         print(f"Error in publish_annualstudentresult_view: {str(e)}")
         return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
@@ -808,10 +802,7 @@ def unpublish_annual_classresults_view(request):
                 print(f"Error unpublishing result for {student_enroll.student.student_name}: {str(e)}")
                 continue
         
-        return JsonResponse({
-            'message': 'Results have been Unpublished and its now closed to the Students',
-            'count': unpublished_count
-        }, safe=False, status=200)
+        return JsonResponse("Results have been Unpublished and its now closed to the Students", safe=False, status=200)
     except Exception as e:
         print(f"Error in unpublish_annual_classresults_view: {str(e)}")
         return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
