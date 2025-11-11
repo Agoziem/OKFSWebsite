@@ -484,6 +484,38 @@ def getstudentsubjecttotals_view(request):
 
 
 def publishstudentresult_view(request):
+    """
+    Publish termly results for all students in a class.
+    
+    This view processes and publishes term results for an entire class,
+    including total scores, averages, positions, and remarks.
+    
+    Request Method: POST
+    Content-Type: application/json
+    
+    Request Body:
+        {
+            "classdata": {
+                "selectedTerm": "1st Term",
+                "selectedAcademicSession": "2023/2024",
+                "studentclass": "JSS1A"
+            },
+            "data": [
+                {
+                    "id": 123,
+                    "Name": "John Doe",
+                    "Total": 850,
+                    "Ave": 85.0,
+                    "Position": 1,
+                    "Remarks": "Excellent"
+                },
+                ...
+            ]
+        }
+    
+    Returns:
+        JsonResponse: Success or error message
+    """
     try:
         data=json.loads(request.body)
         termobject=data['classdata']['selectedTerm']
@@ -493,6 +525,7 @@ def publishstudentresult_view(request):
         resultterm = get_object_or_404(Term, term=termobject)
         resultsession = get_object_or_404(AcademicSession, session=Acadsessionobject)
 
+        published_count = 0
         for studentdata in data['data']:
             studentnumber = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=resultsession).count()
             student_enrolled = StudentClassEnrollment.objects.get(
@@ -504,41 +537,86 @@ def publishstudentresult_view(request):
 
             try:
                 studentresult=Student_Result_Data.objects.get(Student_name=student_enrolled.student,Term=resultterm,Academicsession=resultsession)
-                studentresult.TotalScore=studentdata['Total']
+                studentresult.TotalScore=studentdata.get('Total', 0)
                 studentresult.Totalnumber= str(studentnumber)
-                studentresult.Average=studentdata['Ave']
-                studentresult.Position=studentdata['Position']
-                studentresult.Remark=studentdata['Remarks']
+                studentresult.Average=studentdata.get('Ave', 0)
+                studentresult.Position=studentdata.get('Position', '')
+                studentresult.Remark=studentdata.get('Remarks', '')
                 studentresult.published = True
                 studentresult.save()
+                published_count += 1
             except Exception as e:
-                print(str(e))
+                print(f"Error publishing result for {studentdata['Name']}: {str(e)}")
                 continue
-        return JsonResponse('Results have been Published and its now open to the Students', safe=False)
-    except:
-        return JsonResponse({'something went wrong, try again later' }, safe=False)
+        
+        return JsonResponse({
+            'message': 'Results have been Published and its now open to the Students',
+            'count': published_count
+        }, safe=False, status=200)
+    except Exception as e:
+        print(f"Error in publishstudentresult_view: {str(e)}")
+        return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
 
 
 def unpublish_classresults_view(request):
-    data=json.loads(request.body)
-    termobject=get_object_or_404(Term, term=data['classdata']['selectedTerm'])
-    Acadsessionobject=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
-    classobject=get_object_or_404(Class, Class=data['classdata']['studentclass'])
+    """
+    Unpublish termly results for all students in a class.
+    
+    This view unpublishes term results for an entire class, making them
+    invisible to students while preserving all computed data.
+    
+    Request Method: POST
+    Content-Type: application/json
+    
+    Request Body:
+        {
+            "classdata": {
+                "selectedTerm": "1st Term",
+                "selectedAcademicSession": "2023/2024",
+                "studentclass": "JSS1A"
+            },
+            "data": [
+                {
+                    "id": 123,
+                    "Name": "John Doe"
+                },
+                ...
+            ]
+        }
+    
+    Returns:
+        JsonResponse: Success or error message
+    """
+    try:
+        data=json.loads(request.body)
+        termobject=get_object_or_404(Term, term=data['classdata']['selectedTerm'])
+        Acadsessionobject=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
+        classobject=get_object_or_404(Class, Class=data['classdata']['studentclass'])
 
-    for student_data in data['data']:
-        try:
-            student_enrolled = StudentClassEnrollment.objects.get(
-                student__student_name=student_data['Name'],
-                student__id = student_data['id'],
-                student_class=classobject,
-                academic_session=Acadsessionobject
-            )
-            studentresult=get_object_or_404(Student_Result_Data, Student_name=student_enrolled.student, Term=termobject, Academicsession=Acadsessionobject)
-            studentresult.published = False
-            studentresult.save()
-        except:
-            continue
-    return JsonResponse('Results have been Unpublished and its now closed to the Students', safe=False)
+        unpublished_count = 0
+        for student_data in data['data']:
+            try:
+                student_enrolled = StudentClassEnrollment.objects.get(
+                    student__student_name=student_data['Name'],
+                    student__id = student_data['id'],
+                    student_class=classobject,
+                    academic_session=Acadsessionobject
+                )
+                studentresult=get_object_or_404(Student_Result_Data, Student_name=student_enrolled.student, Term=termobject, Academicsession=Acadsessionobject)
+                studentresult.published = False
+                studentresult.save()
+                unpublished_count += 1
+            except Exception as e:
+                print(f"Error unpublishing result for {student_data['Name']}: {str(e)}")
+                continue
+        
+        return JsonResponse({
+            'message': 'Results have been Unpublished and its now closed to the Students',
+            'count': unpublished_count
+        }, safe=False, status=200)
+    except Exception as e:
+        print(f"Error in unpublish_classresults_view: {str(e)}")
+        return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
 
 
 # -----------------------------------------------------------------------------------
@@ -631,6 +709,38 @@ def annual_class_computation_view(request):
 
 
 def publish_annualstudentresult_view(request):
+    """
+    Publish annual student results for an entire class.
+    
+    This view processes and publishes annual results for all students in a class,
+    including total scores, averages, positions, remarks, and verdict.
+    
+    Request Method: POST
+    Content-Type: application/json
+    
+    Request Body:
+        {
+            "classdata": {
+                "selectedAcademicSession": "2023/2024",
+                "studentclass": "JSS1A"
+            },
+            "data": [
+                {
+                    "id": 123,
+                    "Name": "John Doe",
+                    "Total": 850,
+                    "Average": 85.0,
+                    "Position": 1,
+                    "Remarks": "Excellent performance",
+                    "Verdict": "Promoted"
+                },
+                ...
+            ]
+        }
+    
+    Returns:
+        JsonResponse: Success or error message
+    """
     try:
         data=json.loads(request.body)
         Acadsessionobject=data['classdata']['selectedAcademicSession']
@@ -638,36 +748,70 @@ def publish_annualstudentresult_view(request):
         classobject=get_object_or_404(Class, Class=Classdata)
         resultsession = get_object_or_404(AcademicSession, session=Acadsessionobject)
         for studentdata in data['data']:
-            student = get_object_or_404(Students_Pin_and_ID, student_name=studentdata['Name'])
+            # Use student ID for more reliable lookup
+            student = get_object_or_404(Students_Pin_and_ID, id=studentdata['id'])
             studentnumber = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=resultsession).count()
             try:
                 studentresult=get_object_or_404(AnnualStudent, Student_name=student,academicsession=resultsession)
-                studentresult.TotalScore=studentdata['Total']
+                studentresult.TotalScore=studentdata.get('Total', 0)
                 studentresult.Totalnumber= str(studentnumber)
-                studentresult.Average=studentdata['Average']
-                studentresult.Position=studentdata['Position']
-                studentresult.Remark=studentdata['Remarks']
-                studentresult.Verdict = studentdata['Verdict']
+                studentresult.Average=studentdata.get('Average', 0)
+                studentresult.Position=studentdata.get('Position', '')
+                studentresult.Remark=studentdata.get('Remarks', '')
+                studentresult.Verdict = studentdata.get('Verdict', '')
                 studentresult.published = True
                 studentresult.save()
             except Exception as e:
-                print(str(e))
+                print(f"Error publishing result for {student.student_name}: {str(e)}")
                 continue
-        return JsonResponse('Results have been Published and its now open to the Students', safe=False)
-    except:
-        return JsonResponse({'something went wrong, try again later' }, safe=False)
+        return JsonResponse({'message': 'Results have been Published and its now open to the Students'}, safe=False, status=200)
+    except Exception as e:
+        print(f"Error in publish_annualstudentresult_view: {str(e)}")
+        return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
     
 
 def unpublish_annual_classresults_view(request):
-    data=json.loads(request.body)
-    classobject=get_object_or_404(Class, Class=data['classdata']['studentclass'])
-    Acadsessionobject=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
-    students = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=Acadsessionobject)
-    for student in students:
-        try:
-            studentresult=get_object_or_404(AnnualStudent, Student_name=student,academicsession=Acadsessionobject)
-            studentresult.published = False
-            studentresult.save()
-        except:
-            continue
-    return JsonResponse('Results have been Unpublished and its now closed to the Students', safe=False)
+    """
+    Unpublish annual results for all students in a class.
+    
+    This view unpublishes annual results for an entire class, making them
+    invisible to students while preserving all computed data.
+    
+    Request Method: POST
+    Content-Type: application/json
+    
+    Request Body:
+        {
+            "classdata": {
+                "studentclass": "JSS1A",
+                "selectedAcademicSession": "2023/2024"
+            }
+        }
+    
+    Returns:
+        JsonResponse: Success or error message
+    """
+    try:
+        data=json.loads(request.body)
+        classobject=get_object_or_404(Class, Class=data['classdata']['studentclass'])
+        Acadsessionobject=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
+        students = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=Acadsessionobject)
+        
+        unpublished_count = 0
+        for student_enroll in students:
+            try:
+                studentresult=get_object_or_404(AnnualStudent, Student_name=student_enroll.student, academicsession=Acadsessionobject)
+                studentresult.published = False
+                studentresult.save()
+                unpublished_count += 1
+            except Exception as e:
+                print(f"Error unpublishing result for {student_enroll.student.student_name}: {str(e)}")
+                continue
+        
+        return JsonResponse({
+            'message': 'Results have been Unpublished and its now closed to the Students',
+            'count': unpublished_count
+        }, safe=False, status=200)
+    except Exception as e:
+        print(f"Error in unpublish_annual_classresults_view: {str(e)}")
+        return JsonResponse({'error': 'Something went wrong, try again later'}, safe=False, status=500)
