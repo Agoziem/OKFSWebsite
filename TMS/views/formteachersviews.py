@@ -74,10 +74,10 @@ def Students_view(request, Classname, session_id):
     classobject = get_object_or_404(Class, Class=Classname)
     sessionobject = get_object_or_404(AcademicSession, id=session_id)
     sessions = AcademicSession.objects.all()
-    # Fetch students enrolled in this class and session
+    # Fetch students enrolled in this class and session, sorted alphabetically by name
     students = StudentClassEnrollment.objects.filter(
         student_class=classobject, academic_session=sessionobject
-    ).select_related("student")  # Use select_related for optimized queries
+    ).select_related("student").order_by("student__student_name")  # Sort by student name
 
     context = {
         "class": classobject,
