@@ -20,7 +20,7 @@ const addandeditstudentdetailform = document.querySelector(
   "#addandeditstudentdetailform"
 );
 const studentclass = document.querySelector("#studentclass").value;
-const academicsession = document.querySelector('#academicsession').value;
+const academicsession = document.querySelector("#academicsession").value;
 const alertcontainer = document.querySelector(".alertcontainer");
 const deletestudentbtn = document.querySelector("#deletestudentbtn");
 const removestudentsactionbtn = document.querySelector(
@@ -31,7 +31,6 @@ const removeallstudentactionbtn = document.querySelector(
 );
 const datatablesSimple = document.getElementById("datatablesSimple");
 let dataTable = new simpleDatatables.DataTable(datatablesSimple);
-
 
 // ---------------------------------------------------------
 // Global Variables
@@ -265,7 +264,7 @@ function submitupdatetoServer(studentID, studentname, Student_sex) {
     studentclass,
     studentname,
     Student_sex,
-    academicsession
+    academicsession,
   };
   showSpinner("updatespinner", "addorupdatemessage", "updating student...");
   fetch(`/TMS/updateStudent/`, {
@@ -314,7 +313,7 @@ async function submittoServer(studentname, Student_sex) {
     studentclass,
     studentname,
     Student_sex,
-    academicsession
+    academicsession,
   };
   showSpinner("addorupdatespinner", "addorupdatemessage", "adding student...");
   const response = await fetch(`/TMS/newStudent/`, {

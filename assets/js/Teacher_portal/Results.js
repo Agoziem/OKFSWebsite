@@ -5,6 +5,7 @@ import {
   updatestudentresult,
   submitallstudentresult,
 } from "./utils/serveractions.js";
+import * as XLSX from 'https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs';
 
 // ---------------------------------------------------
 // DOM elements
@@ -27,6 +28,15 @@ const alertcontainer2 = document.querySelector(".alertcontainer2"); // for large
 
 document.querySelectorAll(".publishbtn").forEach((btn) => {
   btn.addEventListener("click", exportTableToJSON);
+});
+
+// Add Excel export button listeners
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".btn-success").forEach((btn) => {
+    if (btn.textContent.includes("Print to Excel")) {
+      btn.addEventListener("click", exportToExcel);
+    }
+  });
 });
 
 // ---------------------------------------------------
@@ -268,6 +278,75 @@ function displayalert(type, message) {
   setTimeout(() => {
     alertdiv.remove();
   }, 5000);
+}
+
+// -----------------------------------------------------
+// Export to Excel Handler
+// -----------------------------------------------------
+function exportToExcel() {
+  if (!studentResult.length) {
+    displayalert("alert-warning", "No data to export");
+    return;
+  }
+
+  try {
+    // Prepare data for Excel
+    const exportData = studentResult.map((student, index) => {
+      return {
+        'S/N': index + 1,
+        'Name': student.Name,
+        '1st Test': student['1sttest'] || '-',
+        '1st Assignment': student['1stAss'] || '-',
+        'Project': student['Project'] || '-',
+        'Mid Term Test': student['MidTermTest'] || '-',
+        '2nd Test': student['2ndTest'] || '-',
+        '2nd Assignment': student['2ndAss'] || '-',
+        'CA': student['CA'] || '-',
+        'Exam': student['Exam'] || '-',
+        'Total': student['Total'] || '-',
+        'Grade': student['Grade'] || '-',
+        'Position': student['Position'] || '-',
+        'Remarks': student['Remarks'] || '-'
+      };
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    
+    // Set column widths
+    ws['!cols'] = [
+      { wch: 5 },  // S/N
+      { wch: 25 }, // Name
+      { wch: 10 }, // 1st Test
+      { wch: 15 }, // 1st Assignment
+      { wch: 10 }, // Project
+      { wch: 15 }, // Mid Term Test
+      { wch: 10 }, // 2nd Test
+      { wch: 15 }, // 2nd Assignment
+      { wch: 8 },  // CA
+      { wch: 8 },  // Exam
+      { wch: 8 },  // Total
+      { wch: 8 },  // Grade
+      { wch: 10 }, // Position
+      { wch: 15 }  // Remarks
+    ];
+    
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Results");
+
+    // Generate filename
+    const subject = subjectselect.options[subjectselect.selectedIndex].text || 'Subject';
+    const filename = `${classinput.value}_${subject}_${termSelect.value}_${academicSessionSelect.value}_Results.xlsx`.replace(/\//g, '-');
+
+    // Save file
+    XLSX.writeFile(wb, filename);
+    
+    displayalert("alert-success", "Results exported successfully!");
+  } catch (error) {
+    console.error("Export error:", error);
+    displayalert("alert-danger", "Failed to export results");
+  }
 }
 
 // ------------------------------------------------------------------------------------------------

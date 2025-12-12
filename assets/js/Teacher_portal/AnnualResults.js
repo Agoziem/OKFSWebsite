@@ -4,6 +4,7 @@ import {
   getannualresultdata,
   submitallstudentresult,
 } from "./utils/serveractions.js";
+import * as XLSX from 'https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs';
 
 // ---------------------------------------------------
 // DOM elements
@@ -17,6 +18,15 @@ const alertcontainer2 = document.querySelector(".alertcontainer2"); // for large
 
 document.querySelectorAll(".publishbtn").forEach((btn) => {
   btn.addEventListener("click", exportTableToJSON);
+});
+
+// Add Excel export button listeners
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".btn-success").forEach((btn) => {
+    if (btn.textContent.includes("Print to Excel")) {
+      btn.addEventListener("click", exportToExcel);
+    }
+  });
 });
 
 // ---------------------------------------------------
@@ -176,6 +186,67 @@ function displayalert(type, message) {
   setTimeout(() => {
     alertdiv.remove();
   }, 5000);
+}
+
+// -----------------------------------------------------
+// Export to Excel Handler
+// -----------------------------------------------------
+function exportToExcel() {
+  if (!studentResult.length) {
+    displayalert("alert-warning", "No data to export");
+    return;
+  }
+
+  try {
+    // Prepare data for Excel
+    const exportData = studentResult.map((student, index) => {
+      return {
+        'S/N': index + 1,
+        'Name': student.Name,
+        '1st Term': student.terms['1st Term'] || '-',
+        '2nd Term': student.terms['2nd Term'] || '-',
+        '3rd Term': student.terms['3rd Term'] || '-',
+        'Total': student.Total || '-',
+        'Average': student.Average || '-',
+        'Grade': student.Grade || '-',
+        'Position': student.Position || '-',
+        'Remarks': student.Remarks || '-'
+      };
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    
+    // Set column widths
+    ws['!cols'] = [
+      { wch: 5 },  // S/N
+      { wch: 25 }, // Name
+      { wch: 10 }, // 1st Term
+      { wch: 10 }, // 2nd Term
+      { wch: 10 }, // 3rd Term
+      { wch: 10 }, // Total
+      { wch: 10 }, // Average
+      { wch: 8 },  // Grade
+      { wch: 10 }, // Position
+      { wch: 15 }  // Remarks
+    ];
+    
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Annual Results");
+
+    // Generate filename
+    const subject = subjectselect.options[subjectselect.selectedIndex].text || 'Subject';
+    const filename = `${classinput.value}_${subject}_${academicSessionSelect.value}_Annual_Results.xlsx`.replace(/\//g, '-');
+
+    // Save file
+    XLSX.writeFile(wb, filename);
+    
+    displayalert("alert-success", "Annual results exported successfully!");
+  } catch (error) {
+    console.error("Export error:", error);
+    displayalert("alert-danger", "Failed to export results");
+  }
 }
 
 // ------------------------------------------------------------------------------------------------

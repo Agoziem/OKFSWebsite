@@ -4,6 +4,7 @@ import {
   getstudentresult,
   publishstudentresult,
 } from "./utils/serveractions.js";
+import * as XLSX from 'https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs';
 
 // ---------------------------------------------------
 // DOM elements
@@ -36,6 +37,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
 publishButton.addEventListener("click", () => {
   publishResult();
+});
+
+// Add Excel export button listener
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".btn-success").forEach((btn) => {
+    if (btn.textContent.includes("Print to Excel")) {
+      btn.addEventListener("click", exportToExcel);
+    }
+  });
 });
 
 // ---------------------------------------------------
@@ -175,6 +185,77 @@ function displayalert(type, message) {
   setTimeout(() => {
     alertdiv.remove();
   }, 3000);
+}
+
+// ------------------------------------------------------
+// Export to Excel Handler
+// ------------------------------------------------------
+function exportToExcel() {
+  if (!ClassResult.length) {
+    displayalert("alert-warning", "No data to export");
+    return;
+  }
+
+  try {
+    // Get subject names from the subject list
+    const subjects = mainsubjectlist;
+    
+    // Prepare data for Excel
+    const exportData = ClassResult.map((student, index) => {
+      const row = {
+        'S/N': index + 1,
+        'Name': student.Name,
+      };
+      
+      // Add each subject total
+      student.subjects.forEach((sub, idx) => {
+        const subjectName = subjects[idx] || `Subject ${idx + 1}`;
+        row[subjectName] = sub.Total !== "-" ? sub.Total : "";
+      });
+      
+      // Add summary columns
+      row['Total'] = student.Total;
+      row['Average'] = student.Ave;
+      row['Grade'] = student.Grade;
+      row['Position'] = student.Position;
+      row['Remarks'] = student.Remarks;
+      
+      return row;
+    });
+
+    // Create worksheet
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    
+    // Set column widths
+    const colWidths = [
+      { wch: 5 },  // S/N
+      { wch: 25 }, // Name
+    ];
+    subjects.forEach(() => colWidths.push({ wch: 12 })); // Subject columns
+    colWidths.push(
+      { wch: 10 }, // Total
+      { wch: 10 }, // Average
+      { wch: 8 },  // Grade
+      { wch: 10 }, // Position
+      { wch: 15 }  // Remarks
+    );
+    ws['!cols'] = colWidths;
+    
+    // Create workbook
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Class Results");
+
+    // Generate filename
+    const filename = `${classinput.value}_${termSelect.value}_${academicSessionSelect.value}_Class_Results.xlsx`.replace(/\//g, '-');
+
+    // Save file
+    XLSX.writeFile(wb, filename);
+    
+    displayalert("alert-success", "Results exported successfully!");
+  } catch (error) {
+    console.error("Export error:", error);
+    displayalert("alert-danger", "Failed to export results");
+  }
 }
 
 // -----------------------------------------------------------------------
