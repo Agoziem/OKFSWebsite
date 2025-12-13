@@ -37,7 +37,7 @@ publishButton.addEventListener("click", () => {
 
 // Add Excel export button listener
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".btn-success").forEach((btn) => {
+  document.querySelectorAll(".export-excel-btn").forEach((btn) => {
     if (btn.textContent.includes("Print to Excel")) {
       btn.addEventListener("click", exportToExcel);
     }

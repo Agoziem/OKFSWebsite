@@ -32,7 +32,7 @@ document.querySelectorAll(".publishbtn").forEach((btn) => {
 
 // Add Excel export button listeners
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".btn-success").forEach((btn) => {
+  document.querySelectorAll(".export-excel-btn").forEach((btn) => {
     if (btn.textContent.includes("Print to Excel")) {
       btn.addEventListener("click", exportToExcel);
     }
