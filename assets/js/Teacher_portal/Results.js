@@ -5,7 +5,7 @@ import {
   updatestudentresult,
   submitallstudentresult,
 } from "./utils/serveractions.js";
-import * as XLSX from 'https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs';
+import * as XLSX from "https://cdn.sheetjs.com/xlsx-latest/package/xlsx.mjs";
 
 // ---------------------------------------------------
 // DOM elements
@@ -157,23 +157,27 @@ function loadsavedSelection() {
     classdata.studentsubject = subjectselect.value;
   }
 
-  if (
-    (classinput.value === "Jss3A" ||
-      classinput.value === "Jss3B" ||
-      classinput.value === "Jss3C" ||
-      classinput.value === "Jss3D") &&
-    termSelect.value === "3rd Term"
-  ) {
-    Examforminput.innerHTML = "";
+  const examClasses = [
+    "Jss3A",
+    "Jss3B",
+    "Jss3C",
+    "Jss3D",
+    "SS3 Art",
+    "Ss3 Science",
+  ];
+
+  if (examClasses.includes(classinput.value)) {
     Examforminput.innerHTML = `
-                            <label for="Exam" class="form-label">Exam Score (100)</label>
-                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">`;
+    <label for="Exam" class="form-label">Exam Score (100)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">
+  `;
   } else {
-    Examforminput.innerHTML = "";
     Examforminput.innerHTML = `
-                            <label for="Exam" class="form-label">Exam Score (60)</label>
-                            <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">`;
+    <label for="Exam" class="form-label">Exam Score (60)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">
+  `;
   }
+
   readJsonFromFile();
 }
 
@@ -293,29 +297,29 @@ function exportToExcel() {
     // Prepare data for Excel
     const exportData = studentResult.map((student, index) => {
       return {
-        'S/N': index + 1,
-        'Name': student.Name,
-        '1st Test': student['1sttest'] || '-',
-        '1st Assignment': student['1stAss'] || '-',
-        'Project': student['Project'] || '-',
-        'Mid Term Test': student['MidTermTest'] || '-',
-        '2nd Test': student['2ndTest'] || '-',
-        '2nd Assignment': student['2ndAss'] || '-',
-        'CA': student['CA'] || '-',
-        'Exam': student['Exam'] || '-',
-        'Total': student['Total'] || '-',
-        'Grade': student['Grade'] || '-',
-        'Position': student['Position'] || '-',
-        'Remarks': student['Remarks'] || '-'
+        "S/N": index + 1,
+        Name: student.Name,
+        "1st Test": student["1sttest"] || "-",
+        "1st Assignment": student["1stAss"] || "-",
+        Project: student["Project"] || "-",
+        "Mid Term Test": student["MidTermTest"] || "-",
+        "2nd Test": student["2ndTest"] || "-",
+        "2nd Assignment": student["2ndAss"] || "-",
+        CA: student["CA"] || "-",
+        Exam: student["Exam"] || "-",
+        Total: student["Total"] || "-",
+        Grade: student["Grade"] || "-",
+        Position: student["Position"] || "-",
+        Remarks: student["Remarks"] || "-",
       };
     });
 
     // Create worksheet
     const ws = XLSX.utils.json_to_sheet(exportData);
-    
+
     // Set column widths
-    ws['!cols'] = [
-      { wch: 5 },  // S/N
+    ws["!cols"] = [
+      { wch: 5 }, // S/N
       { wch: 25 }, // Name
       { wch: 10 }, // 1st Test
       { wch: 15 }, // 1st Assignment
@@ -323,25 +327,30 @@ function exportToExcel() {
       { wch: 15 }, // Mid Term Test
       { wch: 10 }, // 2nd Test
       { wch: 15 }, // 2nd Assignment
-      { wch: 8 },  // CA
-      { wch: 8 },  // Exam
-      { wch: 8 },  // Total
-      { wch: 8 },  // Grade
+      { wch: 8 }, // CA
+      { wch: 8 }, // Exam
+      { wch: 8 }, // Total
+      { wch: 8 }, // Grade
       { wch: 10 }, // Position
-      { wch: 15 }  // Remarks
+      { wch: 15 }, // Remarks
     ];
-    
+
     // Create workbook
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Results");
 
     // Generate filename
-    const subject = subjectselect.options[subjectselect.selectedIndex].text || 'Subject';
-    const filename = `${classinput.value}_${subject}_${termSelect.value}_${academicSessionSelect.value}_Results.xlsx`.replace(/\//g, '-');
+    const subject =
+      subjectselect.options[subjectselect.selectedIndex].text || "Subject";
+    const filename =
+      `${classinput.value}_${subject}_${termSelect.value}_${academicSessionSelect.value}_Results.xlsx`.replace(
+        /\//g,
+        "-"
+      );
 
     // Save file
     XLSX.writeFile(wb, filename);
-    
+
     displayalert("alert-success", "Results exported successfully!");
   } catch (error) {
     console.error("Export error:", error);
