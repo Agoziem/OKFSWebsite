@@ -106,26 +106,26 @@ function saveformSelections() {
   classdata.studentsubject =
     subjectselect.options[subjectselect.selectedIndex].value;
 
-  // const examClasses = [
-  //   "Jss3A",
-  //   "Jss3B",
-  //   "Jss3C",
-  //   "Jss3D",
-  //   "SS3 Art",
-  //   "Ss3 Science",
-  // ];
+  const examClasses = [
+    "Jss3A",
+    "Jss3B",
+    "Jss3C",
+    "Jss3D",
+    "SS3 Art",
+    "Ss3 Science",
+  ];
 
-  // if (examClasses.includes(classinput.value)) {
-  //   Examforminput.innerHTML = `
-  //   <label for="Exam" class="form-label">Exam Score (100)</label>
-  //   <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">
-  // `;
-  // } else {
-  //   Examforminput.innerHTML = `
-  //   <label for="Exam" class="form-label">Exam Score (60)</label>
-  //   <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">
-  // `;
-  // }
+  if (examClasses.includes(classinput.value)) {
+    Examforminput.innerHTML = `
+    <label for="Exam" class="form-label">Exam Score (100)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">
+  `;
+  } else {
+    Examforminput.innerHTML = `
+    <label for="Exam" class="form-label">Exam Score (60)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">
+  `;
+  }
   readJsonFromFile();
 }
 
@@ -160,26 +160,26 @@ function loadsavedSelection() {
     classdata.studentsubject = subjectselect.value;
   }
 
-  // const examClasses = [
-  //   "Jss3A",
-  //   "Jss3B",
-  //   "Jss3C",
-  //   "Jss3D",
-  //   "SS3 Art",
-  //   "Ss3 Science",
-  // ];
+  const examClasses = [
+    "Jss3A",
+    "Jss3B",
+    "Jss3C",
+    "Jss3D",
+    "SS3 Art",
+    "Ss3 Science",
+  ];
 
-  // if (examClasses.includes(classinput.value)) {
-  //   Examforminput.innerHTML = `
-  //   <label for="Exam" class="form-label">Exam Score (100)</label>
-  //   <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">
-  // `;
-  // } else {
-  //   Examforminput.innerHTML = `
-  //   <label for="Exam" class="form-label">Exam Score (60)</label>
-  //   <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">
-  // `;
-  // }
+  if (examClasses.includes(classinput.value)) {
+    Examforminput.innerHTML = `
+    <label for="Exam" class="form-label">Exam Score (100)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="100">
+  `;
+  } else {
+    Examforminput.innerHTML = `
+    <label for="Exam" class="form-label">Exam Score (60)</label>
+    <input type="number" class="form-control" id="Exam" name="Exam" min="0" max="60">
+  `;
+  }
 
   readJsonFromFile();
 }
