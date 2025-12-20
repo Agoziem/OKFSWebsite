@@ -17,6 +17,7 @@ Dependencies:
 - TMS.models: Teacher and result management models
 - Django authentication and JSON handling
 """
+from unicodedata import name
 from django.shortcuts import render,get_object_or_404
 from SRMS.models import *
 from ..models import *
@@ -184,7 +185,9 @@ def update_student_result_view(request):
     data=json.loads(request.body)
     term=get_object_or_404(Term, term=data['classdata']['selectedTerm'])
     session=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
-    studentobject= get_object_or_404(Students_Pin_and_ID, student_id=data['formDataObject']['studentID'], student_name=data['formDataObject']['Name'])
+    name = data.get('formDataObject', {}).get('Name', '')
+    strip_name = " ".join(name.split())
+    studentobject= get_object_or_404(Students_Pin_and_ID, student_id=data['formDataObject']['studentID'], student_name=strip_name)
     subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
     studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
