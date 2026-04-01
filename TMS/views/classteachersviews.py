@@ -185,9 +185,9 @@ def update_student_result_view(request):
     data=json.loads(request.body)
     term=get_object_or_404(Term, term=data['classdata']['selectedTerm'])
     session=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
-    name = data.get('formDataObject', {}).get('Name', '')
-    strip_name = " ".join(name.split())
-    studentobject= get_object_or_404(Students_Pin_and_ID, student_id=data['formDataObject']['studentID'], student_name=strip_name)
+    # name = data.get('formDataObject', {}).get('Name', '')
+    # strip_name = " ".join(name.split())
+    studentobject = get_object_or_404(Students_Pin_and_ID, student_id=data['formDataObject']['studentID'])
     subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
     studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
@@ -260,7 +260,7 @@ def submitallstudentresult_view(request):
     term = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
     session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for result in data['data']:
-        studentobject= get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'], student_name=result['Name'])
+        studentobject= get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'])
         student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
         studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
         fields = {
