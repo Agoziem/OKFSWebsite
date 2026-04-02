@@ -529,8 +529,7 @@ def publishstudentresult_view(request):
         for studentdata in data['data']:
             studentnumber = StudentClassEnrollment.objects.filter(student_class=classobject,academic_session=resultsession).count()
             student_enrolled = StudentClassEnrollment.objects.get(
-                student__student_name=studentdata['Name'],
-                student__id = studentdata['id'],
+                student__id=studentdata['id'],
                 student_class=classobject,
                 academic_session=resultsession
             )
@@ -594,8 +593,7 @@ def unpublish_classresults_view(request):
         for student_data in data['data']:
             try:
                 student_enrolled = StudentClassEnrollment.objects.get(
-                    student__student_name=student_data['Name'],
-                    student__id = student_data['id'],
+                    student__id=student_data['id'],
                     student_class=classobject,
                     academic_session=Acadsessionobject
                 )

@@ -134,6 +134,7 @@ def get_students_result_view(request):
             '2ndAss': res.SecondTest,
             'Exam': res.Exam,
             "studentID": student.student_id,
+            "id": student.pk,
             'published': res.published,
         })
 
@@ -187,7 +188,7 @@ def update_student_result_view(request):
     session=get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     # name = data.get('formDataObject', {}).get('Name', '')
     # strip_name = " ".join(name.split())
-    studentobject = get_object_or_404(Students_Pin_and_ID, student_id=data['formDataObject']['studentID'])
+    studentobject = get_object_or_404(Students_Pin_and_ID, pk=data['formDataObject']['id'])
     subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
     studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
@@ -260,7 +261,7 @@ def submitallstudentresult_view(request):
     term = get_object_or_404(Term, term=data['classdata']['selectedTerm'])
     session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for result in data['data']:
-        studentobject= get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'])
+        studentobject= get_object_or_404(Students_Pin_and_ID, pk=result['id'])
         student_result_details = get_object_or_404(Student_Result_Data, Student_name=studentobject, Term=term, Academicsession=session)
         studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
         fields = {
@@ -329,7 +330,7 @@ def unpublish_results_view(request):
     resultsession = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     subjectobject = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     for studentdata in data['data']:
-        student = get_object_or_404(Students_Pin_and_ID, student_name=studentdata['Name'], student_id=studentdata['studentID'])
+        student = get_object_or_404(Students_Pin_and_ID, pk=studentdata['id'])
         try:
             student_result_details=get_object_or_404(Student_Result_Data, Student_name=student, Term=resultterm, Academicsession=resultsession)
             studentResult = get_object_or_404(Result, students_result_summary=student_result_details, Subject=subjectobject)
