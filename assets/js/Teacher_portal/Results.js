@@ -231,6 +231,7 @@ function populatetable(tabledata) {
             <td>${data["Position"] || "-"}</td>
             <td>${data["Remarks"] || "-"}</td>
             <td>${data["studentID"]}</td>
+            <td hidden>${data["id"]}</td>
         </tr>`
         )
         .join("")

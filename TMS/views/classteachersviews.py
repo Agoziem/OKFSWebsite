@@ -506,6 +506,7 @@ def annual_result_computation_view(request):
 
         response.append({
             "studentID": student.student_id,
+            "id": student.pk,
             "Name": student.student_name,
             "terms": terms_object,
             "published": annual_result.published
@@ -576,7 +577,7 @@ def publish_annual_results(request):
     subject_object = get_object_or_404(Subject, subject_name=data['classdata']['studentsubject'])
     session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for result in data['data']:
-        student = get_object_or_404(Students_Pin_and_ID, student_id=result['studentID'], student_name=result['Name'])
+        student = get_object_or_404(Students_Pin_and_ID, pk=result['id'])
         studentAnnual = get_object_or_404(AnnualStudent, Student_name=student, academicsession=session)
         student_annual_details = get_object_or_404(AnnualResult, Student_name=studentAnnual, Subject=subject_object)
         student_annual_details.FirstTermTotal = result["terms"]["1st Term"]
@@ -641,7 +642,7 @@ def unpublish_annual_results(request):
     class_object = get_object_or_404(Class, Class=data['classdata']['studentclass'])
     session = get_object_or_404(AcademicSession, session=data['classdata']['selectedAcademicSession'])
     for studentdata in data['data']:
-        student = get_object_or_404(Students_Pin_and_ID, student_name=studentdata['Name'])
+        student = get_object_or_404(Students_Pin_and_ID, pk=studentdata['id'])
         studentAnnual = get_object_or_404(AnnualStudent, Student_name=student, academicsession=session)
         student_annual_details = get_object_or_404(AnnualResult, Student_name=studentAnnual, Subject=subject_object)
         student_annual_details.published = False

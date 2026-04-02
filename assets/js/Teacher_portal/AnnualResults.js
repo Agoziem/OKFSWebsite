@@ -135,6 +135,7 @@ function populatetable(tabledata) {
             <td>${data["Grade"] || "-"}</td>
             <td>${data["Position"] || "-"}</td>
             <td>${data["Remarks"] || "-"}</td>
+            <td hidden>${data["id"]}</td>
          
         </tr>`
     )
