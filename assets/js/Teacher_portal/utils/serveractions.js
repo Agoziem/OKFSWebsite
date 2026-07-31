@@ -1,5 +1,16 @@
 import { showSpinner, hideSpinner } from "../../utils/displayspinner.js";
 
+async function parseJsonResponse(response) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!response.ok) {
+    throw new Error(`Request failed (${response.status})`);
+  }
+  if (!contentType.includes("application/json")) {
+    throw new Error("Server returned a non-JSON response");
+  }
+  return response.json();
+}
+
 // -----------------------------------------------------
 // function to get Subject Students Termly Results
 // ------------------------------------------------------
@@ -13,17 +24,19 @@ async function getstudentdata(classdata) {
     return;
   }
   showSpinner("updatesubjectspinner", "subjectbtnmessage", "Loading...");
-  const response = await fetch(`/TMS/getstudentresults/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": csrftoken,
-    },
-    body: JSON.stringify(classdata),
-  });
-  const data = await response.json();
-  hideSpinner("updatesubjectspinner", "subjectbtnmessage", "load Results");
-  return data;
+  try {
+    const response = await fetch(`/TMS/getstudentresults/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify(classdata),
+    });
+    return await parseJsonResponse(response);
+  } finally {
+    hideSpinner("updatesubjectspinner", "subjectbtnmessage", "load Results");
+  }
 }
 
 // ---------------------------------------------------
@@ -38,18 +51,19 @@ async function getannualresultdata(classdata) {
     return;
   }
   showSpinner("updatesubjectspinner", "subjectbtnmessage", "Loading...");
-  console.log(classdata);
-  const response = await fetch(`/TMS/annualresultcomputation/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": csrftoken,
-    },
-    body: JSON.stringify(classdata),
-  });
-  const data = await response.json();
-  hideSpinner("updatesubjectspinner", "subjectbtnmessage", "load Results");
-  return data;
+  try {
+    const response = await fetch(`/TMS/annualresultcomputation/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken,
+      },
+      body: JSON.stringify(classdata),
+    });
+    return await parseJsonResponse(response);
+  } finally {
+    hideSpinner("updatesubjectspinner", "subjectbtnmessage", "load Results");
+  }
 }
 
 // -----------------------------------------------------
@@ -74,15 +88,21 @@ function updatestudentresult(
     },
     body: JSON.stringify(fullresultdata),
   })
-    .then((response) => response.json())
+    .then((response) => parseJsonResponse(response))
     .then((data) => {
-      hideSpinner("updatespinner", "btnmessage", "Update");
       readJsonFromFile();
-      const type = "alert-success";
-      const message = data;
-      displayalert(type, message);
+      displayalert("alert-success", data);
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => {
+      console.error("Error:", error);
+      displayalert(
+        "alert-danger",
+        "Failed to update result. Please try again."
+      );
+    })
+    .finally(() => {
+      hideSpinner("updatespinner", "btnmessage", "Update");
+    });
 }
 
 // -----------------------------------------------------
@@ -101,13 +121,17 @@ function submitallstudentresult(url, data, classdata, displayalert) {
     },
     body: JSON.stringify(resulttosubmit),
   })
-    .then((response) => response.json())
+    .then((response) => parseJsonResponse(response))
     .then((data) => {
-      const type = "alert-success";
-      const message = data;
-      displayalert(type, message);
+      displayalert("alert-success", data);
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => {
+      console.error("Error:", error);
+      displayalert(
+        "alert-danger",
+        "Failed to publish/unpublish results. Please try again."
+      );
+    });
 }
 
 
@@ -130,8 +154,7 @@ async function getstudentresult(classdata) {
     },
     body: JSON.stringify(classdata),
   });
-  const data = await response.json();
-  return data;
+  return parseJsonResponse(response);
 }
 
 // ---------------------------------------------------
@@ -151,13 +174,17 @@ function publishstudentresult(url, data, classdata, displayalert) {
     },
     body: JSON.stringify(fulldata),
   })
-    .then((response) => response.json())
+    .then((response) => parseJsonResponse(response))
     .then((data) => {
-      const type = "alert-success";
-      const message = data;
-      displayalert(type, message);
+      displayalert("alert-success", data);
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => {
+      console.error("Error:", error);
+      displayalert(
+        "alert-danger",
+        "Failed to publish/unpublish class results. Please try again."
+      );
+    });
 }
 
 
@@ -180,8 +207,7 @@ async function getannualclassresult(classdata) {
     },
     body: JSON.stringify(classdata),
   });
-  const data = await response.json();
-  return data;
+  return parseJsonResponse(response);
 }
 
 

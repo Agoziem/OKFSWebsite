@@ -190,6 +190,11 @@ function loadsavedSelection() {
 async function readJsonFromFile() {
   try {
     const jsonData = await getstudentdata(classdata);
+    if (!jsonData || !jsonData.length) {
+      studentResult = [];
+      populatetable([]);
+      return;
+    }
     const studentHandler = new StudentDataHandler(jsonData);
     const studentsWithCalculatedFields = studentHandler.getStudents();
     studentResult = studentsWithCalculatedFields;
@@ -201,6 +206,7 @@ async function readJsonFromFile() {
     );
   } catch (error) {
     console.error("Error reading JSON file:", error);
+    displayalert("alert-danger", "Failed to load results. Please try again.");
   }
 }
 

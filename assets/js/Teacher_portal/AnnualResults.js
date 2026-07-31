@@ -102,15 +102,20 @@ function loadsavedSelection() {
 async function readJsonFromFile() {
   try {
     const jsonData = await getannualresultdata(classdata);
+    if (!jsonData || !jsonData.length) {
+      studentResult = [];
+      populatetable([]);
+      return;
+    }
     const studentHandler = new AnnualResulthandler(jsonData);
     const studentsWithCalculatedFields = studentHandler.getStudents();
-    console.log(studentsWithCalculatedFields);
     studentResult = studentsWithCalculatedFields;
     updateResultBadge("update", studentsWithCalculatedFields[0]);
     populatetable(studentsWithCalculatedFields);
     const dataTable = new AnnualStudentResultDatatable();
   } catch (error) {
     console.error("Error reading JSON file:", error);
+    displayalert("alert-danger", "Failed to load annual results. Please try again.");
   }
 }
 
